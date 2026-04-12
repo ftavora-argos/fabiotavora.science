@@ -56,7 +56,7 @@ ninja.data = [{
           description: "Current and former members of the Távora Research Group at the Federal University of Ceará Graduate Program in Pathology and Argos Laboratory.",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/Research%20Group";
+            window.location.href = "/people/";
           },
         },{id: "dropdown-bookshelf",
               title: "bookshelf",
