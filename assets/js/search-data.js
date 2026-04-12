@@ -451,34 +451,39 @@ ninja.data = [{
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
-          section: "News",},{id: "projects-project-1",
-          title: 'project 1',
-          description: "with background image",
+          section: "News",},{id: "projects-argos-laboratory",
+          title: 'Argos Laboratory',
+          description: "CEO and co-founder of a reference anatomic and molecular pathology laboratory in Fortaleza, Brazil, processing over 100,000 specimens annually with emphasis on oncologic pathology, digital pathology, and AI-assisted diagnostics.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
-            },},{id: "projects-project-3-with-very-long-name",
-          title: 'project 3 with very long name',
-          description: "a project that redirects to another website",
+            },},{id: "projects-lung-cancer-research",
+          title: 'Lung Cancer Research',
+          description: "Ongoing research on biomarkers, molecular profiling, and immune landscape of non-small cell lung cancer (NSCLC) in northeastern Brazil, including PD-L1, ALK, EGFR, and GSK-3β.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/2_project/";
+            },},{id: "projects-who-classification-of-tumours",
+          title: 'WHO Classification of Tumours',
+          description: "Contributor to multiple editions of the WHO Classification of Tumours — Lung, Thymus &amp; Heart (2014, 2021, 2025–26) and Genitourinary Tract (2021).",
           section: "Projects",handler: () => {
               window.location.href = "/projects/3_project/";
-            },},{id: "projects-project-4",
-          title: 'project 4',
-          description: "another without an image",
+            },},{id: "projects-genitourinary-pathology",
+          title: 'Genitourinary Pathology',
+          description: "Research and clinical expertise in prostate, bladder, and kidney pathology, including PTEN/ERG profiling in prostate cancer and PD-L1 in urothelial carcinoma.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/4_project/";
-            },},{id: "projects-project-5",
-          title: 'project 5',
-          description: "a project with a background image",
+            },},{id: "projects-cardiovascular-pathology",
+          title: 'Cardiovascular Pathology',
+          description: "Author of two landmark textbooks on cardiovascular pathology, with extensive research on arrhythmogenic cardiomyopathy, sudden cardiac death, aortitis, and cardiac tumors.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/5_project/";
-            },},{id: "projects-project-6",
-          title: 'project 6',
-          description: "a project with no image",
+            },},{id: "projects-digital-pathology-amp-ai",
+          title: 'Digital Pathology &amp;amp; AI',
+          description: "Integration of artificial intelligence and digital workflows into surgical pathology diagnostics, including image analysis, IHC quantification, and AI-assisted pattern recognition in lung cancer.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/6_project/";
-            },},{id: "projects-project-7",
-          title: 'project 7',
-          description: "with background image",
+            },},{id: "projects-pathology-education",
+          title: 'Pathology Education',
+          description: "Professor, mentor, and international speaker committed to advancing pathology education in Brazil, Latin America, and Africa through courses, podcasts, and collaborative programs.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/7_project/";
             },},{id: "projects-project-8",
