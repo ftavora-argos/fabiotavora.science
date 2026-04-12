@@ -7,9 +7,10 @@ cv:
   summary: >
     Surgical pathologist and scientist with subspecialty expertise in pulmonary,
     genitourinary, and cardiovascular pathology. Founder and CEO of Argos Laboratory,
-    a reference center for diagnostic pathology in Fortaleza, Brazil. Professor of
-    Pathology and international speaker, with over 150 peer-reviewed publications.
-    Pioneer in digital pathology and AI integration in diagnostic workflows.
+    a reference anatomic and molecular pathology laboratory in Fortaleza, Brazil.
+    Professor in the Graduate Program in Pathology at the Federal University of Ceará.
+    Contributor to the WHO Classification of Tumours and member of the IASLC
+    Pathology Committee.
 
   social_networks:
     - network: X
@@ -30,73 +31,175 @@ cv:
 
   sections:
     Education:
-      - institution: "[Your Medical School — fill in]"
-        location: "Fortaleza, Brazil"
-        url: ""
-        area: Medicine
-        studyType: MD
-        start_date: "[year]"
-        end_date: "[year]"
-        score: ""
-        courses: []
-      - institution: "[Your Pathology Residency — fill in]"
-        location: "Brazil"
-        url: ""
+      - institution: Brown University
+        location: Providence, RI, USA
+        url: https://www.brown.edu
         area: Pathology
-        studyType: Residency
-        start_date: "[year]"
-        end_date: "[year]"
+        studyType: Post-Doctoral Fellowship
+        start_date: "2019"
+        end_date: "2020"
         score: ""
         courses: []
-      - institution: "[Your PhD Institution — fill in]"
-        location: "Brazil"
+      - institution: The Johns Hopkins Hospital
+        location: Baltimore, MD, USA
+        url: https://www.hopkinsmedicine.org
+        area: Genitourinary Pathology
+        studyType: Clinical Fellowship
+        start_date: "2007"
+        end_date: "2008"
+        score: ""
+        courses: []
+        highlights:
+          - "Director: Jonathan Epstein, MD"
+      - institution: Armed Forces Institute of Pathology
+        location: Washington, DC, USA
         url: ""
+        area: Pulmonary and Mediastinal Pathology
+        studyType: Callender-Binford Fellowship
+        start_date: "2006"
+        end_date: "2007"
+        score: ""
+        courses: []
+        highlights:
+          - "Director: Teri J. Franks, MD"
+      - institution: University of Maryland School of Medicine
+        location: Baltimore, MD, USA
+        url: https://www.medschool.umaryland.edu
+        area: Anatomic Pathology
+        studyType: Residency
+        start_date: "2004"
+        end_date: "2006"
+        score: ""
+        courses: []
+        highlights:
+          - "Director: Olga B. Ioffe, MD"
+      - institution: Universidade Federal de São Paulo / EPM
+        location: São Paulo, Brazil
+        url: https://www.unifesp.br
         area: Pathology
         studyType: PhD
-        start_date: "[year]"
-        end_date: "[year]"
+        start_date: "2011"
+        end_date: "2013"
         score: ""
         courses: []
+      - institution: Universidade Federal do Ceará
+        location: Fortaleza, Brazil
+        url: https://www.ufc.br
+        area: Medicine
+        studyType: MD
+        start_date: "1996"
+        end_date: "2002"
+        score: ""
+        courses: []
+        highlights:
+          - Magna cum Laude University Honor
 
     Work experience:
-      - company: Argos Laboratory
-        position: Director and CEO
+      - company: Argos Laboratory — Anatomic and Molecular Pathology
+        position: Chief Executive Officer and Co-Founder
         location: Fortaleza, Ceará, Brazil
-        url: https://fabiotavora.science
-        start_date: "[year]"
+        url: https://www.argospatologia.com.br
+        start_date: "2011"
         end_date: present
         summary: >
-          Leads Argos Laboratory, a high-level pathology diagnostics center
-          specializing in surgical pathology, immunohistochemistry, molecular
-          diagnostics, and digital pathology.
+          Reference regional surgical pathology laboratory with emphasis in oncologic
+          pathology, processing over 100,000 specimens annually.
         highlights:
-          - Pulmonary and genitourinary pathology subspecialty
-          - AI integration in diagnostic workflows
-          - Quality assurance and laboratory management
-      - company: "[Your University — fill in]"
-        position: Professor of Pathology
+          - Co-founded and leads a multidisciplinary team of pathologists, molecular biologists, and histotechnicians
+          - Oversees clinical operations, quality assurance, and digital pathology workflows
+          - Leads integration of AI-assisted diagnostic tools and molecular testing platforms
+      - company: Messejana Heart and Lung Hospital
+        position: Pathologist Consultant and Head of Surgical Pathology
         location: Fortaleza, Ceará, Brazil
         url: ""
-        start_date: "[year]"
+        start_date: "2011"
         end_date: present
         summary: >
-          Teaches undergraduate and graduate pathology courses. International
-          speaker on pulmonary and genitourinary pathology with educational
-          outreach initiatives in Latin America and Africa.
+          Reference center in Brazil for heart and lung transplants, studying
+          approximately 4,000 specimens annually.
         highlights:
-          - Graduate Program in Pathology
-          - Digital pathology and AI education
+          - Renders diagnoses on surgical specimens with emphasis on thoracic and cardiovascular pathology
+          - Member of the Scientific Advisory Board
+          - Teaching of pulmonology and cardiology residents
+      - company: Federal University of Ceará
+        position: Professor of Pathology — Graduate School
+        location: Fortaleza, Ceará, Brazil
+        url: https://www.ufc.br
+        start_date: "2013"
+        end_date: present
+        summary: >
+          Graduate Program in Pathology — Mentor and supervisor of MSc and PhD students.
+        highlights:
+          - Supervises multiple graduate students in lung cancer, GU pathology, transplant, and digital pathology
+          - PI on multiple active research projects
+      - company: UNICHRISTUS School of Medicine
+        position: Associate Professor of Pathology
+        location: Fortaleza, Ceará, Brazil
+        url: ""
+        start_date: "2016"
+        end_date: "2019"
+        summary: ""
+        highlights: []
+      - company: Brazilian Society of Pathology
+        position: Director of International Relationships
+        location: Brazil
+        url: ""
+        start_date: "2017"
+        end_date: "2022"
+        summary: Served two consecutive terms (2017–2019 and 2019–2022).
+        highlights: []
+      - company: Armed Forces Institute of Pathology
+        position: Staff Pathologist, Department of Genitourinary Pathology
+        location: Washington, DC, USA
+        url: ""
+        start_date: "2008"
+        end_date: "2010"
+        summary: "Chairperson: Isabell Sesterhenn, MD."
+        highlights: []
 
-    Publications:
+    Selected publications:
       - title: >
-          150+ peer-reviewed publications in pulmonary, genitourinary, and
-          cardiovascular pathology. Topics include HER2, PD-L1, and TROP2
-          biomarkers in NSCLC and GU tumor classification.
+          Differentiating separate primary lung adenocarcinomas from intrapulmonary
+          metastases — Recommendations from the IASLC Pathology Committee.
         authors:
-          - Távora F
-        date: "2024"
-        journal: "Multiple journals — see Google Scholar or ORCID"
-        url: "https://orcid.org/0000-0003-2361-0613"
+          - Chou TY, Dacic S, Wistuba I, ... Távora FR, et al.
+        date: "2025"
+        journal: Journal of Thoracic Oncology
+        url: "https://doi.org/10.1016/j.jtho.2024.11.016"
+      - title: >
+          The 2021 WHO Classification of Tumors of the Heart.
+        authors:
+          - Maleszewski JJ, Basso C, Bois MC, Glass C, Klarich KW, Leduc C, Padera RF, Tavora F.
+        date: "2022"
+        journal: Journal of Thoracic Oncology
+        url: "https://doi.org/10.1016/j.jtho.2021.10.021"
+      - title: >
+          The 2019 GUPS White Paper on Contemporary Grading of Prostate Cancer.
+        authors:
+          - Epstein JI, Amin MB, Fine SW, ... Tavora F, et al.
+        date: "2021"
+        journal: Archives of Pathology and Laboratory Medicine
+        url: "https://doi.org/10.5858/arpa.2020-0015-RA"
+      - title: >
+          Glycogen Synthase Kinase-3 Beta Expression Correlates With Worse Overall
+          Survival in Non-Small Cell Lung Cancer.
+        authors:
+          - Alves M, Borges DP, Kimberly A, ... Tavora F.
+        date: "2021"
+        journal: Frontiers in Oncology
+        url: "https://doi.org/10.3389/fonc.2021.621050"
+      - title: Practical Cardiovascular Pathology. (Book)
+        authors:
+          - Burke AP, Tavora F.
+        date: "2012"
+        journal: Lippincott Williams and Wilkins
+        url: ""
+      - title: Practical Thoracic Pathology. (Book)
+        authors:
+          - Burke AP, Aubry MC, Maleszewski JJ, Alexiev B, Tavora F.
+        date: "2016"
+        journal: Lippincott Williams and Wilkins
+        url: ""
 
     Skills:
       - category: Subspecialty Pathology
@@ -104,30 +207,82 @@ cv:
           - Pulmonary Pathology
           - Genitourinary Pathology
           - Cardiovascular Pathology
-          - Surgical Pathology
+          - Transplant Pathology
       - category: Diagnostics and Technology
         skills:
           - Immunohistochemistry
           - Molecular Diagnostics
           - Digital Pathology
-          - AI-assisted Image Analysis
-      - category: Languages
+          - Whole Slide Imaging
+          - AI-Assisted Diagnostics
+          - NGS / Ion Torrent
+          - QuPath
+      - category: Research
         skills:
-          - Portuguese (native)
-          - English (fluent)
-          - German (learning)
-          - Mandarin Chinese (learning)
+          - Biomarker Development
+          - Clinicopathological Studies
+          - Tissue Microarray
+          - Scientific Writing
+          - Peer Review
+
+    Awards and honors:
+      - title: "WHO Classification of Tumours — Lung, Thymus and Heart (2025–2026 edition)"
+        date: "2025"
+        awarder: World Health Organization / IARC
+        summary: Member
+      - title: IASLC Pathology Committee, Member (2025–2027)
+        date: "2025"
+        awarder: International Association for the Study of Lung Cancer
+        summary: ""
+      - title: "WHO Classification of Tumours — Lung, Thymus and Heart"
+        date: "2021"
+        awarder: World Health Organization / IARC
+        summary: Editorial and Consensus Conference contributor
+      - title: "WHO Classification of Tumours — Genitourinary Tract"
+        date: "2021"
+        awarder: World Health Organization / IARC
+        summary: Editorial and Consensus Conference contributor
+      - title: "WHO Classification of Tumours — Lung, Thymus and Heart"
+        date: "2014"
+        awarder: World Health Organization / IARC
+        summary: "Editorial and Consensus Conference, Lyon, France, March 2014"
+      - title: Pulmonary Pathology Society Award — Honorable Mention
+        date: "2006"
+        awarder: Pulmonary Pathology Society
+        summary: USCAP Annual Meeting
+      - title: CAP Foundation Training in Technology Award
+        date: "2005"
+        awarder: College of American Pathologists / Johns Hopkins Medical Institutions
+        summary: Molecular Diagnostics Laboratory training
+      - title: Magna cum Laude University Honor
+        date: "2002"
+        awarder: Federal University of Ceará
+        summary: ""
+
+    Languages:
+      - language: Portuguese
+        fluency: Native speaker
+      - language: English
+        fluency: Fluent
+      - language: Spanish
+        fluency: Reading, understanding and speaking
+      - language: German
+        fluency: Reading and understanding
 
     Interests:
-      - name: Sports and outdoor
+      - name: Sports and outdoors
         keywords:
           - Surfing
-          - Surfski paddling
+          - Surfski Paddling
           - CrossFit
-          - Birdwatching
-      - name: Science and education
+          - Zone 2 Training
+      - name: Nature and science
         keywords:
-          - Digital pathology
-          - AI in medicine
+          - Birdwatching
           - Photography
-          - Mathematical problem solving
+          - Digital Pathology AI
+      - name: Philosophy and literature
+        keywords:
+          - Stoicism
+          - Scientific Writing
+          - Medical Education
