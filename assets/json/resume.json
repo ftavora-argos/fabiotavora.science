@@ -1,221 +1,352 @@
 {
   "basics": {
-    "name": "Albert Einstein",
-    "label": "Scientist",
-    "image": "",
-    "email": "einstein@example.com",
-    "phone": "(912) 123-4567",
-    "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
+    "name": "Fabio Rocha Fernandes Távora",
+    "label": "Surgical Pathologist | PhD | CEO, Argos Laboratory",
+    "email": "ftavora@gmail.com",
+    "url": "https://fabiotavora.science",
+    "summary": "Surgical pathologist and scientist with subspecialty expertise in pulmonary, genitourinary, and cardiovascular pathology. Founder and CEO of Argos Laboratory, a reference anatomic and molecular pathology laboratory in Fortaleza, Brazil. Professor in the Graduate Program in Pathology at the Federal University of Ceará. Contributor to the WHO Classification of Tumours and member of the IASLC Pathology Committee.",
     "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
-      "countryCode": "US",
-      "region": "California"
+      "address": "Av. Santos Dumont, 5753 Suite 1607",
+      "city": "Fortaleza",
+      "region": "Ceará",
+      "countryCode": "BR",
+      "postalCode": "60047-154"
     },
-    "profiles": []
+    "profiles": [
+      {
+        "network": "ORCID",
+        "username": "0000-0003-2361-0613",
+        "url": "https://orcid.org/0000-0003-2361-0613"
+      },
+      {
+        "network": "Google Scholar",
+        "username": "Fabio Távora",
+        "url": "https://scholar.google.com/citations?user=7d50ByEAAAAJ"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "fabio-tavora-6a367713",
+        "url": "https://www.linkedin.com/in/fabio-tavora-6a367713/"
+      },
+      {
+        "network": "Twitter",
+        "username": "fabiotavora",
+        "url": "https://twitter.com/fabiotavora"
+      }
+    ]
   },
   "work": [
     {
-      "name": "Institute for Advanced Study, Princeton University",
-      "position": "Professor of Theoretical Physics",
-      "location": "Princeton University, NJ",
-      "startDate": "1933-01-01",
-      "endDate": "1955-01-01",
-      "summary": "Teaching at Palmer Physical Laboratory (now 302 Frist Campus Center). While not a professor at Princeton, I associated with the physics professors and continued to give lectures on campus.",
-      "highlights": ["Relativity", "Description 2."]
+      "name": "Argos Laboratory — Anatomic and Molecular Pathology",
+      "position": "Chief Executive Officer and Co-Founder",
+      "url": "https://www.argospatologia.com.br",
+      "startDate": "2011",
+      "endDate": "",
+      "summary": "Reference regional surgical pathology laboratory with emphasis in oncologic pathology, processing over 100,000 specimens annually.",
+      "highlights": [
+        "Co-founded and leads a multidisciplinary team of pathologists, molecular biologists, and histotechnicians",
+        "Oversees clinical operations, quality assurance, and digital pathology workflows",
+        "Leads integration of AI-assisted diagnostic tools and molecular testing platforms"
+      ]
     },
     {
-      "name": "California Institute of Technology",
-      "position": "Visiting Professor",
-      "location": "Pasadena, California, US",
-      "startDate": "1933-01-01",
-      "endDate": "1933-01-01",
-      "summary": "",
-      "highlights": ["Description 1.", "Description 2."]
+      "name": "Messejana Heart and Lung Hospital",
+      "position": "Pathologist Consultant and Head of Surgical Pathology",
+      "startDate": "2011",
+      "endDate": "",
+      "summary": "Reference center in Brazil for heart and lung transplants, studying approximately 4,000 specimens annually.",
+      "highlights": [
+        "Renders diagnoses on surgical specimens with emphasis on thoracic and cardiovascular pathology",
+        "Member of the Scientific Advisory Board",
+        "Teaching of pulmonology and cardiology residents"
+      ]
     },
     {
-      "name": "Kaiser Wilhelm Institute for Physics",
-      "position": "Director",
-      "location": "Berlin, Germany",
-      "startDate": "1917-01-01",
-      "endDate": "1933-01-01",
-      "summary": "",
+      "name": "Federal University of Ceará",
+      "position": "Professor of Pathology — Graduate School",
+      "startDate": "2013",
+      "endDate": "",
+      "summary": "Graduate Program in Pathology — Mentor and supervisor of MSc and PhD students.",
+      "highlights": [
+        "Supervises multiple graduate students in lung cancer, GU pathology, transplant, and digital pathology",
+        "PI on multiple active research projects"
+      ]
+    },
+    {
+      "name": "Brazilian Society of Pathology",
+      "position": "Director of International Relationships",
+      "startDate": "2017",
+      "endDate": "2022",
+      "summary": "Served two consecutive terms (2017–2019 and 2019–2022).",
       "highlights": []
     },
     {
-      "name": "Karl-Ferdinand University",
-      "position": "Professor of Theoretical Physics",
-      "location": "Prague, Czechoslovakia",
-      "startDate": "1911-01-01",
-      "endDate": "1917-01-01",
-      "summary": "",
+      "name": "Armed Forces Institute of Pathology",
+      "position": "Staff Pathologist, Department of Genitourinary Pathology",
+      "startDate": "2008",
+      "endDate": "2010",
+      "summary": "Washington, DC. Chairperson: Isabell Sesterhenn, MD.",
       "highlights": []
     },
     {
-      "name": "University of Zurich",
-      "position": "Associate Professor of Theoretical Physics",
-      "location": "Zurich, Switzerland",
-      "startDate": "1909-01-01",
-      "endDate": "1911-01-01",
-      "summary": "",
+      "name": "UNICHRISTUS School of Medicine",
+      "position": "Associate Professor of Pathology",
+      "startDate": "2016",
+      "endDate": "2019",
+      "summary": "Fortaleza, Brazil.",
       "highlights": []
-    }
-  ],
-  "volunteer": [
-    {
-      "organization": "People's Climate March",
-      "location": "Zurich, Switzerland",
-      "position": "Lead Organizer",
-      "startDate": "2014-04-01",
-      "endDate": "2015-07-01",
-      "summary": "Lead organizer for the New York City branch of the People's Climate March, the largest climate march in history.",
-      "highlights": ["Awarded 'Climate Hero' award by Greenpeace for my efforts organizing the march.", "Men of the year 2014 by Time magazine"]
     }
   ],
   "education": [
     {
-      "institution": "University of Zurich",
-      "location": "Zurich, Switzerland",
-      "url": "https://www.uzh.ch/",
-      "area": "Physics",
-      "studyType": "PhD",
-      "startDate": "1900-01-01",
-      "endDate": "1905-01-01",
-      "score": "",
-      "courses": ["Theory of Relativity"],
-      "highlights": ["Description 1.", "Description 2."]
+      "institution": "Brown University",
+      "area": "Pathology",
+      "studyType": "Post-Doctoral Fellowship",
+      "startDate": "2019",
+      "endDate": "2020",
+      "location": "Providence, RI, USA"
     },
     {
-      "institution": "Eidgenössische Technische Hochschule",
-      "location": "Zurich, Switzerland",
-      "area": "Physics",
-      "studyType": "Federal teaching diploma",
-      "startDate": "1896-01-01",
-      "endDate": "1900-01-01",
-      "score": "",
-      "courses": [],
-      "highlights": ["Description 1.", "Description 2."]
+      "institution": "Universidade Federal de São Paulo / EPM",
+      "area": "Pathology",
+      "studyType": "PhD",
+      "startDate": "2011",
+      "endDate": "2013",
+      "location": "São Paulo, Brazil"
+    },
+    {
+      "institution": "Universidade Federal do Ceará",
+      "area": "Medicine",
+      "studyType": "MD",
+      "startDate": "1996",
+      "endDate": "2002",
+      "location": "Fortaleza, Brazil",
+      "highlights": ["Magna cum Laude University Honor"]
+    },
+    {
+      "institution": "The Johns Hopkins Hospital",
+      "area": "Genitourinary Pathology",
+      "studyType": "Clinical Fellowship",
+      "startDate": "2007",
+      "endDate": "2008",
+      "location": "Baltimore, MD, USA",
+      "highlights": ["Director: Jonathan Epstein, MD"]
+    },
+    {
+      "institution": "Armed Forces Institute of Pathology",
+      "area": "Pulmonary and Mediastinal Pathology",
+      "studyType": "Callender-Binford Fellowship",
+      "startDate": "2006",
+      "endDate": "2007",
+      "location": "Washington, DC, USA",
+      "highlights": ["Director: Teri J. Franks, MD"]
+    },
+    {
+      "institution": "University of Maryland School of Medicine",
+      "area": "Anatomic Pathology",
+      "studyType": "Residency",
+      "startDate": "2004",
+      "endDate": "2006",
+      "location": "Baltimore, MD, USA",
+      "highlights": ["Director: Olga B. Ioffe, MD"]
     }
   ],
   "awards": [
     {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "url": "https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
+      "title": "WHO Classification of Tumours — Lung, Thymus and Heart, Member",
+      "date": "2025",
+      "awarder": "World Health Organization / IARC",
+      "summary": "2025–2026 edition"
     },
     {
-      "title": "Max Planck Medal",
-      "date": "2029-01-01",
-      "awarder": "German Physical Society",
+      "title": "IASLC Pathology Committee, Member",
+      "date": "2025",
+      "awarder": "International Association for the Study of Lung Cancer",
+      "summary": "2025–2027 term"
+    },
+    {
+      "title": "WHO Classification of Tumours — Lung, Thymus and Heart",
+      "date": "2021",
+      "awarder": "World Health Organization / IARC",
+      "summary": "Editorial and Consensus Conference contributor, 2020–2021 (online)"
+    },
+    {
+      "title": "WHO Classification of Tumours — Genitourinary Tract",
+      "date": "2021",
+      "awarder": "World Health Organization / IARC",
+      "summary": "Editorial and Consensus Conference contributor, 2021 (online)"
+    },
+    {
+      "title": "WHO Classification of Tumours — Lung, Thymus and Heart",
+      "date": "2014",
+      "awarder": "World Health Organization / IARC",
+      "summary": "Editorial and Consensus Conference, Lyon, France, March 2014"
+    },
+    {
+      "title": "CAP Foundation Training in Technology Award",
+      "date": "2005",
+      "awarder": "College of American Pathologists / Johns Hopkins Medical Institutions",
+      "summary": "Molecular Diagnostics Laboratory training in haplotyping of the human adrenoreceptor gene"
+    },
+    {
+      "title": "Pulmonary Pathology Society Award — Honorable Mention",
+      "date": "2006",
+      "awarder": "Pulmonary Pathology Society",
+      "summary": "USCAP Annual Meeting"
+    },
+    {
+      "title": "Magna cum Laude University Honor",
+      "date": "2002",
+      "awarder": "Federal University of Ceará",
       "summary": ""
-    }
-  ],
-  "certificates": [
-    {
-      "name": "Machine Learning",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "icon": "fa-solid fa-location-dot"
-    },
-    {
-      "name": "Quantum Computing",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "icon": "fa-solid fa-tag"
-    },
-    {
-      "name": "Quantum Information",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "icon": "fa-solid fa-envelope"
     }
   ],
   "publications": [
     {
-      "name": "Zur Elektrodynamik bewegter Körper",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1905-06-30",
-      "url": "https://en.wikisource.org/wiki/Translation:On_the_Electrodynamics_of_Moving_Bodies",
-      "summary": "It concerned an interpretation of the Michelson–Morley experiment and the properties of light and time. Special relativity incorporates the principle that the speed of light is the same for all inertial observers regardless of the state of motion of the source."
+      "name": "Differentiating separate primary lung adenocarcinomas from intrapulmonary metastases: Recommendations from the IASLC Pathology Committee",
+      "publisher": "Journal of Thoracic Oncology",
+      "releaseDate": "2025",
+      "url": "https://doi.org/10.1016/j.jtho.2024.11.016",
+      "summary": "Chou TY, Dacic S, Wistuba I, ... Távora FR, et al."
     },
     {
-      "name": "Über einen die Erzeugung und Verwandlung des Lichtes betreffenden heuristischen Gesichtspunkt",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1905-03-18",
-      "url": "https://de.wikisource.org/wiki/Über_einen_die_Erzeugung_und_Verwandlung_des_Lichtes_betreffenden_heuristischen_Gesichtspunkt",
-      "summary": "In the second paper, he applied the quantum theory to light to explain the photoelectric effect. In particular, he used the idea of light quanta (photons) to explain experimental results, but stressed the importance of the experimental results. The importance of his work on the photoelectric effect earned him the Nobel Prize in Physics in 1921."
+      "name": "Relationship between DLL3, ASC1, TTF-1 and Ki-67: First steps of precision medicine at SCLC",
+      "publisher": "Oncotarget",
+      "releaseDate": "2024",
+      "summary": "Silva S, Sousa JC, Nogueira C, Feijo R, ... Tavora F."
     },
     {
-      "name": "Die Grundlage der allgemeinen Relativitätstheorie",
-      "publisher": "Annalen der Physik",
-      "releaseDate": "1916-03-20",
-      "url": "https://de.wikisource.org/wiki/Die_Grundlage_der_allgemeinen_Relativitätstheorie",
-      "summary": "The publication of the theory of general relativity made him internationally famous. He was professor of physics at the universities of Zurich (1909–1911) and Prague (1911–1912), before he returned to ETH Zurich (1912–1914)."
+      "name": "The 2021 WHO Classification of Tumors of the Heart",
+      "publisher": "Journal of Thoracic Oncology",
+      "releaseDate": "2022",
+      "url": "https://doi.org/10.1016/j.jtho.2021.10.021",
+      "summary": "Maleszewski JJ, Basso C, Bois MC, Glass C, Klarich KW, Leduc C, Padera RF, Tavora F."
+    },
+    {
+      "name": "The 2019 GUPS White Paper on Contemporary Grading of Prostate Cancer",
+      "publisher": "Archives of Pathology & Laboratory Medicine",
+      "releaseDate": "2021",
+      "url": "https://doi.org/10.5858/arpa.2020-0015-RA",
+      "summary": "Epstein JI, Amin MB, Fine SW, ... Tavora F, et al."
+    },
+    {
+      "name": "Glycogen Synthase Kinase-3 Beta Expression Correlates With Worse Overall Survival in Non-Small Cell Lung Cancer",
+      "publisher": "Frontiers in Oncology",
+      "releaseDate": "2021",
+      "url": "https://doi.org/10.3389/fonc.2021.621050",
+      "summary": "Alves M, Borges DP, Kimberly A, ... Tavora F."
+    },
+    {
+      "name": "Molecular profile of non-small cell lung cancer in northeastern Brazil",
+      "publisher": "Jornal Brasileiro de Pneumologia",
+      "releaseDate": "2019",
+      "url": "https://doi.org/10.1590/1806-3713/e20180181",
+      "summary": "Oliveira ACDSM, Silva AVAD, Alves M, ... Tavora F."
+    },
+    {
+      "name": "The 2015 WHO Classification of Tumors of the Heart and Pericardium",
+      "publisher": "Journal of Thoracic Oncology",
+      "releaseDate": "2016",
+      "url": "https://doi.org/10.1016/j.jtho.2015.11.009",
+      "summary": "Burke A, Tavora F."
+    },
+    {
+      "name": "Practical Cardiovascular Pathology",
+      "publisher": "Lippincott Williams & Wilkins",
+      "releaseDate": "2012",
+      "summary": "Burke AP, Tavora F. (Book)"
+    },
+    {
+      "name": "Atlas of Tumor Pathology: Tumors of the Heart and Great Vessels",
+      "publisher": "Armed Forces Institute of Pathology",
+      "releaseDate": "2014",
+      "summary": "Burke AP, Tavora F, Maleszewski JJ, Frazier AA. (Book)"
+    },
+    {
+      "name": "Practical Thoracic Pathology",
+      "publisher": "Lippincott Williams & Wilkins",
+      "releaseDate": "2016",
+      "summary": "Burke AP, Aubry MC, Maleszewski JJ, Alexiev B, Tavora F. (Book)"
     }
   ],
   "skills": [
     {
-      "name": "Physics",
-      "level": "Master",
-      "icon": "fa-solid fa-hashtag",
+      "name": "Subspecialty Pathology",
       "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
+        "Pulmonary Pathology",
+        "Genitourinary Pathology",
+        "Cardiovascular Pathology",
+        "Transplant Pathology"
+      ]
+    },
+    {
+      "name": "Diagnostics & Technology",
+      "keywords": [
+        "Immunohistochemistry",
+        "Molecular Diagnostics",
+        "Digital Pathology",
+        "Whole Slide Imaging",
+        "AI-Assisted Diagnostics",
+        "NGS / Ion Torrent",
+        "QuPath"
+      ]
+    },
+    {
+      "name": "Research",
+      "keywords": [
+        "Biomarker Development",
+        "Clinicopathological Studies",
+        "Tissue Microarray",
+        "Scientific Writing",
+        "Peer Review"
       ]
     }
   ],
   "languages": [
     {
-      "language": "German",
-      "fluency": "Native speaker",
-      "icon": ""
+      "language": "Portuguese",
+      "fluency": "Native speaker"
     },
     {
       "language": "English",
-      "fluency": "Fluent",
-      "icon": ""
+      "fluency": "Fluent"
+    },
+    {
+      "language": "Spanish",
+      "fluency": "Reading, understanding and speaking"
+    },
+    {
+      "language": "German",
+      "fluency": "Reading and understanding"
     }
   ],
   "interests": [
     {
-      "name": "Physics",
-      "icon": "fa-solid fa-tag",
-      "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
-      ]
-    }
-  ],
-  "references": [
-    {
-      "name": "Professor John Doe",
-      "icon": "fa-solid fa-laptop",
-      "reference": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit."
+      "name": "Sports & Outdoors",
+      "keywords": ["Surfing", "Surfski Paddling", "CrossFit", "Zone 2 Training"]
     },
     {
-      "name": "Professor Jane Smith",
-      "icon": "fa-solid fa-thumbtack",
-      "reference": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam condimentum, diam quis convallis euismod, arcu mi ullamcorper lorem, a vestibulum nunc magna at sem. Sed in risus ac felis varius blandit."
+      "name": "Nature & Science",
+      "keywords": ["Birdwatching", "Photography", "Digital Pathology AI"]
+    },
+    {
+      "name": "Philosophy & Literature",
+      "keywords": ["Stoicism", "Scientific Writing", "Medical Education"]
     }
   ],
   "projects": [
     {
-      "name": "Quantum Computing",
-      "summary": "Quantum computing is the use of quantum-mechanical phenomena such as superposition and entanglement to perform computation. Computers that perform quantum computations are known as quantum computers.",
-      "highlights": ["Quantum Teleportation", "Quantum Cryptography"],
-      "startDate": "2018-01-01",
-      "endDate": "2018-01-01"
+      "name": "Argos Laboratory",
+      "summary": "CEO and co-founder of a reference anatomic and molecular pathology laboratory in Fortaleza, processing over 100,000 specimens annually with emphasis on oncologic pathology.",
+      "url": "https://www.argospatologia.com.br"
+    },
+    {
+      "name": "WHO Classification of Tumours",
+      "summary": "Contributor to multiple editions of the WHO Blue Books for Lung/Thymus/Heart (2014, 2021, 2025–26) and Genitourinary Tract (2021)."
+    },
+    {
+      "name": "IASLC Pathology Committee",
+      "summary": "Member of the International Association for the Study of Lung Cancer Pathology Committee (2025–2027), contributing to international consensus recommendations on lung cancer pathology."
     }
   ]
 }
