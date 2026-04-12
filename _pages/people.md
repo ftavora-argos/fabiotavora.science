@@ -1,10 +1,10 @@
 ---
 layout: page
 title: Research Group
-permalink: Research Group
-description: Current and former members of the Távora Research Group at the Federal University of Ceará Graduate Program in Pathology and Argos Laboratory.
+permalink: /people/
 nav: true
 nav_order: 7
+description: Current and former members of the Távora Research Group at the Federal University of Ceará Graduate Program in Pathology and Argos Laboratory.
 ---
 
 ## Principal Investigator
