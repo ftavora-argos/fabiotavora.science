@@ -51,16 +51,16 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/teaching/";
           },
-        },{id: "nav-research-group",
-          title: "Research Group",
-          description: "Current and former members of the Távora Research Group at the Federal University of Ceará Graduate Program in Pathology and Argos Laboratory.",
+        },{id: "nav-people",
+          title: "people",
+          description: "members of the lab or group",
           section: "Navigation",
           handler: () => {
             window.location.href = "/people/";
           },
-        },{id: "nav-people",
-          title: "people",
-          description: "members of the lab or group",
+        },{id: "nav-research-group",
+          title: "Research Group",
+          description: "Current and former members of the Távora Research Group at the Federal University of Ceará Graduate Program in Pathology and Argos Laboratory.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/people/";
