@@ -94,7 +94,7 @@ cv:
         highlights:
           - Magna cum Laude University Honor
 
-    Work experience:
+    Experience:
       - company: Argos Laboratory — Anatomic and Molecular Pathology
         position: Chief Executive Officer and Co-Founder
         location: Fortaleza, Ceará, Brazil
@@ -157,7 +157,7 @@ cv:
         summary: "Chairperson: Isabell Sesterhenn, MD."
         highlights: []
 
-    Selected publications:
+    Publications:
       - title: >
           Differentiating separate primary lung adenocarcinomas from intrapulmonary
           metastases — Recommendations from the IASLC Pathology Committee.
@@ -202,14 +202,14 @@ cv:
         url: ""
 
     Skills:
-      - category: Subspecialty Pathology
-        skills:
+      - name: Subspecialty Pathology
+        keywords:
           - Pulmonary Pathology
           - Genitourinary Pathology
           - Cardiovascular Pathology
           - Transplant Pathology
-      - category: Diagnostics and Technology
-        skills:
+      - name: Diagnostics and Technology
+        keywords:
           - Immunohistochemistry
           - Molecular Diagnostics
           - Digital Pathology
@@ -217,15 +217,15 @@ cv:
           - AI-Assisted Diagnostics
           - NGS / Ion Torrent
           - QuPath
-      - category: Research
-        skills:
+      - name: Research
+        keywords:
           - Biomarker Development
           - Clinicopathological Studies
           - Tissue Microarray
           - Scientific Writing
           - Peer Review
 
-    Awards and honors:
+    Awards:
       - title: "WHO Classification of Tumours — Lung, Thymus and Heart (2025–2026 edition)"
         date: "2025"
         awarder: World Health Organization / IARC
