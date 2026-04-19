@@ -2,7 +2,7 @@
 layout: page
 title: WHO Classification of Tumours
 description: Contributor to multiple editions of the WHO Classification of Tumours — Lung, Thymus & Heart (2014, 2021, 2025–26) and Genitourinary Tract (2021).
-img: assets/img/who.jpg
+img: /assets/img/who.jpg
 importance: 3
 category: work
 ---
