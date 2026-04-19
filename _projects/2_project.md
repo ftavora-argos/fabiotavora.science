@@ -2,7 +2,7 @@
 layout: page
 title: Lung Cancer Research
 description: Ongoing research on biomarkers, molecular profiling, and immune landscape of non-small cell lung cancer (NSCLC) in northeastern Brazil, including PD-L1, ALK, EGFR, and GSK-3β.
-img: assets/img/lung.jpg
+img: /assets/img/lung.jpg
 importance: 2
 category: work
 ---
