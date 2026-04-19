@@ -2,7 +2,7 @@
 layout: page
 title: Pathology Education
 description: Professor, mentor, and international speaker committed to advancing pathology education in Brazil, Latin America, and Africa through courses, podcasts, and collaborative programs.
-img: /assets/img/education.jpg
+img: /assets/img/teaching.jpg
 importance: 7
 category: work
 ---
