@@ -2,7 +2,7 @@
 layout: page
 title: Digital Pathology & AI
 description: Integration of artificial intelligence and digital workflows into surgical pathology diagnostics, including image analysis, IHC quantification, and AI-assisted pattern recognition in lung cancer.
-img: assets/img/digital.jpg
+img: /assets/img/digital.jpg
 importance: 6
 category: work
 ---
