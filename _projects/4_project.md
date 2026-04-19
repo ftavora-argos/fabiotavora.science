@@ -4,7 +4,7 @@ title: Genitourinary Pathology
 description: Research and clinical expertise in prostate, bladder, and kidney pathology, including PTEN/ERG profiling in prostate cancer and PD-L1 in urothelial carcinoma.
 img: assets/img/gu.jpg
 importance: 4
-category: research
+category: work
 ---
 
 My genitourinary pathology training at **The Johns Hopkins Hospital** under Dr. Jonathan Epstein, followed by staff work at the Armed Forces Institute of Pathology, formed the foundation of a long-term research and clinical interest in urologic tumors.
