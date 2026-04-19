@@ -4,7 +4,7 @@ title: Cardiovascular Pathology
 description: Author of two landmark textbooks on cardiovascular pathology, with extensive research on arrhythmogenic cardiomyopathy, sudden cardiac death, aortitis, and cardiac tumors.
 img: assets/img/cardio.jpg
 importance: 5
-category: research
+category: work
 ---
 
 During my time at the **Armed Forces Institute of Pathology** and the **University of Maryland**, I developed deep expertise in cardiovascular pathology, resulting in two major textbooks and a large body of peer-reviewed work.
