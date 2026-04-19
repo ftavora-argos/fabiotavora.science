@@ -23,7 +23,7 @@ I am a surgical pathologist, scientist, and academic based in Fortaleza, Brazil,
 
 I completed my medical degree at the **Federal University of Ceará** (2002), followed by residency training in Anatomic Pathology at the **University of Maryland School of Medicine** (Baltimore), a fellowship in Pulmonary and Mediastinal Pathology at the **Armed Forces Institute of Pathology** (Washington, DC), and a fellowship in Genitourinary Pathology at **The Johns Hopkins Hospital** under the mentorship of Dr. Jonathan Epstein. I subsequently served as a Staff Pathologist in the Department of Genitourinary Pathology at AFIP, and more recently completed a post-doctoral fellowship at **Brown University** (2019–2020).
 
-I earned my **PhD from Universidade Federal de São Paulo/EPM** (2013), with a focus on lung cancer biomarkers and molecular pathology.
+I earned my **PhD from Universidade Federal de São Paulo/EPM** (2013), with a focus on mutations on desmossomal genes related to sudden death and arrhythmogenic cardiomyopathy. My mentors were Prof. Allen Burke and Prof Marcelo Franco, to whom I feel imensely grateful. 
 
 In 2011, I co-founded **Argos Laboratory**, a reference anatomic and molecular pathology laboratory in Fortaleza that processes over 100,000 specimens annually, with a strong emphasis on oncologic pathology. I serve as its **CEO and Director**, overseeing clinical operations, quality assurance, and the integration of digital pathology and AI-assisted diagnostic workflows.
 
