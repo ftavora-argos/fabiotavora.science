@@ -39,7 +39,7 @@ ninja.data = [{
           },
         },{id: "nav-photography",
           title: "photography",
-          description: "Bird and landscape photography from my travels and birdwatching, hosted on Adobe Lightroom.",
+          description: "Bird, landscape, and travel photography from my trips and birdwatching.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/photography/";
