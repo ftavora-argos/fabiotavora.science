@@ -20,3 +20,7 @@ Outside the lab, I spend a fair amount of time behind a camera — mostly chasin
 <div class="lr_embed" style="position: relative; padding-bottom: 50%; height: 0; overflow: hidden;">
 <iframe src="https://lightroom.adobe.com/embed/shares/37bf2b3bd5c3445692278dca2d8290d4/slideshow?background_color=%232D2D2D&color=%23999999" frameborder="0" allowfullscreen style="width:100%; height:100%; position: absolute; top:0; left:0;"></iframe>
 </div>
+
+## Canudos e Potengi
+
+<iframe src="https://ftavora.myportfolio.com/canudos-e-potengi" style="width:100%; height:800px; border:0;" loading="lazy"></iframe>
