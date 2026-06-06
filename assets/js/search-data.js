@@ -23,6 +23,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/projects/";
           },
+        },{id: "nav-argos",
+          title: "argos",
+          description: "Argos Laboratory — surgical, molecular, and digital pathology in Fortaleza.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/argos/";
+          },
         },{id: "nav-cv",
           title: "CV",
           description: "",
