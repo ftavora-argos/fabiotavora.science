@@ -37,6 +37,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/repositories/";
           },
+        },{id: "nav-photography",
+          title: "photography",
+          description: "Bird and landscape photography from my travels and birdwatching, hosted on Adobe Lightroom.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/photography/";
+          },
         },{id: "nav-research-group",
           title: "Research Group",
           description: "Current and former members of the Távora Research Group at the Federal University of Ceará Graduate Program in Pathology and Argos Laboratory.",
