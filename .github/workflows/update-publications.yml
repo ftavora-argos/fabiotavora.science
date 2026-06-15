@@ -1,0 +1,41 @@
+name: Update publications (ORCID)
+
+# Adds newly published papers to _bibliography/papers.bib from your ORCID record.
+# Complements update-citations.yml (which refreshes Scholar counts on existing entries).
+# Appends only -- never edits or reorders curated entries.
+#
+# NOTE: commits made with the default GITHUB_TOKEN do not trigger deploy.yml.
+# To make new papers go live automatically, set a repo secret `PAT` (a fine-grained
+# Personal Access Token with contents:write) and uncomment the `token:` line below,
+# exactly as documented for update-citations.yml in CUSTOMIZE.md. Without it, the
+# bib still updates; the change deploys on the next push.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  add-new-publications:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        # with:
+        #   token: ${{ secrets.PAT }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Append new publications from ORCID
+        run: python bin/update_publications.py
+      - name: Commit if changed
+        run: |
+          git config user.name  "publications-bot"
+          git config user.email "actions@github.com"
+          git add _bibliography/papers.bib
+          git diff --staged --quiet || (
+            git commit -m "chore: add new publications from ORCID"
+            git push
+          )
