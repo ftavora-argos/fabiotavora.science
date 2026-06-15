@@ -156,6 +156,10 @@ collections:
     output: true
   projects:
     output: true
+  cases:
+    output: true
+  lectures:
+    output: true
   teachings:
     output: false
 
