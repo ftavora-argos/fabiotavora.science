@@ -44,7 +44,21 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/photography/";
           },
-        },{id: "nav-research-group",
+        },{id: "dropdown-lectures",
+              title: "Lectures",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/lectures/";
+              },
+            },{id: "dropdown-interesting-cases",
+              title: "Interesting Cases",
+              description: "",
+              section: "Dropdown",
+              handler: () => {
+                window.location.href = "/cases/";
+              },
+            },{id: "nav-research-group",
           title: "Research Group",
           description: "Current and former members of the Távora Research Group at the Federal University of Ceará Graduate Program in Pathology and Argos Laboratory.",
           section: "Navigation",
@@ -419,6 +433,21 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
+            },},{id: "cases-example-case-with-a-slide-walkthrough-video",
+          title: 'EXAMPLE — Case with a slide walkthrough video',
+          description: "Example case that embeds a whole-slide / microscopy walkthrough video.",
+          section: "Cases",handler: () => {
+              window.location.href = "/cases/example-case-video/";
+            },},{id: "cases-example-case-title-e-g-spindle-cell-lesion-of-the-pleura",
+          title: 'EXAMPLE — Case title — e.g. Spindle cell lesion of the pleura',
+          description: "One-line teaching summary (entity, key finding, or the diagnostic question).",
+          section: "Cases",handler: () => {
+              window.location.href = "/cases/example-case/";
+            },},{id: "lectures-example-lecture-title-e-g-stas-and-prognosis-in-early-stage-nsclc",
+          title: 'EXAMPLE — Lecture title — e.g. STAS and prognosis in early-stage NSCLC',
+          description: "Venue / audience and a one-line summary of the talk.",
+          section: "Lectures",handler: () => {
+              window.location.href = "/lectures/example-lecture/";
             },},{id: "news-a-simple-inline-announcement",
           title: 'A simple inline announcement.',
           description: "",
@@ -465,16 +494,6 @@ ninja.data = [{
           description: "Professor, mentor, and international speaker committed to advancing pathology education in Brazil, Latin America, and Africa through courses, podcasts, and collaborative programs.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/7_project/";
-            },},{id: "teachings-data-science-fundamentals",
-          title: 'Data Science Fundamentals',
-          description: "This course covers the foundational aspects of data science, including data collection, cleaning, analysis, and visualization. Students will learn practical skills for working with real-world datasets.",
-          section: "Teachings",handler: () => {
-              window.location.href = "/teachings/data-science-fundamentals/";
-            },},{id: "teachings-introduction-to-machine-learning",
-          title: 'Introduction to Machine Learning',
-          description: "This course provides an introduction to machine learning concepts, algorithms, and applications. Students will learn about supervised and unsupervised learning, model evaluation, and practical implementations.",
-          section: "Teachings",handler: () => {
-              window.location.href = "/teachings/introduction-to-machine-learning/";
             },},{
         id: 'social-cv',
         title: 'CV',
