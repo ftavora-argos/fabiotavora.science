@@ -19,6 +19,24 @@ strong {
   color: var(--global-text-color);
 }
 
+// Custom type pairing (Phase 3b): Source Sans 3 body + Spectral serif display.
+// main.css loads after the vendored mdb.min.css, so these win on source order.
+body {
+  font-family: "Source Sans 3", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Spectral", Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
 hr {
   border-top: 1px solid var(--global-divider-color);
 }
