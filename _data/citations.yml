@@ -1,16 +1,16 @@
 metadata:
-  last_updated: '2026-04-20'
+  last_updated: '2026-06-19'
 papers:
   7d50ByEAAAAJ:-f6ydRqryjwC:
     citations: 0
     title: 'SAFETY AND FEASIBILITY OF NERVE-SPARING DURING RADICAL PROSTATECTOMY IN MEN WITH MULTIPLE BIOPSY CORES OF GLEASON 6: 1986'
     year: '2009'
   7d50ByEAAAAJ:08ZZubdj9fEC:
-    citations: 31
+    citations: 32
     title: "Do \u201Cintimal\u201D sarcomas of the heart exist?"
     year: '2014'
   7d50ByEAAAAJ:0EnyYjriUFMC:
-    citations: 41
+    citations: 42
     title: Postmortem confirmation of Lyme carditis with polymerase chain reaction
     year: '2008'
   7d50ByEAAAAJ:0UEtxawf5sEC:
@@ -18,7 +18,7 @@ papers:
     title: 'Dataset for the reporting of neoplasms of the heart, pericardium, and great vessels: recommendations from the International Collaboration on Cancer Reporting (ICCR)'
     year: '2023'
   7d50ByEAAAAJ:10ZmGoIvuzkC:
-    citations: 14
+    citations: 15
     title: Prevalence of ERG expression and PTEN loss in a Brazilian prostate cancer cohort
     year: '2019'
   7d50ByEAAAAJ:1sJd4Hv_s6UC:
@@ -26,7 +26,7 @@ papers:
     title: Correlation of Gleason score on needle biopsy with prostate volume, age and PSA at diagnosis in a large tertiary cancer center
     year: '2010'
   7d50ByEAAAAJ:1yhUMift6wIC:
-    citations: 149
+    citations: 151
     title: 'FGFR3-TACC3 fusion in solid tumors: mini review'
     year: '2016'
   7d50ByEAAAAJ:2P1L_qKh6hAC:
@@ -62,7 +62,7 @@ papers:
     title: "Characteristics of positive surgical margins in robotic-assisted radical prostatectomy, open retropubic radical prostatectomy, and laparoscopic radical prostatectomy: a \u2026"
     year: '2012'
   7d50ByEAAAAJ:4JMBOYKVnBMC:
-    citations: 10
+    citations: 11
     title: Frequency of acute plaque ruptures and thin cap atheromas at sites of maximal stenosis
     year: '2010'
   7d50ByEAAAAJ:4OULZ7Gr8RgC:
@@ -82,7 +82,7 @@ papers:
     title: "Expression of EGFR and molecules downstream to PI3K/Akt, Raf\u20101\u2010MEK\u20101\u2010MAP (Erk1/2), and JAK (STAT3) pathways in invasive lung adenocarcinomas resected at a single institution"
     year: '2014'
   7d50ByEAAAAJ:5nxA0vEk-isC:
-    citations: 62
+    citations: 63
     title: 'PSMA expression in Schwannoma: a potential clinical mimicker of metastatic prostate carcinoma'
     year: '2009'
   7d50ByEAAAAJ:6CdnuHuKHxIC:
@@ -90,7 +90,7 @@ papers:
     title: 'Beyond Exons 19 and 21: Mapping the Clinical and Molecular Diversity of Uncommon EGFR Mutations in a Brazilian NSCLC Cohort'
     year: Unknown Year
   7d50ByEAAAAJ:6lhY8CtEloYC:
-    citations: 307
+    citations: 319
     title: The 2019 Genitourinary Pathology Society (GUPS) white paper on contemporary grading of prostate cancer
     year: '2021'
   7d50ByEAAAAJ:6nNZn6i0kyMC:
@@ -134,7 +134,7 @@ papers:
     title: 'Angiolymphoid hyperplasia with eosinophilia developing in a patient with history of peripheral T-cell lymphoma: evidence for multicentric T-cell lymphoproliferative process'
     year: '2008'
   7d50ByEAAAAJ:9QTmwX2E1jEC:
-    citations: 199
+    citations: 204
     title: Clinical features, diagnostic challenges, and management strategies in checkpoint inhibitor-related pneumonitis
     year: '2017'
   7d50ByEAAAAJ:9ZlFYXVOiuMC:
@@ -154,15 +154,15 @@ papers:
     title: Interstitial Lung Disease With Anti-Ro/SSA Autoantibodies
     year: '2017'
   7d50ByEAAAAJ:BPyjDV4UkSoC:
-    citations: 4
+    citations: 5
     title: 'Molecular landscape of HER2-mutated non-small cell lung cancer in Northeastern Brazil: Clinical, histopathological, and genomic insights'
     year: '2025'
   7d50ByEAAAAJ:BqipwSGYUEgC:
-    citations: 48
+    citations: 50
     title: 'Mesenchymal tumours of the bladder and prostate: an update'
     year: '2013'
   7d50ByEAAAAJ:CREiCvMVTUAC:
-    citations: 0
+    citations: 1
     title: 'Machine Learning Models Using General and Tissue-Specific Feature Extractors for Accurate Subtyping of Biopsy Samples: Advancing Lung Cancer Diagnosis in Latin America'
     year: '2025'
   7d50ByEAAAAJ:D03iK_w7-QYC:
@@ -174,7 +174,7 @@ papers:
     title: Chagas cardiomyopathy in Latin America review
     year: '2019'
   7d50ByEAAAAJ:DPkBdyRpVwQC:
-    citations: 0
+    citations: 1
     title: 'Immune Profiling of Incidental NSCLC Patients: Comparison Between Tumor Sections and TMA Cores'
     year: '2025'
   7d50ByEAAAAJ:D_sINldO8mEC:
@@ -182,15 +182,15 @@ papers:
     title: "O papel da migra\xE7\xE3o na preven\xE7\xE3o da infec\xE7\xE3o pelo HIV no Nordeste brasileiro"
     year: '2004'
   7d50ByEAAAAJ:DtORCzn_ASQC:
-    citations: 5
+    citations: 6
     title: "Guidelines for molecular testing in non-small cell lung cancer\u2013recommendations from the Brazilian Society of Pathology"
     year: '2023'
   7d50ByEAAAAJ:ECJ25tEN_EwC:
-    citations: 68
+    citations: 78
     title: The 2021 WHO classification of tumors of the heart
     year: '2022'
   7d50ByEAAAAJ:Efx6ZPdPmuEC:
-    citations: 33
+    citations: 43
     title: "Differentiating separate primary lung adenocarcinomas from intrapulmonary metastases with emphasis on pathological and molecular considerations: recommendations from the \u2026"
     year: '2025'
   7d50ByEAAAAJ:EupYgYwc-6gC:
@@ -202,11 +202,11 @@ papers:
     title: The frequency of high PD-L1 expression is low in lung adenocarcinoma patients from Northeast Brazil
     year: '2019'
   7d50ByEAAAAJ:Fla6ZGMkO9sC:
-    citations: 95
+    citations: 99
     title: Fatal outcome of chikungunya virus infection in Brazil
     year: '2021'
   7d50ByEAAAAJ:GnPB-g6toBAC:
-    citations: 28
+    citations: 29
     title: Histologic findings in lung biopsies in patients with suspected graft-versus-host disease
     year: '2013'
   7d50ByEAAAAJ:GsgvGxwuA5UC:
@@ -218,7 +218,7 @@ papers:
     title: Validation of verbal autopsy and nasopharyngeal swab collection for the investigation of deaths at home during the COVID-19 pandemics in Brazil
     year: '2020'
   7d50ByEAAAAJ:H7P4rdOtXtsC:
-    citations: 332
+    citations: 338
     title: The 2015 WHO classification of tumors of the heart and pericardium
     year: '2016'
   7d50ByEAAAAJ:H8BRrGBkN7cC:
@@ -226,7 +226,7 @@ papers:
     title: Nuclear Localization of Gsk-3 beta Protein Correlates with PTEN Loss and Worse Pathologic Outcomes Post-Prostatectomy
     year: '2020'
   7d50ByEAAAAJ:H8Dy_DhitWcC:
-    citations: 40
+    citations: 41
     title: 'Reporting practices and resource utilization in the era of intraductal carcinoma of the prostate: a survey of genitourinary subspecialists'
     year: '2020'
   7d50ByEAAAAJ:HDshCWvjkbEC:
@@ -252,7 +252,7 @@ papers:
   7d50ByEAAAAJ:JO0bfRJr_gQC:
     citations: 0
     title: Quantitative digital pathology reveals morphological and molecular correlates of tumor aggressiveness in prostate cancer
-    year: '2025'
+    year: '2026'
   7d50ByEAAAAJ:JV2RwH3_ST0C:
     citations: 100
     title: Practical cardiovascular pathology
@@ -262,7 +262,7 @@ papers:
     title: 'Quantitative immunohistochemistry of desmosomal proteins (plakoglobin, desmoplakin and plakophilin), connexin-43, and N-cadherin in arrhythmogenic cardiomyopathy: an autopsy study'
     year: '2013'
   7d50ByEAAAAJ:JjPkQosUWiAC:
-    citations: 59
+    citations: 62
     title: "Classification of renal cell tumors\u2013current concepts and use of ancillary tests: recommendations of the Brazilian Society of Pathology"
     year: '2021'
   7d50ByEAAAAJ:JkxM1axsR-IC:
@@ -294,11 +294,11 @@ papers:
     title: The landscape of glycogen synthase kinase-3 beta genomic alterations in cancer
     year: '2021'
   7d50ByEAAAAJ:LWUVeqegjeYC:
-    citations: 18
+    citations: 19
     title: 'Practical Thoracic Pathology: Diseases of the Lung, Heart, and Thymus'
     year: '2016'
   7d50ByEAAAAJ:LkGwnXOMwfcC:
-    citations: 42
+    citations: 43
     title: 'Glucose transporter-1 in pulmonary neuroendocrine carcinomas: expression and survival analysis'
     year: '2009'
   7d50ByEAAAAJ:Lmuc1furtc4C:
@@ -346,7 +346,7 @@ papers:
     title: 'DSG2 Mutations in ARVC: A Molecular Autopsy Study'
     year: '2012'
   7d50ByEAAAAJ:NzUpm4bhSXQC:
-    citations: 13
+    citations: 14
     title: 'Practice patterns related to prostate cancer grading: results of a 2019 Genitourinary Pathology Society clinician survey'
     year: '2021'
   7d50ByEAAAAJ:O3NaXMp0MMsC:
@@ -406,7 +406,7 @@ papers:
     title: Rate of Renal Cell Carcinoma Subtypes in Different Races EDITORIAL COMMENT
     year: '2011'
   7d50ByEAAAAJ:Sipo1f_CKiIC:
-    citations: 12
+    citations: 13
     title: Cytoplasmic CCR7 (CCR7c) immunoexpression is associated with local tumor recurrence in triple-negative breast cancer
     year: '2020'
   7d50ByEAAAAJ:TA1nTKmGtTgC:
@@ -422,9 +422,13 @@ papers:
     title: PP. 26 Immunoexpression of 4 Different PD-L1 Clones in NSCLC Cases, a Comparative Study From Northeastern Brazil
     year: '2023'
   7d50ByEAAAAJ:Tiz5es2fbqcC:
-    citations: 39
+    citations: 40
     title: In-stent restenosis is associated with neointimal angiogenesis and macrophage infiltrates
     year: '2014'
+  7d50ByEAAAAJ:TlqgXrSKREMC:
+    citations: 0
+    title: Fatal outcome of Chikungunya virus infection in Brazil
+    year: '2021'
   7d50ByEAAAAJ:Tt9yUAN0l-kC:
     citations: 4
     title: "Perfil molecular do carcinoma pulmonar de c\xE9lulas n\xE3o pequenas no Nordeste brasileiro"
@@ -466,7 +470,7 @@ papers:
     title: "EGFR variant profiles in lung adenocarcinoma from different regions of Brazil: a multi-institutional study using a rapid RT\u2012PCR platform"
     year: '2026'
   7d50ByEAAAAJ:VOx2b1Wkg3QC:
-    citations: 28
+    citations: 29
     title: Survival of adult AIDS patients in a reference hospital of a metropolitan area in Brazil
     year: '2002'
   7d50ByEAAAAJ:VPl5zSG_J1oC:
@@ -474,7 +478,7 @@ papers:
     title: 'Pyoderma gangrenosum diagnosed in a high-risk myelodysplastic neoplasm patient with trisomy 8: a rare case report'
     year: '2025'
   7d50ByEAAAAJ:VU60ks20i7sC:
-    citations: 4
+    citations: 9
     title: 'Molecular tumor boards: a consensus statement from the international association for the study of lung cancer'
     year: '2025'
   7d50ByEAAAAJ:VdWZULf8Gq0C:
@@ -494,7 +498,7 @@ papers:
     title: 'Absence of human herpesvirus-8 in pulmonary inflammatory myofibroblastic tumor: immunohistochemical and molecular analysis of 20 cases'
     year: '2007'
   7d50ByEAAAAJ:WMsFzbFqK_QC:
-    citations: 6
+    citations: 11
     title: TRAIL agonists rescue mice from radiation-induced lung, skin, or esophageal injury
     year: '2025'
   7d50ByEAAAAJ:WbkHhVStYXYC:
@@ -514,7 +518,7 @@ papers:
     title: 'P1. 02-042 Detection of ALK Protein Expression in Lung Adenocarcinomas, a Consecutive Series of Cases from Northeastern Brazil: Topic: Driver Genes in NSCLC, Resistance, and Other'
     year: '2017'
   7d50ByEAAAAJ:Y0pCki6q_DkC:
-    citations: 91
+    citations: 92
     title: EBP1, an ErbB3-binding protein, is decreased in prostate cancer and implicated in hormone resistance
     year: '2008'
   7d50ByEAAAAJ:YFjsv_pBGBYC:
@@ -538,7 +542,7 @@ papers:
     title: '57 Central Giant Cell Granuloma: An Overview of Multinucleated Giant Cell Lesions of the Bone Surgical Pathology II No. SPII 08-3 (SPII-319)'
     year: '2009'
   7d50ByEAAAAJ:YsMSGLbcyi4C:
-    citations: 77
+    citations: 78
     title: 'Pulmonary artery sarcoma: a histologic and follow-up study with emphasis on a subset of low-grade myofibroblastic sarcomas with a good long-term follow-up'
     year: '2008'
   7d50ByEAAAAJ:Yv3O0rUKnT0C:
@@ -618,7 +622,7 @@ papers:
     title: "Glycogen synthase kinase-3 beta expression correlates with worse overall survival in non-small cell lung cancer\u2014a clinicopathological series"
     year: '2021'
   7d50ByEAAAAJ:d1gkVwhDpl0C:
-    citations: 125
+    citations: 126
     title: Monocytes and neutrophils expressing myeloperoxidase occur in fibrous caps and thrombi in unstable coronary plaques
     year: '2009'
   7d50ByEAAAAJ:dXBh7-90p_YC:
@@ -626,7 +630,7 @@ papers:
     title: 'Definitive treatment of supraventricular tachycardia mediated by a hidden lateral accessory pathway on a transplanted heart: P1114'
     year: '2013'
   7d50ByEAAAAJ:de6HPdfwrHoC:
-    citations: 62
+    citations: 64
     title: Association of cardiac galectin-3 expression, myocarditis, and fibrosis in chronic Chagas disease cardiomyopathy
     year: '2017'
   7d50ByEAAAAJ:dfsIfKJdRG4C:
@@ -690,11 +694,11 @@ papers:
     title: IMMUNOHISTOCHEMICAL EXPRESSION OF N-CADHERIN IS DECREASED IN AUTOPSY TISSUES WITH ARVC
     year: '2010'
   7d50ByEAAAAJ:hMod-77fHWUC:
-    citations: 131
+    citations: 135
     title: 'From the radiologic pathology archives: cardiac lymphoma: radiologic-pathologic correlation'
     year: '2012'
   7d50ByEAAAAJ:hMwNgRnlwaMC:
-    citations: 77
+    citations: 78
     title: "Prostate cancer extracellular vesicles mediate intercellular communication with bone marrow cells and promote metastasis in a cholesterol\u2010dependent manner"
     year: '2020'
   7d50ByEAAAAJ:hqOjcs7Dif8C:
@@ -706,7 +710,7 @@ papers:
     title: NOVEL PKP2 MUTATIONS IN ARRHYTHMOGENIC RIGHT VENTRICULAR CARDIOMYOPATHY AND SUDDEN ARRHYTHMIC DEATHS IN MORPHOLOGICALLY NORMAL HEARTS
     year: '2011'
   7d50ByEAAAAJ:i_ypWuZoRC8C:
-    citations: 33
+    citations: 34
     title: "Pathology Imagebase\u2014a reference image database for standardization of pathology"
     year: '2017'
   7d50ByEAAAAJ:isC4tDSrTZIC:
@@ -746,7 +750,7 @@ papers:
     title: 'Idiopathic aortitis of theThoracic aorta: Histologic findings in 55 cases'
     year: '2007'
   7d50ByEAAAAJ:lvi_KyGYEDoC:
-    citations: 15
+    citations: 16
     title: "Pulmonary mucinous adenocarcinomas: a clinicopathologic series with emphasis on the prognostic significance of spread through alveolar spaces, and presence of solid growth \u2026"
     year: '2018'
   7d50ByEAAAAJ:mB3voiENLucC:
@@ -754,7 +758,7 @@ papers:
     title: 'Distribution of biventricular disease in arrhythmogenic cardiomyopathy: an autopsy study'
     year: '2012'
   7d50ByEAAAAJ:mVmsd5A6BfQC:
-    citations: 11
+    citations: 13
     title: 'Bilateral internal carotid absence: a case report of a rare congenital anomaly'
     year: '2008'
   7d50ByEAAAAJ:maZDTaKrznsC:
@@ -818,12 +822,12 @@ papers:
     title: Cellular and extracellular matrix aspects of the nasal cartilage in the fetus and early infant
     year: '2025'
   7d50ByEAAAAJ:roLk4NBRz8UC:
-    citations: 29
+    citations: 30
     title: "Evaluation of performance of EUS\u2010FNA in preoperative lymph node staging of cancers of esophagus, lung, and pancreas"
     year: '2008'
   7d50ByEAAAAJ:sArNgO4T4MoC:
     citations: 0
-    title: Health Science
+    title: 'Hyperplasic Polyp in Appendix Ostium Manifesting Acute Appendicitis: Case Report'
     year: Unknown Year
   7d50ByEAAAAJ:sAujV351FBYC:
     citations: 0
@@ -834,11 +838,11 @@ papers:
     title: "Immunohistochemistry evaluation of signaling pathways PI3K/Akt/mTORC1, Raf-1-MEK-1-MAP (Erk1/2) and JAK-STAT3 and the relationship whit HER-2, EGFR, KI-67 in meningiomas of \u2026"
     year: '2014'
   7d50ByEAAAAJ:tS2w5q8j5-wC:
-    citations: 70
+    citations: 71
     title: DNA methylation profiles delineate epigenetic heterogeneity in seminoma and non-seminoma
     year: '2012'
   7d50ByEAAAAJ:u-x6o8ySG0sC:
-    citations: 89
+    citations: 90
     title: 'Extra-oral plasmablastic lymphoma: report of a case and review of literature'
     year: '2006'
   7d50ByEAAAAJ:u5HHmVD_uO8C:
@@ -850,7 +854,7 @@ papers:
     title: "Tumor cardiaco en un paciente de mediana edad con enfermedad coronaria\u2013una rara asociaci\xF3n"
     year: '2013'
   7d50ByEAAAAJ:uQrt9rju91QC:
-    citations: 4
+    citations: 3
     title: 'Commentary: GSK-3 inhibition as a therapeutic approach against SARs CoV2: dual benefit of inhibiting viral replication while potentiating the immune response'
     year: '2020'
   7d50ByEAAAAJ:uSQurnFbQXsC:
@@ -866,7 +870,7 @@ papers:
     title: Quantitation of lymphocytes in lung allograft biopsies with and without rejection
     year: '2006'
   7d50ByEAAAAJ:ufrVoPGSRksC:
-    citations: 260
+    citations: 262
     title: Comparison of necropsy findings in patients with sarcoidosis dying suddenly from cardiac sarcoidosis versus dying suddenly from other causes
     year: '2009'
   7d50ByEAAAAJ:vRqMK49ujn8C:
@@ -878,11 +882,11 @@ papers:
     title: Incidence of endothelialitis in cardiac allograft biopsies, and relationship to C4d deposition and clinical evidence of humoral rejection
     year: '2006'
   7d50ByEAAAAJ:vct99db0rDQC:
-    citations: 22
+    citations: 23
     title: Molecular profile of non-small cell lung cancer in northeastern Brazil
     year: '2019'
   7d50ByEAAAAJ:vpzZMdrIWDEC:
-    citations: 11
+    citations: 12
     title: "Impacto da pandemia de COVID-19 no diagn\xF3stico de c\xE2ncer de pulm\xE3o no Nordeste brasileiro"
     year: '2022'
   7d50ByEAAAAJ:x78xNeCKx3UC:
@@ -898,7 +902,7 @@ papers:
     title: Allograft Pathology in Patients Transplanted for Idiopathic Dilated Cardiomyopathy
     year: '2011'
   7d50ByEAAAAJ:yKZlB_2wKysC:
-    citations: 194
+    citations: 205
     title: 'ONC201 and imipridones: Anti-cancer compounds with clinical efficacy'
     year: '2020'
   7d50ByEAAAAJ:zA6iFVUQeVQC:
@@ -906,7 +910,7 @@ papers:
     title: 'Thyroid transcription factor-1 (TTF-1) expression in pulmonary neuroendocrine carcinomas: Clone-based variability'
     year: '2007'
   7d50ByEAAAAJ:zDMysJqCCKgC:
-    citations: 6
+    citations: 8
     title: The effects of inflammation on connexin 43 in chronic Chagas disease cardiomyopathy
     year: '2024'
   7d50ByEAAAAJ:zYLM7Y9cAGgC:
