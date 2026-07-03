@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-06-19'
+  last_updated: '2026-07-03'
 papers:
   7d50ByEAAAAJ:-f6ydRqryjwC:
     citations: 0
@@ -26,7 +26,7 @@ papers:
     title: Correlation of Gleason score on needle biopsy with prostate volume, age and PSA at diagnosis in a large tertiary cancer center
     year: '2010'
   7d50ByEAAAAJ:1yhUMift6wIC:
-    citations: 151
+    citations: 153
     title: 'FGFR3-TACC3 fusion in solid tumors: mini review'
     year: '2016'
   7d50ByEAAAAJ:2P1L_qKh6hAC:
@@ -77,6 +77,10 @@ papers:
     citations: 0
     title: Assessment of syndecan-4 expression in the hearts of mice and human subjects with chronic chagas cardiomyopathy
     year: '2017'
+  7d50ByEAAAAJ:5ScXqYzV9GEC:
+    citations: 0
+    title: "What was Frederic Chopin's illness? A Clinical-pathological Conference 176 years after his death. Chopin\u2019s Illness: A Clinicopathological Review"
+    year: '2026'
   7d50ByEAAAAJ:5Ul4iDaHHb8C:
     citations: 15
     title: "Expression of EGFR and molecules downstream to PI3K/Akt, Raf\u20101\u2010MEK\u20101\u2010MAP (Erk1/2), and JAK (STAT3) pathways in invasive lung adenocarcinomas resected at a single institution"
@@ -90,7 +94,7 @@ papers:
     title: 'Beyond Exons 19 and 21: Mapping the Clinical and Molecular Diversity of Uncommon EGFR Mutations in a Brazilian NSCLC Cohort'
     year: Unknown Year
   7d50ByEAAAAJ:6lhY8CtEloYC:
-    citations: 319
+    citations: 324
     title: The 2019 Genitourinary Pathology Society (GUPS) white paper on contemporary grading of prostate cancer
     year: '2021'
   7d50ByEAAAAJ:6nNZn6i0kyMC:
@@ -106,7 +110,7 @@ papers:
     title: 'Allograft pathology in patients transplanted in a reference center, including cases of Chagas cardiomyopathy: P1544'
     year: '2013'
   7d50ByEAAAAJ:7PzlFSSx8tAC:
-    citations: 79
+    citations: 80
     title: Cardiomegaly is a common arrhythmogenic substrate in adult sudden cardiac deaths, and is associated with obesity
     year: '2012'
   7d50ByEAAAAJ:8-xnCJp56iQC:
@@ -165,6 +169,10 @@ papers:
     citations: 1
     title: 'Machine Learning Models Using General and Tissue-Specific Feature Extractors for Accurate Subtyping of Biopsy Samples: Advancing Lung Cancer Diagnosis in Latin America'
     year: '2025'
+  7d50ByEAAAAJ:CcPklOTAPUcC:
+    citations: 0
+    title: 'Leprosy masquerading as systemic lupus erythematosus: a case report and systematic review of the literature'
+    year: '2026'
   7d50ByEAAAAJ:D03iK_w7-QYC:
     citations: 0
     title: Esophagus, lung, and pancreas evaluation of performance of EUS-FNA in preoperative lymph node staging of cancers of
@@ -186,11 +194,11 @@ papers:
     title: "Guidelines for molecular testing in non-small cell lung cancer\u2013recommendations from the Brazilian Society of Pathology"
     year: '2023'
   7d50ByEAAAAJ:ECJ25tEN_EwC:
-    citations: 78
+    citations: 80
     title: The 2021 WHO classification of tumors of the heart
     year: '2022'
   7d50ByEAAAAJ:Efx6ZPdPmuEC:
-    citations: 43
+    citations: 45
     title: "Differentiating separate primary lung adenocarcinomas from intrapulmonary metastases with emphasis on pathological and molecular considerations: recommendations from the \u2026"
     year: '2025'
   7d50ByEAAAAJ:EupYgYwc-6gC:
@@ -202,7 +210,7 @@ papers:
     title: The frequency of high PD-L1 expression is low in lung adenocarcinoma patients from Northeast Brazil
     year: '2019'
   7d50ByEAAAAJ:Fla6ZGMkO9sC:
-    citations: 99
+    citations: 100
     title: Fatal outcome of chikungunya virus infection in Brazil
     year: '2021'
   7d50ByEAAAAJ:GnPB-g6toBAC:
@@ -218,7 +226,7 @@ papers:
     title: Validation of verbal autopsy and nasopharyngeal swab collection for the investigation of deaths at home during the COVID-19 pandemics in Brazil
     year: '2020'
   7d50ByEAAAAJ:H7P4rdOtXtsC:
-    citations: 338
+    citations: 340
     title: The 2015 WHO classification of tumors of the heart and pericardium
     year: '2016'
   7d50ByEAAAAJ:H8BRrGBkN7cC:
@@ -266,7 +274,7 @@ papers:
     title: "Classification of renal cell tumors\u2013current concepts and use of ancillary tests: recommendations of the Brazilian Society of Pathology"
     year: '2021'
   7d50ByEAAAAJ:JkxM1axsR-IC:
-    citations: 20
+    citations: 21
     title: "Computer-assisted tumor grading, validation of PD-L1 scoring, and quantification of CD8-positive immune cell density in urothelial carcinoma, a visual guide for pathologists \u2026"
     year: '2022'
   7d50ByEAAAAJ:KFIQUvoPKFAC:
@@ -318,7 +326,7 @@ papers:
     title: '38: Endothelialitis in Cardiac Allograft Biopsies: Expanding the Spectrum of Antibody Mediated Rejection'
     year: '2009'
   7d50ByEAAAAJ:M3ejUd6NZC8C:
-    citations: 16
+    citations: 17
     title: Sudden coronary death in children
     year: '2010'
   7d50ByEAAAAJ:MKvDIwB-zewC:
@@ -370,7 +378,7 @@ papers:
     title: The immunohistochemical expression of von Willebrand factor, T-cadherin, and Caveolin-1 is increased in kidney allograft biopsies with antibody-mediated injury
     year: '2021'
   7d50ByEAAAAJ:QAsQKsfVUN4C:
-    citations: 97
+    citations: 99
     title: Glycogen synthase kinase-3 beta inhibitors as novel cancer treatments and modulators of antitumor immune responses
     year: '2019'
   7d50ByEAAAAJ:QIV2ME_5wuYC:
@@ -398,7 +406,7 @@ papers:
     title: 'Incidental Ascending Aortitis: The Histologic and Clinical Spectrum'
     year: '2013'
   7d50ByEAAAAJ:Se3iqnhoufwC:
-    citations: 58
+    citations: 59
     title: Adventitial lymphocytic inflammation in human coronary arteries with intimal atherosclerosis
     year: '2010'
   7d50ByEAAAAJ:SeFeTyx0c_EC:
@@ -425,10 +433,6 @@ papers:
     citations: 40
     title: In-stent restenosis is associated with neointimal angiogenesis and macrophage infiltrates
     year: '2014'
-  7d50ByEAAAAJ:TlqgXrSKREMC:
-    citations: 0
-    title: Fatal outcome of Chikungunya virus infection in Brazil
-    year: '2021'
   7d50ByEAAAAJ:Tt9yUAN0l-kC:
     citations: 4
     title: "Perfil molecular do carcinoma pulmonar de c\xE9lulas n\xE3o pequenas no Nordeste brasileiro"
@@ -630,7 +634,7 @@ papers:
     title: 'Definitive treatment of supraventricular tachycardia mediated by a hidden lateral accessory pathway on a transplanted heart: P1114'
     year: '2013'
   7d50ByEAAAAJ:de6HPdfwrHoC:
-    citations: 64
+    citations: 65
     title: Association of cardiac galectin-3 expression, myocarditis, and fibrosis in chronic Chagas disease cardiomyopathy
     year: '2017'
   7d50ByEAAAAJ:dfsIfKJdRG4C:
@@ -678,7 +682,7 @@ papers:
     title: Association of Cardiac Galectin-3 Expression, Myocarditis, and Fibrosis in Chronic Chagas Disease Cardiomyopathy
     year: '2017'
   7d50ByEAAAAJ:geHnlv5EZngC:
-    citations: 51
+    citations: 52
     title: A comparative study of honeycombing on high resolution computed tomography with histologic lung remodeling in explants with usual interstitial pneumonia
     year: '2015'
   7d50ByEAAAAJ:h-fwNd0rmTkC:
@@ -838,7 +842,7 @@ papers:
     title: "Immunohistochemistry evaluation of signaling pathways PI3K/Akt/mTORC1, Raf-1-MEK-1-MAP (Erk1/2) and JAK-STAT3 and the relationship whit HER-2, EGFR, KI-67 in meningiomas of \u2026"
     year: '2014'
   7d50ByEAAAAJ:tS2w5q8j5-wC:
-    citations: 71
+    citations: 70
     title: DNA methylation profiles delineate epigenetic heterogeneity in seminoma and non-seminoma
     year: '2012'
   7d50ByEAAAAJ:u-x6o8ySG0sC:
@@ -854,7 +858,7 @@ papers:
     title: "Tumor cardiaco en un paciente de mediana edad con enfermedad coronaria\u2013una rara asociaci\xF3n"
     year: '2013'
   7d50ByEAAAAJ:uQrt9rju91QC:
-    citations: 3
+    citations: 4
     title: 'Commentary: GSK-3 inhibition as a therapeutic approach against SARs CoV2: dual benefit of inhibiting viral replication while potentiating the immune response'
     year: '2020'
   7d50ByEAAAAJ:uSQurnFbQXsC:
@@ -870,7 +874,7 @@ papers:
     title: Quantitation of lymphocytes in lung allograft biopsies with and without rejection
     year: '2006'
   7d50ByEAAAAJ:ufrVoPGSRksC:
-    citations: 262
+    citations: 263
     title: Comparison of necropsy findings in patients with sarcoidosis dying suddenly from cardiac sarcoidosis versus dying suddenly from other causes
     year: '2009'
   7d50ByEAAAAJ:vRqMK49ujn8C:
@@ -882,7 +886,7 @@ papers:
     title: Incidence of endothelialitis in cardiac allograft biopsies, and relationship to C4d deposition and clinical evidence of humoral rejection
     year: '2006'
   7d50ByEAAAAJ:vct99db0rDQC:
-    citations: 23
+    citations: 24
     title: Molecular profile of non-small cell lung cancer in northeastern Brazil
     year: '2019'
   7d50ByEAAAAJ:vpzZMdrIWDEC:
@@ -902,7 +906,7 @@ papers:
     title: Allograft Pathology in Patients Transplanted for Idiopathic Dilated Cardiomyopathy
     year: '2011'
   7d50ByEAAAAJ:yKZlB_2wKysC:
-    citations: 205
+    citations: 207
     title: 'ONC201 and imipridones: Anti-cancer compounds with clinical efficacy'
     year: '2020'
   7d50ByEAAAAJ:zA6iFVUQeVQC:
@@ -910,7 +914,7 @@ papers:
     title: 'Thyroid transcription factor-1 (TTF-1) expression in pulmonary neuroendocrine carcinomas: Clone-based variability'
     year: '2007'
   7d50ByEAAAAJ:zDMysJqCCKgC:
-    citations: 8
+    citations: 9
     title: The effects of inflammation on connexin 43 in chronic Chagas disease cardiomyopathy
     year: '2024'
   7d50ByEAAAAJ:zYLM7Y9cAGgC:
