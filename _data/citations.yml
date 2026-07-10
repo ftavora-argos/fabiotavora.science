@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-07-03'
+  last_updated: '2026-07-10'
 papers:
   7d50ByEAAAAJ:-f6ydRqryjwC:
     citations: 0
@@ -82,11 +82,11 @@ papers:
     title: "What was Frederic Chopin's illness? A Clinical-pathological Conference 176 years after his death. Chopin\u2019s Illness: A Clinicopathological Review"
     year: '2026'
   7d50ByEAAAAJ:5Ul4iDaHHb8C:
-    citations: 15
+    citations: 16
     title: "Expression of EGFR and molecules downstream to PI3K/Akt, Raf\u20101\u2010MEK\u20101\u2010MAP (Erk1/2), and JAK (STAT3) pathways in invasive lung adenocarcinomas resected at a single institution"
     year: '2014'
   7d50ByEAAAAJ:5nxA0vEk-isC:
-    citations: 63
+    citations: 64
     title: 'PSMA expression in Schwannoma: a potential clinical mimicker of metastatic prostate carcinoma'
     year: '2009'
   7d50ByEAAAAJ:6CdnuHuKHxIC:
@@ -94,7 +94,7 @@ papers:
     title: 'Beyond Exons 19 and 21: Mapping the Clinical and Molecular Diversity of Uncommon EGFR Mutations in a Brazilian NSCLC Cohort'
     year: Unknown Year
   7d50ByEAAAAJ:6lhY8CtEloYC:
-    citations: 324
+    citations: 325
     title: The 2019 Genitourinary Pathology Society (GUPS) white paper on contemporary grading of prostate cancer
     year: '2021'
   7d50ByEAAAAJ:6nNZn6i0kyMC:
@@ -142,7 +142,7 @@ papers:
     title: Clinical features, diagnostic challenges, and management strategies in checkpoint inhibitor-related pneumonitis
     year: '2017'
   7d50ByEAAAAJ:9ZlFYXVOiuMC:
-    citations: 16
+    citations: 17
     title: Allograft pathology in patients transplanted for idiopathic dilated cardiomyopathy
     year: '2012'
   7d50ByEAAAAJ:9qGwjJavaBUC:
@@ -158,7 +158,7 @@ papers:
     title: Interstitial Lung Disease With Anti-Ro/SSA Autoantibodies
     year: '2017'
   7d50ByEAAAAJ:BPyjDV4UkSoC:
-    citations: 5
+    citations: 6
     title: 'Molecular landscape of HER2-mutated non-small cell lung cancer in Northeastern Brazil: Clinical, histopathological, and genomic insights'
     year: '2025'
   7d50ByEAAAAJ:BqipwSGYUEgC:
@@ -194,11 +194,11 @@ papers:
     title: "Guidelines for molecular testing in non-small cell lung cancer\u2013recommendations from the Brazilian Society of Pathology"
     year: '2023'
   7d50ByEAAAAJ:ECJ25tEN_EwC:
-    citations: 80
+    citations: 81
     title: The 2021 WHO classification of tumors of the heart
     year: '2022'
   7d50ByEAAAAJ:Efx6ZPdPmuEC:
-    citations: 45
+    citations: 46
     title: "Differentiating separate primary lung adenocarcinomas from intrapulmonary metastases with emphasis on pathological and molecular considerations: recommendations from the \u2026"
     year: '2025'
   7d50ByEAAAAJ:EupYgYwc-6gC:
@@ -354,7 +354,7 @@ papers:
     title: 'DSG2 Mutations in ARVC: A Molecular Autopsy Study'
     year: '2012'
   7d50ByEAAAAJ:NzUpm4bhSXQC:
-    citations: 14
+    citations: 15
     title: 'Practice patterns related to prostate cancer grading: results of a 2019 Genitourinary Pathology Society clinician survey'
     year: '2021'
   7d50ByEAAAAJ:O3NaXMp0MMsC:
@@ -458,7 +458,7 @@ papers:
     title: 'Bronchioloalveolar carcinoma arising in a congenital pulmonary airway malformation in a child: case report with an update of this association'
     year: '2007'
   7d50ByEAAAAJ:UebtZRa9Y70C:
-    citations: 32
+    citations: 33
     title: 'Fatal parvoviral myocarditis: a case report and review of literature'
     year: '2008'
   7d50ByEAAAAJ:Uha2Xg-6WXIC:
@@ -502,7 +502,7 @@ papers:
     title: 'Absence of human herpesvirus-8 in pulmonary inflammatory myofibroblastic tumor: immunohistochemical and molecular analysis of 20 cases'
     year: '2007'
   7d50ByEAAAAJ:WMsFzbFqK_QC:
-    citations: 11
+    citations: 12
     title: TRAIL agonists rescue mice from radiation-induced lung, skin, or esophageal injury
     year: '2025'
   7d50ByEAAAAJ:WbkHhVStYXYC:
@@ -610,7 +610,7 @@ papers:
     title: "Perinatal unusual rhabdomyoma location\u2013case report and systematic reviews of the literature"
     year: '2021'
   7d50ByEAAAAJ:bEWYMUwI8FkC:
-    citations: 46
+    citations: 47
     title: PKP2 mutations in sudden death from arrhythmogenic right ventricular cardiomyopathy (ARVC) and sudden unexpected death with negative autopsy (SUDNA)
     year: '2012'
   7d50ByEAAAAJ:bFI3QPDXJZMC:
@@ -758,7 +758,7 @@ papers:
     title: "Pulmonary mucinous adenocarcinomas: a clinicopathologic series with emphasis on the prognostic significance of spread through alveolar spaces, and presence of solid growth \u2026"
     year: '2018'
   7d50ByEAAAAJ:mB3voiENLucC:
-    citations: 50
+    citations: 51
     title: 'Distribution of biventricular disease in arrhythmogenic cardiomyopathy: an autopsy study'
     year: '2012'
   7d50ByEAAAAJ:mVmsd5A6BfQC:
@@ -814,7 +814,7 @@ papers:
     title: Prostate Cancer Histopathology Classification Using Multi-Instance Learning and Vision Transformers
     year: '2025'
   7d50ByEAAAAJ:qxL8FJ1GzNcC:
-    citations: 14
+    citations: 15
     title: Morphologic features of exertional versus nonexertional sudden death in patients with hypertrophic cardiomyopathy
     year: '2010'
   7d50ByEAAAAJ:r0BpntZqJG4C:
@@ -826,12 +826,12 @@ papers:
     title: Cellular and extracellular matrix aspects of the nasal cartilage in the fetus and early infant
     year: '2025'
   7d50ByEAAAAJ:roLk4NBRz8UC:
-    citations: 30
+    citations: 29
     title: "Evaluation of performance of EUS\u2010FNA in preoperative lymph node staging of cancers of esophagus, lung, and pancreas"
     year: '2008'
   7d50ByEAAAAJ:sArNgO4T4MoC:
     citations: 0
-    title: 'Hyperplasic Polyp in Appendix Ostium Manifesting Acute Appendicitis: Case Report'
+    title: Health Science
     year: Unknown Year
   7d50ByEAAAAJ:sAujV351FBYC:
     citations: 0
@@ -846,7 +846,7 @@ papers:
     title: DNA methylation profiles delineate epigenetic heterogeneity in seminoma and non-seminoma
     year: '2012'
   7d50ByEAAAAJ:u-x6o8ySG0sC:
-    citations: 90
+    citations: 89
     title: 'Extra-oral plasmablastic lymphoma: report of a case and review of literature'
     year: '2006'
   7d50ByEAAAAJ:u5HHmVD_uO8C:
