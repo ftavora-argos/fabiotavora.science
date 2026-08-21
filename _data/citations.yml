@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-08-12'
+  last_updated: '2026-08-21'
 papers:
   7d50ByEAAAAJ:-f6ydRqryjwC:
     citations: 0
@@ -98,7 +98,7 @@ papers:
     title: 'Beyond Exons 19 and 21: Mapping the Clinical and Molecular Diversity of Uncommon EGFR Mutations in a Brazilian NSCLC Cohort'
     year: Unknown Year
   7d50ByEAAAAJ:6lhY8CtEloYC:
-    citations: 329
+    citations: 331
     title: The 2019 Genitourinary Pathology Society (GUPS) white paper on contemporary grading of prostate cancer
     year: '2021'
   7d50ByEAAAAJ:6nNZn6i0kyMC:
@@ -186,7 +186,7 @@ papers:
     title: Esophagus, lung, and pancreas evaluation of performance of EUS-FNA in preoperative lymph node staging of cancers of
     year: '2008'
   7d50ByEAAAAJ:D8wXzuvKacYC:
-    citations: 63
+    citations: 64
     title: Chagas cardiomyopathy in Latin America review
     year: '2019'
   7d50ByEAAAAJ:DPkBdyRpVwQC:
@@ -206,7 +206,7 @@ papers:
     title: The 2021 WHO classification of tumors of the heart
     year: '2022'
   7d50ByEAAAAJ:Efx6ZPdPmuEC:
-    citations: 49
+    citations: 50
     title: "Differentiating separate primary lung adenocarcinomas from intrapulmonary metastases with emphasis on pathological and molecular considerations: recommendations from the \u2026"
     year: '2025'
   7d50ByEAAAAJ:EupYgYwc-6gC:
@@ -218,7 +218,7 @@ papers:
     title: The frequency of high PD-L1 expression is low in lung adenocarcinoma patients from Northeast Brazil
     year: '2019'
   7d50ByEAAAAJ:Fla6ZGMkO9sC:
-    citations: 103
+    citations: 104
     title: Fatal outcome of chikungunya virus infection in Brazil
     year: '2021'
   7d50ByEAAAAJ:GnPB-g6toBAC:
@@ -234,7 +234,7 @@ papers:
     title: Validation of verbal autopsy and nasopharyngeal swab collection for the investigation of deaths at home during the COVID-19 pandemics in Brazil
     year: '2020'
   7d50ByEAAAAJ:H7P4rdOtXtsC:
-    citations: 345
+    citations: 346
     title: The 2015 WHO classification of tumors of the heart and pericardium
     year: '2016'
   7d50ByEAAAAJ:H8BRrGBkN7cC:
@@ -242,7 +242,7 @@ papers:
     title: Nuclear Localization of Gsk-3 beta Protein Correlates with PTEN Loss and Worse Pathologic Outcomes Post-Prostatectomy
     year: '2020'
   7d50ByEAAAAJ:H8Dy_DhitWcC:
-    citations: 41
+    citations: 42
     title: 'Reporting practices and resource utilization in the era of intraductal carcinoma of the prostate: a survey of genitourinary subspecialists'
     year: '2020'
   7d50ByEAAAAJ:HDshCWvjkbEC:
@@ -490,7 +490,7 @@ papers:
     title: 'Pyoderma gangrenosum diagnosed in a high-risk myelodysplastic neoplasm patient with trisomy 8: a rare case report'
     year: '2025'
   7d50ByEAAAAJ:VU60ks20i7sC:
-    citations: 11
+    citations: 13
     title: 'Molecular tumor boards: a consensus statement from the international association for the study of lung cancer'
     year: '2025'
   7d50ByEAAAAJ:VdWZULf8Gq0C:
@@ -510,7 +510,7 @@ papers:
     title: 'Absence of human herpesvirus-8 in pulmonary inflammatory myofibroblastic tumor: immunohistochemical and molecular analysis of 20 cases'
     year: '2007'
   7d50ByEAAAAJ:WMsFzbFqK_QC:
-    citations: 12
+    citations: 13
     title: TRAIL agonists rescue mice from radiation-induced lung, skin, or esophageal injury
     year: '2025'
   7d50ByEAAAAJ:WbkHhVStYXYC:
@@ -570,7 +570,7 @@ papers:
     title: 'Re: Inherited cardiomyopathies mimicking arrhythmogenic right ventricular cardiomyopathy.'
     year: '2010'
   7d50ByEAAAAJ:Zph67rFs4hoC:
-    citations: 43
+    citations: 44
     title: 'Immunolocalisation of fibrin in coronary atherosclerosis: implications for necrotic core development'
     year: '2010'
   7d50ByEAAAAJ:_8B_re9sV0EC:
@@ -625,12 +625,16 @@ papers:
     citations: 0
     title: Pediatric cardiac sarcomas, a series of 16 new cases with literature review
     year: '2007'
+  7d50ByEAAAAJ:bUkhZ_yRbTwC:
+    citations: 0
+    title: "Prognostic Significance of Spread Through Airspaces (STAS) in Stage Ia/bN0 Non-small Cell Lung Cancer\u2013An Evaluation in the JCOG0802/WJOG4607L Clinical Trial Patients"
+    year: '2026'
   7d50ByEAAAAJ:cFHS6HbyZ2cC:
     citations: 0
     title: "Immunohistochemical Expression of N-Cadherin, but Not Plakoglobin and Plakophilin, Is Decreased in Pathologically Diagnosed Autopsy-Based Cases of Arrhythmogenic Right \u2026"
     year: '2010'
   7d50ByEAAAAJ:czIYXmO0riYC:
-    citations: 21
+    citations: 22
     title: "Glycogen synthase kinase-3 beta expression correlates with worse overall survival in non-small cell lung cancer\u2014a clinicopathological series"
     year: '2021'
   7d50ByEAAAAJ:d1gkVwhDpl0C:
@@ -734,7 +738,7 @@ papers:
     title: Prognostic relevance of the histological subtype of renal cell carcinoma
     year: '2008'
   7d50ByEAAAAJ:kAoMiUvgv_QC:
-    citations: 5
+    citations: 6
     title: 'Relationship between the expressions of DLL3, ASC1, TTF-1 and Ki-67: First steps of precision medicine at SCLC'
     year: '2024'
   7d50ByEAAAAJ:kNdYIx-mwKoC:
@@ -750,11 +754,11 @@ papers:
     title: "Glycogen synthase kinase 3-\u03B2 expression in prostate cancer (PCa) correlates with aggressive pathological features and its blockade with 9-ING-41 inhibits viability of PCa cell \u2026"
     year: '2020'
   7d50ByEAAAAJ:l7t_Zn2s7bgC:
-    citations: 92
+    citations: 93
     title: Aspiration-related lung diseases
     year: '2014'
   7d50ByEAAAAJ:lSLTfruPkqcC:
-    citations: 83
+    citations: 84
     title: Histologic features associated with metastatic potential in invasive adenocarcinomas of the lung
     year: '2013'
   7d50ByEAAAAJ:ldfaerwXgEUC:
@@ -814,7 +818,7 @@ papers:
     title: Desmosomal protein gene mutations in patients with idiopathic DCM
     year: '2011'
   7d50ByEAAAAJ:qjMakFHDy7sC:
-    citations: 123
+    citations: 124
     title: 'High-grade prostatic intraepithelial neoplasialike ductal adenocarcinoma of the prostate: a clinicopathologic study of 28 cases'
     year: '2008'
   7d50ByEAAAAJ:qkvbYSGtNvkC:
@@ -902,7 +906,7 @@ papers:
     title: "Impacto da pandemia de COVID-19 no diagn\xF3stico de c\xE2ncer de pulm\xE3o no Nordeste brasileiro"
     year: '2022'
   7d50ByEAAAAJ:x78xNeCKx3UC:
-    citations: 8
+    citations: 9
     title: The evaluation of angiogenesis markers in hepatocellular carcinoma and precursor lesions in liver explants from a single institution
     year: '2018'
   7d50ByEAAAAJ:xtRiw3GOFMkC:
