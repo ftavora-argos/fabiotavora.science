@@ -212,7 +212,7 @@
       var partes = (bruto || []).map(function (v) {
         return textoOpcao(campo, v);
       });
-      t = partes.length && partes.indexOf(null) < 0 ? partes.join(", ") : null;
+      t = partes.length && partes.indexOf(null) < 0 ? partes.join(campo.separador || ", ") : null;
     } else if (campo.tipo === "numero") {
       if (!isNaN(numero(bruto))) {
         t = String(bruto).trim().replace(".", ",");
@@ -228,7 +228,8 @@
   }
 
   function comFormato(campo, t) {
-    return campo.formato ? campo.formato.replace("{valor}", t) : t;
+    var formato = campo.formatoUm && numero(estado.resp[campo.id]) === 1 ? campo.formatoUm : campo.formato;
+    return formato ? formato.replace("{valor}", t) : t;
   }
 
   function pendentes() {
@@ -269,10 +270,8 @@
         }
       });
       if (!linhas.length) return;
-      if (secao.cabecalhoLaudo) {
-        if (saida.length) saida.push({ texto: "", falta: false });
-        saida.push({ texto: secao.cabecalhoLaudo, falta: false });
-      }
+      if ((secao.cabecalhoLaudo || secao.espacoAntes) && saida.length) saida.push({ texto: "", falta: false });
+      if (secao.cabecalhoLaudo) saida.push({ texto: secao.cabecalhoLaudo, falta: false });
       saida = saida.concat(linhas);
     });
     if (estado.tpl.linhaFinal) {
@@ -400,6 +399,10 @@
         caixa.appendChild(refs.outro);
       }
       if (campo.tipo === "calculado") {
+        // O resultado calculado vem primeiro; os botões só abrem para ajuste manual.
+        refs.grupo = grupo;
+        refs.resultado = el("p", { class: "resultado", "aria-live": "polite" });
+        caixa.insertBefore(refs.resultado, grupo);
         refs.sugestao = el("p", { class: "sugestao" });
         caixa.appendChild(refs.sugestao);
       }
@@ -460,18 +463,40 @@
       }
       if (refs.outro) refs.outro.hidden = selecionados.indexOf(OUTRO) < 0;
       if (refs.sugestao) {
-        refs.sugestao.textContent = "";
         var manual = estado.manual[campo.id] !== undefined;
-        var texto = sug ? "Sugestão calculada: " + prefixo(campo) + textoOpcao(campo, sug) + "." : "Sem sugestão automática com os dados atuais.";
-        if (manual) texto += " Valor definido manualmente.";
-        refs.sugestao.appendChild(document.createTextNode(texto));
+        var aberto = manual || refs.aberto || (sug === null && !!campo.nucleo);
+        refs.grupo.hidden = !aberto;
+        refs.resultado.textContent = "";
+        if (sug) {
+          refs.resultado.appendChild(document.createTextNode("Calculado automaticamente:"));
+          refs.resultado.appendChild(el("strong", { text: prefixo(campo) + textoOpcao(campo, sug) }));
+        } else {
+          refs.resultado.textContent = campo.semSugestao || "Sem cálculo automático com os dados atuais.";
+        }
+        refs.sugestao.textContent = "";
+        var acao = function (rotulo, fn) {
+          var botao = el("button", { type: "button", class: "link", text: rotulo });
+          botao.addEventListener("click", fn);
+          refs.sugestao.appendChild(botao);
+        };
         if (manual) {
-          var botao = el("button", { type: "button", class: "link", text: "voltar à sugestão" });
-          botao.addEventListener("click", function () {
+          var atual = efetivo(campo);
+          refs.sugestao.appendChild(
+            document.createTextNode(
+              atual ? "Valor definido manualmente: " + prefixo(campo) + textoOpcao(campo, atual) + "." : "Valor removido manualmente."
+            )
+          );
+          acao("voltar ao cálculo", function () {
             delete estado.manual[campo.id];
+            refs.aberto = false;
             atualizar();
           });
-          refs.sugestao.appendChild(botao);
+        } else if (!aberto) {
+          acao("alterar manualmente", function () {
+            refs.aberto = true;
+            atualizar();
+            (refs.grupo.querySelector('.chip[tabindex="0"]') || refs.chips[0]).focus();
+          });
         }
       }
     } else if (campo.tipo === "numero") {

@@ -6,6 +6,13 @@
       "orgao": "Pulmão",
       "procedimento": "Ressecção",
       "arquivo": "pulmao-resseccao.json"
+    },
+    {
+      "id": "colon-resseccao",
+      "titulo": "Carcinoma colorretal, ressecção",
+      "orgao": "Cólon e reto",
+      "procedimento": "Ressecção",
+      "arquivo": "colon-resseccao.json"
     }
   ]
 }
