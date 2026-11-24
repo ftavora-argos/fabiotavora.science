@@ -51,6 +51,7 @@
       "properties": {
         "titulo": { "type": "string", "minLength": 1 },
         "cabecalhoLaudo": { "type": "string" },
+        "cabecalhoDestaque": { "type": "boolean" },
         "espacoAntes": { "type": "boolean" },
         "campos": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/campo" } }
       }

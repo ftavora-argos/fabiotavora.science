@@ -271,7 +271,7 @@
       });
       if (!linhas.length) return;
       if ((secao.cabecalhoLaudo || secao.espacoAntes) && saida.length) saida.push({ texto: "", falta: false });
-      if (secao.cabecalhoLaudo) saida.push({ texto: secao.cabecalhoLaudo, falta: false });
+      if (secao.cabecalhoLaudo) saida.push({ texto: secao.cabecalhoLaudo, falta: false, destaque: !!secao.cabecalhoDestaque });
       saida = saida.concat(linhas);
     });
     if (estado.tpl.linhaFinal) {
@@ -519,7 +519,7 @@
     var previa = estado.ui.previa;
     previa.textContent = "";
     linhasDoLaudo().forEach(function (l) {
-      previa.appendChild(el("span", { class: l.falta ? "falta" : "", text: l.texto }));
+      previa.appendChild(el("span", { class: l.falta ? "falta" : l.destaque ? "destaque" : "", text: l.texto }));
       previa.appendChild(document.createTextNode("\n"));
     });
   }
@@ -533,30 +533,69 @@
     if (alvo) alvo.focus({ preventScroll: true });
   }
 
+  function escaparHtml(t) {
+    return t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  // Versão formatada do laudo (negrito e sublinhado nos cabeçalhos marcados).
+  function htmlDoLaudo() {
+    return (
+      "<div>" +
+      linhasDoLaudo()
+        .map(function (l) {
+          var t = escaparHtml(l.texto);
+          return l.destaque ? "<b><u>" + t + "</u></b>" : t;
+        })
+        .join("<br>") +
+      "</div>"
+    );
+  }
+
+  // Copia texto puro e, junto, a versão formatada. Editores que aceitam
+  // formatação recebem o negrito e o sublinhado; os demais recebem o texto puro.
   function copiar() {
     var texto = textoDoLaudo();
+    var html = htmlDoLaudo();
     var faltam = pendentes().length;
     var msg = faltam ? "Laudo copiado, com " + faltam + " item(ns) obrigatório(s) pendente(s)." : "Laudo copiado.";
     function reserva() {
-      var ta = el("textarea", { readonly: "", style: "position:fixed;top:0;left:0;opacity:0" });
-      ta.value = texto;
-      document.body.appendChild(ta);
-      ta.select();
+      var caixa = el("div", { contenteditable: "true", style: "position:fixed;top:0;left:0;opacity:0;white-space:pre-wrap" });
+      caixa.innerHTML = html;
+      document.body.appendChild(caixa);
+      var faixa = document.createRange();
+      faixa.selectNodeContents(caixa);
+      var selecao = window.getSelection();
+      selecao.removeAllRanges();
+      selecao.addRange(faixa);
       var ok = false;
       try {
         ok = document.execCommand("copy");
       } catch (e) {
         ok = false;
       }
-      ta.remove();
+      selecao.removeAllRanges();
+      caixa.remove();
       avisar(ok ? msg : "Não foi possível copiar. Selecione o texto da prévia e copie manualmente.");
     }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(texto).then(function () {
+    function soTexto() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(function () {
+          avisar(msg);
+        }, reserva);
+      } else {
+        reserva();
+      }
+    }
+    if (navigator.clipboard && navigator.clipboard.write && window.ClipboardItem) {
+      var item = new window.ClipboardItem({
+        "text/plain": new Blob([texto], { type: "text/plain" }),
+        "text/html": new Blob([html], { type: "text/html" }),
+      });
+      navigator.clipboard.write([item]).then(function () {
         avisar(msg);
-      }, reserva);
+      }, soTexto);
     } else {
-      reserva();
+      soTexto();
     }
   }
 
