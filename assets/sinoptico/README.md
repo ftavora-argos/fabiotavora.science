@@ -111,5 +111,6 @@ Operadores: `igual`, `em`, `naoEm`, `contem`, `contagemMin`, `contagemMax`, `con
 - `expressao` (em variável): fórmula com números, `+ - * / ^`, parênteses, ids e as funções `sqrt`, `min`, `max` e `ou(a, b)`. Campo oculto vale 0; campo visível sem resposta deixa o resultado indefinido. Exemplo: o índice RCB em `mama-pos-qt.json`.
 - Tipo `derivado`: campo somente leitura que mostra e imprime o resultado de uma `expressao`, com `decimais` e `unidade`.
 - `linhaFinal` (na raiz, opcional) acrescenta uma última linha com marcadores `{id}`, por exemplo `"pTNM: {pT} {pN} {pM}"`.
+- `ferramentas` (na raiz, opcional): `["esquema-fatias"]` acrescenta ao fim do formulário o desenho das fatias da macroscopia, com cópia e download da imagem. Não entra no texto do laudo.
 
 Todo conteúdo médico de um template novo deve ser revisado por um patologista antes do merge.

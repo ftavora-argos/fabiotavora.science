@@ -58,6 +58,12 @@
     },
     "linhaFinal": {
       "type": "string"
+    },
+    "ferramentas": {
+      "type": "array",
+      "items": {
+        "enum": ["esquema-fatias"]
+      }
     }
   },
   "$defs": {

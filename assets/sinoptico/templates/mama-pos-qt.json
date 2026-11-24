@@ -5,7 +5,7 @@
     "orgao": "Mama",
     "procedimento": "Ressecção",
     "fonte": "Modelo Argos Laboratório",
-    "versao": "0.1.0",
+    "versao": "0.2.0",
     "revisao": "2026-11-24",
     "estadiamento": "pTNM 8ª edição e RCB"
   },
@@ -755,6 +755,46 @@
           ]
         },
         {
+          "id": "perineural",
+          "rotulo": "Invasão perineural",
+          "tipo": "unica",
+          "ajuda": "Opcional.",
+          "opcoes": [
+            {
+              "valor": "nao",
+              "rotulo": "não identificada"
+            },
+            {
+              "valor": "presente",
+              "rotulo": "presente"
+            }
+          ]
+        },
+        {
+          "id": "papila",
+          "rotulo": "Papila mamária",
+          "tipo": "unica",
+          "ajuda": "Opcional.",
+          "opcoes": [
+            {
+              "valor": "livre",
+              "rotulo": "livre de neoplasia"
+            },
+            {
+              "valor": "invasivo",
+              "rotulo": "comprometida por carcinoma invasivo"
+            },
+            {
+              "valor": "paget",
+              "rotulo": "doença de Paget"
+            },
+            {
+              "valor": "na",
+              "rotulo": "não se aplica"
+            }
+          ]
+        },
+        {
           "id": "microcalc",
           "rotulo": "Microcalcificações",
           "tipo": "unica",
@@ -818,7 +858,7 @@
           "tipo": "texto",
           "anexaEm": "margens",
           "formato": " ({valor})",
-          "ajuda": "Opcional."
+          "ajuda": "Opcional. Exemplo: margem profunda, a 3 mm."
         },
         {
           "id": "ln_status",
@@ -897,6 +937,30 @@
           "anexaEm": "ln_status",
           "formato": ", medindo {valor} o maior foco de metástase",
           "ajuda": "Entra no ypN e no RCB."
+        },
+        {
+          "id": "ln_ece",
+          "rotulo": "Extensão extranodal",
+          "tipo": "unica",
+          "visivelSe": {
+            "campo": "ln_status",
+            "igual": "positivos"
+          },
+          "anexaEm": "ln_status",
+          "formato": ". {valor}",
+          "ajuda": "Opcional.",
+          "opcoes": [
+            {
+              "valor": "ausente",
+              "rotulo": "ausente",
+              "texto": "Ausência de extensão extranodal"
+            },
+            {
+              "valor": "presente",
+              "rotulo": "presente",
+              "texto": "Presença de extensão extranodal"
+            }
+          ]
         }
       ]
     },
@@ -1282,6 +1346,14 @@
       "cabecalhoLaudo": "PROTOCOLO DE RESPOSTA PATOLÓGICA PÓS-QUIMIOTERAPIA NEOADJUVANTE",
       "campos": [
         {
+          "id": "rcb_macro",
+          "rotulo": "Dimensão macroscópica do leito tumoral primário",
+          "rotuloLaudo": ". Dimensão macroscópica do leito tumoral primário",
+          "tipo": "numero",
+          "unidade": "mm",
+          "ajuda": "Opcional. Maior dimensão do leito na macroscopia."
+        },
+        {
           "id": "res_linha",
           "rotulo": "Neoplasia residual microscópica",
           "rotuloLaudo": ". Neoplasia residual microscópica",
@@ -1328,7 +1400,7 @@
             "igual": "presente"
           },
           "sufixoLaudo": " mm",
-          "ajuda": "d1 da fórmula do RCB, em mm."
+          "ajuda": "d1 da fórmula do RCB, em mm. No plano da fatia mapeada, some a extensão do leito nos quadrantes."
         },
         {
           "id": "rcb_d2",
@@ -1341,7 +1413,7 @@
           },
           "anexaEm": "rcb_d1",
           "formato": " x {valor}",
-          "ajuda": "d2 da fórmula do RCB, em mm."
+          "ajuda": "d2 da fórmula do RCB, em mm. No eixo perpendicular, fatias consecutivas acometidas vezes a espessura dão o teto."
         },
         {
           "id": "ca",
@@ -1354,7 +1426,7 @@
             "campo": "residual",
             "igual": "presente"
           },
-          "ajuda": "Celularidade total de carcinoma (invasivo e in situ) na área do leito."
+          "ajuda": "Média ponderada pela área do leito, incluindo as áreas fibrosas. Na calculadora do MD Anderson este campo é a celularidade total de carcinoma (invasivo e in situ)."
         },
         {
           "id": "cis",
@@ -1367,7 +1439,7 @@
             "campo": "residual",
             "igual": "presente"
           },
-          "ajuda": "Parte do carcinoma que é in situ. Informe 0 se não houver."
+          "ajuda": "Na calculadora do MD Anderson este campo é a porcentagem do carcinoma que é in situ. Informe 0 se não houver."
         },
         {
           "id": "rcb_ln",
@@ -1581,11 +1653,12 @@
             {
               "valor": "symmans",
               "rotulo": "incluir referência do RCB (Symmans et al., 2007)",
-              "texto": "Symmans WF, Peintinger F, Hatzis C, et al. Measurement of Residual Breast Cancer Burden to Predict Survival After Neoadjuvant Chemotherapy. Journal of Clinical Oncology. 2007;25(28):4414-4422."
+              "texto": "Measurement of Residual Breast Cancer Burden to Predict Survival After Neoadjuvant Chemotherapy. W. Fraser Symmans, Florentia Peintinger, Christos Hatzis, Radhika Rajan, Henry Kuerer, Vicente Valero, Lina Assad, Anna Poniecka, Bryan Henessy, Marjorie Green, Aman U. Buzdar, S. Eva Singletary, Gabriel N. Hortobagyi, and Lajos Pusztai. Journal of Clinical Oncology. Original Report. vol 25, number 28. October 1 2007."
             }
           ]
         }
       ]
     }
-  ]
+  ],
+  "ferramentas": ["esquema-fatias"]
 }

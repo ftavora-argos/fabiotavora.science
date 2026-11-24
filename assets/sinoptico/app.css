@@ -328,6 +328,63 @@ input[aria-invalid="true"] {
   cursor: pointer;
 }
 
+/* Esquema da macroscopia */
+.esquema-campos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 0.6rem 1rem;
+  margin: 0.8rem 0;
+}
+
+.esquema-campos label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.esquema-campos label.largo {
+  grid-column: 1 / -1;
+}
+
+.esquema-campos input,
+.esquema-campos select {
+  font: inherit;
+  font-weight: 400;
+  font-size: 0.9rem;
+  padding: 0.35rem 0.5rem;
+  color: var(--texto);
+  background: var(--fundo);
+  border: 1px solid var(--linha);
+  border-radius: 0;
+}
+
+.esquema-quadro {
+  border: 1px solid var(--linha);
+  background: #ffffff;
+  overflow-x: auto;
+}
+
+.esquema-quadro svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.esquema-quadro .vazio {
+  margin: 0;
+  padding: 1rem;
+  background: var(--fundo);
+}
+
+.esquema-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+}
+
 /* Prévia */
 .lado {
   position: sticky;

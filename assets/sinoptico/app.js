@@ -808,6 +808,8 @@
       form.appendChild(bloco);
     });
 
+    if ((tpl.ferramentas || []).indexOf("esquema-fatias") >= 0) form.appendChild(criarEsquemaFatias());
+
     var contador = el("button", { type: "button", class: "contador" });
     contador.addEventListener("click", irParaPendente);
     var btCopiar = el("button", { type: "button", class: "botao principal", text: "Copiar laudo" });
@@ -829,6 +831,368 @@
     app.appendChild(el("div", { class: "colunas" }, [form, lado]));
     document.title = m.titulo + " · Laudos sinópticos";
     atualizar();
+  }
+
+  // ---------- Esquema das fatias (macroscopia) ----------
+  // Ferramenta opcional de desenho, ligada por "ferramentas": ["esquema-fatias"]
+  // no template. Não entra no texto do laudo e não guarda nada.
+  function criarEsquemaFatias() {
+    var SENTIDOS = [
+      "lateral → medial",
+      "medial → lateral",
+      "superior → inferior",
+      "inferior → superior",
+      "anterior → posterior",
+      "posterior → anterior",
+    ];
+    var COR = { tumor: "#09133c", limpa: "#a6e3f7", fora: "#e7e3e2", linha: "#2e3446", elipse: "#e5191e" };
+    var FONTE = "Arial, Helvetica, sans-serif";
+    var bloco = el("section", { class: "secao esquema" }, [el("h2", { text: "Esquema da macroscopia (opcional)" })]);
+    bloco.appendChild(
+      el("p", {
+        class: "ajuda",
+        text: "Desenha as fatias a partir dos dados da macroscopia. Não entra no texto do laudo: a imagem pode ser copiada ou baixada.",
+      })
+    );
+    var grade = el("div", { class: "esquema-campos" });
+    var e = {};
+    function entrada(id, rotulo, dica, largo) {
+      var campo = el("input", { type: "text", autocomplete: "off", placeholder: dica || "", id: "esq-" + id });
+      if (!largo) campo.setAttribute("inputmode", "decimal");
+      e[id] = campo;
+      grade.appendChild(el("label", { class: largo ? "largo" : "" }, [el("span", { text: rotulo }), campo]));
+    }
+    function escolha(id, rotulo, opcoes) {
+      var sel = el("select", { id: "esq-" + id });
+      opcoes.forEach(function (o, i) {
+        sel.appendChild(el("option", { value: String(i), text: o }));
+      });
+      e[id] = sel;
+      grade.appendChild(el("label", {}, [el("span", { text: rotulo }), sel]));
+    }
+    entrada("n", "Número de fatias", "ex.: 8");
+    entrada("esp", "Espessura das fatias (mm)", "ex.: 5");
+    escolha("sentido", "Sentido do fatiamento", SENTIDOS);
+    entrada("ini", "Primeira fatia com lesão", "ex.: 3");
+    entrada("fim", "Última fatia com lesão", "ex.: 6");
+    entrada("tw", "Lesão no plano da fatia: largura (cm)", "ex.: 2,6");
+    entrada("th", "Lesão no plano da fatia: altura (cm)", "ex.: 2,5");
+    entrada("pw", "Peça no plano da fatia: largura (cm)", "ex.: 7");
+    entrada("ph", "Peça no plano da fatia: altura (cm)", "ex.: 5");
+    entrada("map", "Fatia mapeada", "ex.: 4");
+    entrada("gc", "Mapeamento: colunas", "ex.: 2");
+    entrada("gl", "Mapeamento: linhas", "ex.: 2");
+    entrada("espelhos", "Fatias com corte espelho", "ex.: 3, 5, 6", true);
+    escolha("face", "Face amostrada nos espelhos", ["voltada para o início do fatiamento", "voltada para o fim do fatiamento"]);
+    bloco.appendChild(grade);
+
+    var quadro = el("div", { class: "esquema-quadro", role: "img", "aria-label": "Esquema das fatias" });
+    bloco.appendChild(quadro);
+    var btCopiar = el("button", { type: "button", class: "botao", text: "Copiar imagem" });
+    var btPng = el("button", { type: "button", class: "botao", text: "Baixar PNG" });
+    var btSvg = el("button", { type: "button", class: "botao", text: "Baixar SVG" });
+    var acoes = el("div", { class: "esquema-acoes", hidden: "" }, [btCopiar, btPng, btSvg]);
+    bloco.appendChild(acoes);
+
+    var svgAtual = "";
+    var tamanho = { w: 760, h: 0 };
+
+    function inteiro(id) {
+      var n = numero(e[id].value);
+      return isNaN(n) ? NaN : Math.round(n);
+    }
+
+    function desenhar() {
+      var n = inteiro("n");
+      if (!(n >= 1 && n <= 40)) {
+        quadro.textContent = "";
+        quadro.appendChild(el("p", { class: "vazio", text: "Informe o número de fatias (1 a 40) para gerar o esquema." }));
+        acoes.hidden = true;
+        svgAtual = "";
+        return;
+      }
+      var dentro = function (v) {
+        return v >= 1 && v <= n;
+      };
+      var esp = numero(e.esp.value);
+      var ini = inteiro("ini");
+      var fim = inteiro("fim");
+      var temLesao = dentro(ini) && dentro(fim) && fim >= ini;
+      var tw = numero(e.tw.value);
+      var th = numero(e.th.value);
+      var pw = numero(e.pw.value);
+      var ph = numero(e.ph.value);
+      var map = inteiro("map");
+      var gc = Math.min(6, Math.max(1, inteiro("gc") || 2));
+      var gl = Math.min(6, Math.max(1, inteiro("gl") || 2));
+      var espelhos = (e.espelhos.value.match(/\d+/g) || []).map(Number).filter(dentro);
+      var faceFim = e.face.value === "1";
+      var pontas = SENTIDOS[Number(e.sentido.value)].split(" → ");
+      var amostradas = espelhos.slice();
+      if (dentro(map) && amostradas.indexOf(map) < 0) amostradas.push(map);
+      amostradas.sort(function (a, b) {
+        return a - b;
+      });
+      var comLesao = function (i) {
+        return temLesao && i >= ini && i <= fim;
+      };
+      var fracW = tw > 0 && pw > 0 ? Math.min(1, tw / pw) : 0.4;
+      var fracH = th > 0 && ph > 0 ? Math.min(1, th / ph) : 0.45;
+
+      var W = tamanho.w;
+      var p = [];
+      var txt = function (x, y, s, extra) {
+        // atributo repetido invalida o SVG como imagem, então o tamanho padrão só entra se "extra" não trouxer outro
+        var tam = extra && extra.indexOf("font-size") >= 0 ? "" : ' font-size="13"';
+        p.push(
+          '<text x="' + x + '" y="' + y + '" font-family="' + FONTE + '"' + tam + ' fill="' + COR.tumor + '" ' + (extra || "") + ">" + s + "</text>"
+        );
+      };
+      // Painel 1: vista superior
+      txt(20, 26, "Vista superior", 'font-weight="bold" font-size="15"');
+      var sw = Math.min(48, (W - 180) / n);
+      var sh = 110;
+      var x0 = (W - sw * n) / 2;
+      var y0 = 44;
+      for (var i = 1; i <= n; i++) {
+        var x = x0 + (i - 1) * sw;
+        var amostrada = amostradas.indexOf(i) >= 0;
+        var cor = !amostrada ? COR.fora : comLesao(i) ? COR.tumor : COR.limpa;
+        p.push(
+          '<rect x="' +
+            x +
+            '" y="' +
+            y0 +
+            '" width="' +
+            sw +
+            '" height="' +
+            sh +
+            '" fill="' +
+            cor +
+            '" stroke="' +
+            COR.linha +
+            '" stroke-width="' +
+            (i === map ? 3 : 1) +
+            '"/>'
+        );
+        txt(x + sw / 2, y0 + sh + 16, i + (i === map ? " M" : ""), 'text-anchor="middle" font-size="12"');
+        if (espelhos.indexOf(i) >= 0) {
+          var xf = faceFim ? x + sw - 2.5 : x + 2.5;
+          p.push('<line x1="' + xf + '" y1="' + y0 + '" x2="' + xf + '" y2="' + (y0 + sh) + '" stroke="' + COR.elipse + '" stroke-width="5"/>');
+        }
+      }
+      txt(x0 - 10, y0 + sh / 2 + 4, pontas[0], 'text-anchor="end"');
+      txt(x0 + sw * n + 10, y0 + sh / 2 + 4, pontas[1], 'text-anchor="start"');
+      if (temLesao) {
+        var k = fim - ini + 1;
+        p.push(
+          '<ellipse cx="' +
+            (x0 + (ini - 1 + k / 2) * sw) +
+            '" cy="' +
+            (y0 + sh / 2) +
+            '" rx="' +
+            (k * sw) / 2 +
+            '" ry="' +
+            (sh / 2) * fracH +
+            '" fill="none" stroke="' +
+            COR.elipse +
+            '" stroke-width="2" stroke-dasharray="6 4"/>'
+        );
+        if (esp > 0)
+          txt(
+            W / 2,
+            y0 + sh + 38,
+            "Extensão no eixo do fatiamento: até " +
+              String(k * esp).replace(".", ",") +
+              " mm (" +
+              k +
+              " fatia(s) de " +
+              String(esp).replace(".", ",") +
+              " mm)",
+            'text-anchor="middle" font-size="12"'
+          );
+      }
+      // Painel 2: faces amostradas
+      var y1 = y0 + sh + 70;
+      txt(20, y1, "Faces amostradas", 'font-weight="bold" font-size="15"');
+      var fw = 100;
+      var fh = pw > 0 && ph > 0 ? Math.max(60, Math.min(140, (fw * ph) / pw)) : fw;
+      var porLinha = 6;
+      var passo = 120;
+      var yFim = y1 + 14;
+      if (!amostradas.length) {
+        txt(20, y1 + 24, "Informe a fatia mapeada ou as fatias com corte espelho.", 'font-size="12"');
+        yFim = y1 + 34;
+      }
+      amostradas.forEach(function (fatia, idx) {
+        var fx = 20 + (idx % porLinha) * passo;
+        var fy = y1 + 14 + Math.floor(idx / porLinha) * (fh + 34);
+        p.push(
+          '<rect x="' +
+            fx +
+            '" y="' +
+            fy +
+            '" width="' +
+            fw +
+            '" height="' +
+            fh +
+            '" fill="' +
+            (comLesao(fatia) ? "#ffffff" : COR.limpa) +
+            '" stroke="' +
+            COR.linha +
+            '" stroke-width="' +
+            (fatia === map ? 3 : 1) +
+            '"/>'
+        );
+        if (comLesao(fatia)) {
+          var centro = (ini + fim) / 2;
+          var meio = (fim - ini + 1) / 2;
+          var f = Math.max(0.35, Math.sqrt(Math.max(0, 1 - Math.pow((fatia - centro) / meio, 2))));
+          p.push(
+            '<ellipse cx="' +
+              (fx + fw / 2) +
+              '" cy="' +
+              (fy + fh / 2) +
+              '" rx="' +
+              ((fw * fracW) / 2) * f +
+              '" ry="' +
+              ((fh * fracH) / 2) * f +
+              '" fill="' +
+              COR.tumor +
+              '" fill-opacity="0.85"/>'
+          );
+        }
+        if (fatia === map) {
+          for (var c = 1; c < gc; c++)
+            p.push(
+              '<line x1="' +
+                (fx + (fw * c) / gc) +
+                '" y1="' +
+                fy +
+                '" x2="' +
+                (fx + (fw * c) / gc) +
+                '" y2="' +
+                (fy + fh) +
+                '" stroke="' +
+                COR.linha +
+                '" stroke-width="1"/>'
+            );
+          for (var l = 1; l < gl; l++)
+            p.push(
+              '<line x1="' +
+                fx +
+                '" y1="' +
+                (fy + (fh * l) / gl) +
+                '" x2="' +
+                (fx + fw) +
+                '" y2="' +
+                (fy + (fh * l) / gl) +
+                '" stroke="' +
+                COR.linha +
+                '" stroke-width="1"/>'
+            );
+          for (var q = 0; q < gc * gl; q++) {
+            txt(
+              fx + ((q % gc) + 0.5) * (fw / gc),
+              fy + (Math.floor(q / gc) + 0.5) * (fh / gl) + 4,
+              String(q + 1),
+              'text-anchor="middle" font-size="12" font-weight="bold" stroke="#ffffff" stroke-width="3" paint-order="stroke"'
+            );
+          }
+        }
+        txt(fx + fw / 2, fy + fh + 16, "Fatia " + fatia + (fatia === map ? " (mapeada)" : " (espelho)"), 'text-anchor="middle" font-size="12"');
+        yFim = fy + fh + 26;
+      });
+      // Legenda e suposições
+      var yl = yFim + 22;
+      var itens = [
+        [COR.tumor, "amostrada, com lesão"],
+        [COR.limpa, "amostrada, sem lesão"],
+        [COR.fora, "não amostrada"],
+      ];
+      itens.forEach(function (it, j) {
+        p.push('<rect x="' + (20 + j * 190) + '" y="' + (yl - 11) + '" width="14" height="14" fill="' + it[0] + '" stroke="' + COR.linha + '"/>');
+        txt(40 + j * 190, yl, it[1], 'font-size="12"');
+      });
+      p.push('<line x1="592" y1="' + (yl - 4) + '" x2="612" y2="' + (yl - 4) + '" stroke="' + COR.elipse + '" stroke-width="5"/>');
+      txt(618, yl, "face do espelho", 'font-size="12"');
+      var notas = [
+        "Esquema estimado a partir da macroscopia, sem escala exata. Linha tracejada: extensão presumida da lesão.",
+        "Nas faces, a área da lesão é interpolada como elipsoide entre a primeira e a última fatia acometidas.",
+        "Fatia com lesão conforme o intervalo informado, e não conforme o achado microscópico de cada bloco.",
+      ];
+      notas.forEach(function (nota, j) {
+        txt(20, yl + 24 + j * 16, nota, 'font-size="11" fill-opacity="0.8"');
+      });
+      tamanho.h = yl + 24 + notas.length * 16;
+      svgAtual =
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' +
+        W +
+        " " +
+        tamanho.h +
+        '" width="' +
+        W +
+        '" height="' +
+        tamanho.h +
+        '">' +
+        '<rect width="100%" height="100%" fill="#ffffff"/>' +
+        p.join("") +
+        "</svg>";
+      quadro.innerHTML = svgAtual;
+      acoes.hidden = false;
+    }
+
+    function comoPng(pronto) {
+      var img = new Image();
+      img.onload = function () {
+        var tela = document.createElement("canvas");
+        tela.width = tamanho.w * 2;
+        tela.height = tamanho.h * 2;
+        tela.getContext("2d").drawImage(img, 0, 0, tela.width, tela.height);
+        tela.toBlob(pronto, "image/png");
+      };
+      img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgAtual);
+    }
+
+    function baixar(blob, nome) {
+      var url = URL.createObjectURL(blob);
+      var link = el("a", { href: url, download: nome });
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(function () {
+        URL.revokeObjectURL(url);
+      }, 1000);
+    }
+
+    btSvg.addEventListener("click", function () {
+      baixar(new Blob([svgAtual], { type: "image/svg+xml" }), "esquema-macroscopia.svg");
+    });
+    btPng.addEventListener("click", function () {
+      comoPng(function (blob) {
+        baixar(blob, "esquema-macroscopia.png");
+      });
+    });
+    btCopiar.addEventListener("click", function () {
+      comoPng(function (blob) {
+        if (navigator.clipboard && navigator.clipboard.write && window.ClipboardItem) {
+          navigator.clipboard.write([new window.ClipboardItem({ "image/png": blob })]).then(
+            function () {
+              avisar("Imagem copiada.");
+            },
+            function () {
+              avisar("Não foi possível copiar a imagem. Use Baixar PNG.");
+            }
+          );
+        } else {
+          avisar("Este navegador não copia imagens. Use Baixar PNG.");
+        }
+      });
+    });
+    grade.addEventListener("input", desenhar);
+    grade.addEventListener("change", desenhar);
+    desenhar();
+    return bloco;
   }
 
   // ---------- Lista de protocolos e rotas ----------
