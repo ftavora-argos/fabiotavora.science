@@ -13,6 +13,20 @@
       "orgao": "Cólon e reto",
       "procedimento": "Ressecção",
       "arquivo": "colon-resseccao.json"
+    },
+    {
+      "id": "mama-sem-qt",
+      "titulo": "Carcinoma invasivo de mama, sem quimioterapia prévia",
+      "orgao": "Mama",
+      "procedimento": "Ressecção",
+      "arquivo": "mama-sem-qt.json"
+    },
+    {
+      "id": "mama-pos-qt",
+      "titulo": "Carcinoma de mama, pós-quimioterapia neoadjuvante",
+      "orgao": "Mama",
+      "procedimento": "Ressecção",
+      "arquivo": "mama-pos-qt.json"
     }
   ]
 }

@@ -5,7 +5,7 @@
     "orgao": "Cólon e reto",
     "procedimento": "Ressecção",
     "fonte": "Modelo Argos Laboratório",
-    "versao": "0.1.0",
+    "versao": "0.1.1",
     "revisao": "2026-11-24",
     "estadiamento": "TNM, 9ª edição"
   },
@@ -710,7 +710,8 @@
             }
           ]
         }
-      ]
+      ],
+      "cabecalhoDestaque": true
     },
     {
       "titulo": "Estadiamento patológico",

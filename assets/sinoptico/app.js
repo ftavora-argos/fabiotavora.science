@@ -99,18 +99,133 @@
     return cache[chave];
   }
 
+  // ---------- Expressões aritméticas (variáveis e campos derivados) ----------
+  // Aceita números, + - * / ^, parênteses, ids de campos ou variáveis e as
+  // funções sqrt, min, max e ou(a, b). Campo oculto vale 0; campo visível sem
+  // resposta torna o resultado indefinido.
+  var arvores = {};
+
+  function analisar(texto) {
+    if (arvores[texto]) return arvores[texto];
+    var fichas = texto.match(/\d+(?:\.\d+)?|[A-Za-z_][A-Za-z0-9_]*|[-+*/^(),]/g) || [];
+    var i = 0;
+    function primario() {
+      var f = fichas[i++];
+      if (f === "(") {
+        var dentro = soma();
+        i++;
+        return dentro;
+      }
+      if (f === "-") return { op: "neg", a: potencia() };
+      if (/^\d/.test(f)) return { num: Number(f) };
+      if (fichas[i] === "(") {
+        i++;
+        var args = [];
+        while (fichas[i] !== ")" && i < fichas.length) {
+          args.push(soma());
+          if (fichas[i] === ",") i++;
+        }
+        i++;
+        return { fn: f, args: args };
+      }
+      return { id: f };
+    }
+    function potencia() {
+      var base = primario();
+      if (fichas[i] === "^") {
+        i++;
+        return { op: "^", a: base, b: potencia() };
+      }
+      return base;
+    }
+    function produto() {
+      var no = potencia();
+      while (fichas[i] === "*" || fichas[i] === "/") no = { op: fichas[i++], a: no, b: potencia() };
+      return no;
+    }
+    function soma() {
+      var no = produto();
+      while (fichas[i] === "+" || fichas[i] === "-") no = { op: fichas[i++], a: no, b: produto() };
+      return no;
+    }
+    arvores[texto] = soma();
+    return arvores[texto];
+  }
+
+  function numeroDe(id) {
+    var campo = estado.campos[id];
+    if (campo) return visivel(campo) ? numero(valor(id)) : 0;
+    var v = variavel(id);
+    return v === undefined ? NaN : v;
+  }
+
+  function calcular(no) {
+    if ("num" in no) return no.num;
+    if ("id" in no) return numeroDe(no.id);
+    if (no.fn) {
+      var args = no.args.map(calcular);
+      if (no.fn === "ou") return isNaN(args[0]) ? args[1] : args[0];
+      if (no.fn === "sqrt") return Math.sqrt(args[0]);
+      if (no.fn === "min") return Math.min.apply(null, args);
+      if (no.fn === "max") return Math.max.apply(null, args);
+      return NaN;
+    }
+    var a = calcular(no.a);
+    if (no.op === "neg") return -a;
+    var b = calcular(no.b);
+    if (no.op === "+") return a + b;
+    if (no.op === "-") return a - b;
+    if (no.op === "*") return a * b;
+    if (no.op === "/") return a / b;
+    return Math.pow(a, b);
+  }
+
+  function avaliar(texto) {
+    var chave = "e:" + texto;
+    if (!(chave in cache)) {
+      cache[chave] = NaN; // evita laço em referência circular
+      var r = calcular(analisar(texto));
+      cache[chave] = isFinite(r) ? r : NaN;
+    }
+    return cache[chave];
+  }
+
   // Valor de um campo ou variável para uso em condições.
   function valor(id) {
     var campo = estado.campos[id];
     if (!campo) return variavel(id);
     if (!visivel(campo)) return undefined;
     if (campo.tipo === "calculado") return efetivo(campo);
+    if (campo.tipo === "derivado") {
+      var d = avaliar(campo.expressao);
+      return isNaN(d) ? undefined : d;
+    }
     return estado.resp[id];
   }
 
   function variavel(id) {
     var def = estado.variaveis[id];
     if (!def) return undefined;
+    if (def.expressao) {
+      var e = avaliar(def.expressao);
+      return isNaN(e) ? undefined : e;
+    }
+    if (def.soma || def.maiorDe) {
+      var nums = (def.soma || def.maiorDe).map(function (c) {
+        return numero(valor(c));
+      });
+      if (def.soma) {
+        return nums.some(isNaN)
+          ? undefined
+          : nums.reduce(function (a, b) {
+              return a + b;
+            }, 0);
+      }
+      nums = nums.filter(function (n) {
+        return !isNaN(n);
+      });
+      return nums.length ? Math.max.apply(null, nums) : undefined;
+    }
     for (var i = 0; i < def.primeiroDe.length; i++) {
       var n = numero(valor(def.primeiroDe[i].campo));
       if (!isNaN(n)) return n * (def.primeiroDe[i].fator === undefined ? 1 : def.primeiroDe[i].fator);
@@ -188,11 +303,33 @@
     return sugestao(campo);
   }
 
-  function prefixo(campo) {
-    if (!campo.prefixo) return "";
-    var regras = campo.prefixo.regras || [];
+  function afixo(def) {
+    if (!def) return "";
+    var regras = def.regras || [];
     for (var i = 0; i < regras.length; i++) if (condicao(regras[i].se)) return regras[i].valor;
-    return campo.prefixo.padrao;
+    return def.padrao;
+  }
+
+  function prefixo(campo) {
+    return afixo(campo.prefixo);
+  }
+
+  function sufixo(campo) {
+    return afixo(campo.sufixo);
+  }
+
+  // Rótulo da linha no laudo. Aceita {id} para usar o texto de outro campo.
+  function rotuloNoLaudo(campo) {
+    var base = campo.rotuloLaudo || campo.rotulo;
+    if (base.indexOf("{") < 0) return base;
+    var faltou = false;
+    var r = base.replace(/\{([A-Za-z0-9_]+)\}/g, function (_, id) {
+      var outro = estado.campos[id];
+      var t = outro && visivel(outro) ? textoCampo(outro) : null;
+      if (t === null) faltou = true;
+      return t || "";
+    });
+    return faltou ? campo.rotulo : r;
   }
 
   function textoOpcao(campo, v) {
@@ -220,9 +357,15 @@
       }
     } else if (campo.tipo === "texto") {
       t = (bruto || "").trim() || null;
+    } else if (campo.tipo === "derivado") {
+      var d = avaliar(campo.expressao);
+      if (!isNaN(d)) {
+        t = d.toFixed(campo.decimais || 0).replace(".", ",");
+        if (campo.unidade) t += (campo.unidade === "%" ? "" : " ") + campo.unidade;
+      }
     } else if (campo.tipo === "calculado") {
       var v = efetivo(campo);
-      t = v ? prefixo(campo) + textoOpcao(campo, v) : null;
+      t = v ? prefixo(campo) + textoOpcao(campo, v) + sufixo(campo) : null;
     }
     return t;
   }
@@ -249,7 +392,7 @@
         var falta = false;
         if (t === null) {
           if (!campo.nucleo) return;
-          t = PENDENTE;
+          t = comFormato(campo, PENDENTE);
           falta = true;
         } else {
           t = comFormato(campo, t);
@@ -261,17 +404,18 @@
           if (ta === null) falta = true;
           t += comFormato(anexo, ta === null ? PENDENTE : ta);
         });
+        if (campo.sufixoLaudo) t += campo.sufixoLaudo;
         if (campo.semRotulo) {
           t.split("\n").forEach(function (linha) {
             if (linha.trim()) linhas.push({ texto: linha.trim(), falta: falta });
           });
         } else {
-          linhas.push({ texto: (campo.rotuloLaudo || campo.rotulo) + ": " + t, falta: falta });
+          linhas.push({ texto: rotuloNoLaudo(campo) + ": " + t, falta: falta });
         }
       });
       if (!linhas.length) return;
-      if ((secao.cabecalhoLaudo || secao.espacoAntes) && saida.length) saida.push({ texto: "", falta: false });
-      if (secao.cabecalhoLaudo) saida.push({ texto: secao.cabecalhoLaudo, falta: false });
+      if ((secao.espacoAntes === undefined ? !!secao.cabecalhoLaudo : secao.espacoAntes) && saida.length) saida.push({ texto: "", falta: false });
+      if (secao.cabecalhoLaudo) saida.push({ texto: secao.cabecalhoLaudo, falta: false, destaque: !!secao.cabecalhoDestaque });
       saida = saida.concat(linhas);
     });
     if (estado.tpl.linhaFinal) {
@@ -406,6 +550,9 @@
         refs.sugestao = el("p", { class: "sugestao" });
         caixa.appendChild(refs.sugestao);
       }
+    } else if (campo.tipo === "derivado") {
+      refs.resultado = el("p", { class: "resultado", "aria-live": "polite" });
+      caixa.appendChild(refs.resultado);
     } else {
       var attrs = { "aria-labelledby": idRotulo, autocomplete: "off" };
       if (campo.tipo === "numero") {
@@ -469,7 +616,7 @@
         refs.resultado.textContent = "";
         if (sug) {
           refs.resultado.appendChild(document.createTextNode("Calculado automaticamente:"));
-          refs.resultado.appendChild(el("strong", { text: prefixo(campo) + textoOpcao(campo, sug) }));
+          refs.resultado.appendChild(el("strong", { text: prefixo(campo) + textoOpcao(campo, sug) + sufixo(campo) }));
         } else {
           refs.resultado.textContent = campo.semSugestao || "Sem cálculo automático com os dados atuais.";
         }
@@ -483,7 +630,7 @@
           var atual = efetivo(campo);
           refs.sugestao.appendChild(
             document.createTextNode(
-              atual ? "Valor definido manualmente: " + prefixo(campo) + textoOpcao(campo, atual) + "." : "Valor removido manualmente."
+              atual ? "Valor definido manualmente: " + prefixo(campo) + textoOpcao(campo, atual) + sufixo(campo) + "." : "Valor removido manualmente."
             )
           );
           acao("voltar ao cálculo", function () {
@@ -499,6 +646,15 @@
           });
         }
       }
+    } else if (campo.tipo === "derivado") {
+      var td = textoCampo(campo);
+      refs.resultado.textContent = "";
+      if (td === null) {
+        refs.resultado.textContent = campo.semSugestao || "Aguardando os dados para o cálculo.";
+      } else {
+        refs.resultado.appendChild(document.createTextNode("Calculado automaticamente:"));
+        refs.resultado.appendChild(el("strong", { text: td }));
+      }
     } else if (campo.tipo === "numero") {
       var bruto = (estado.resp[campo.id] || "").trim();
       refs.entrada.setAttribute("aria-invalid", bruto !== "" && isNaN(numero(bruto)) ? "true" : "false");
@@ -508,6 +664,10 @@
   function atualizar() {
     cache = {};
     estado.ordem.forEach(atualizarCampo);
+    // seção sem nenhum campo visível some do formulário
+    (estado.blocos || []).forEach(function (b) {
+      b.no.hidden = !b.campos.some(visivel);
+    });
 
     var faltam = pendentes();
     var contador = estado.ui.contador;
@@ -519,7 +679,7 @@
     var previa = estado.ui.previa;
     previa.textContent = "";
     linhasDoLaudo().forEach(function (l) {
-      previa.appendChild(el("span", { class: l.falta ? "falta" : "", text: l.texto }));
+      previa.appendChild(el("span", { class: l.falta ? "falta" : l.destaque ? "destaque" : "", text: l.texto }));
       previa.appendChild(document.createTextNode("\n"));
     });
   }
@@ -533,30 +693,69 @@
     if (alvo) alvo.focus({ preventScroll: true });
   }
 
+  function escaparHtml(t) {
+    return t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  // Versão formatada do laudo (negrito e sublinhado nos cabeçalhos marcados).
+  function htmlDoLaudo() {
+    return (
+      "<div>" +
+      linhasDoLaudo()
+        .map(function (l) {
+          var t = escaparHtml(l.texto);
+          return l.destaque ? "<b><u>" + t + "</u></b>" : t;
+        })
+        .join("<br>") +
+      "</div>"
+    );
+  }
+
+  // Copia texto puro e, junto, a versão formatada. Editores que aceitam
+  // formatação recebem o negrito e o sublinhado; os demais recebem o texto puro.
   function copiar() {
     var texto = textoDoLaudo();
+    var html = htmlDoLaudo();
     var faltam = pendentes().length;
     var msg = faltam ? "Laudo copiado, com " + faltam + " item(ns) obrigatório(s) pendente(s)." : "Laudo copiado.";
     function reserva() {
-      var ta = el("textarea", { readonly: "", style: "position:fixed;top:0;left:0;opacity:0" });
-      ta.value = texto;
-      document.body.appendChild(ta);
-      ta.select();
+      var caixa = el("div", { contenteditable: "true", style: "position:fixed;top:0;left:0;opacity:0;white-space:pre-wrap" });
+      caixa.innerHTML = html;
+      document.body.appendChild(caixa);
+      var faixa = document.createRange();
+      faixa.selectNodeContents(caixa);
+      var selecao = window.getSelection();
+      selecao.removeAllRanges();
+      selecao.addRange(faixa);
       var ok = false;
       try {
         ok = document.execCommand("copy");
       } catch (e) {
         ok = false;
       }
-      ta.remove();
+      selecao.removeAllRanges();
+      caixa.remove();
       avisar(ok ? msg : "Não foi possível copiar. Selecione o texto da prévia e copie manualmente.");
     }
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(texto).then(function () {
+    function soTexto() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(function () {
+          avisar(msg);
+        }, reserva);
+      } else {
+        reserva();
+      }
+    }
+    if (navigator.clipboard && navigator.clipboard.write && window.ClipboardItem) {
+      var item = new window.ClipboardItem({
+        "text/plain": new Blob([texto], { type: "text/plain" }),
+        "text/html": new Blob([html], { type: "text/html" }),
+      });
+      navigator.clipboard.write([item]).then(function () {
         avisar(msg);
-      }, reserva);
+      }, soTexto);
     } else {
-      reserva();
+      soTexto();
     }
   }
 
@@ -602,6 +801,7 @@
     });
     tpl.secoes.forEach(function (secao) {
       var bloco = el("section", { class: "secao" }, [el("h2", { text: secao.titulo })]);
+      (estado.blocos = estado.blocos || []).push({ no: bloco, campos: secao.campos });
       secao.campos.forEach(function (campo) {
         bloco.appendChild(criarCampo(campo));
       });

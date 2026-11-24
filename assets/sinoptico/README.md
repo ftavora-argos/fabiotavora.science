@@ -61,6 +61,7 @@ Propriedades opcionais:
 - `semRotulo: true`: o texto sai sem "rótulo:" (descrição livre).
 - Em cada opção: `rotulo` é o que aparece no botão, `texto` é o que vai para o laudo (padrão: o próprio rótulo), `exclusiva: true` desmarca as demais numa múltipla escolha.
 - Na seção: `cabecalhoLaudo` abre um bloco no laudo, com uma linha em branco antes.
+- Na seção: `cabecalhoDestaque: true` põe o cabeçalho em negrito e sublinhado na prévia e na cópia formatada (a cópia leva texto puro e HTML; o editor de destino escolhe).
 - Na seção: `espacoAntes: true` insere só a linha em branco, sem cabeçalho.
 - `formatoUm`: formato alternativo quando o número é 1 (singular). `separador`: texto entre os itens de uma múltipla escolha (padrão: vírgula).
 
@@ -103,6 +104,12 @@ Operadores: `igual`, `em`, `naoEm`, `contem`, `contagemMin`, `contagemMax`, `con
 - Uma regra com `"exclusivo": true` encerra a avaliação na hora (usada para Tis, T1mi e T0).
 - O campo mostra "Calculado automaticamente: valor". Os botões ficam recolhidos atrás de "alterar manualmente" e abrem sozinhos quando o campo é obrigatório e não há cálculo possível. `semSugestao` define o texto exibido nesse caso.
 - `variaveis` (na raiz do template) criam valores numéricos auxiliares: `primeiroDe` devolve o primeiro campo numérico preenchido, multiplicado por `fator`. No pulmão, `tamanho_t` usa a medida invasiva (mm × 0,1) e, na falta dela, o tamanho total (cm).
+- Outras formas de variável: `soma` (soma de campos numéricos ou de opções com valor numérico; só existe quando todos estão respondidos) e `maiorDe` (maior valor entre os campos preenchidos).
+- `sufixo`: igual a `prefixo`, acrescentado depois do valor (por exemplo `(m)` em tumor multifocal).
+- `rotuloLaudo` aceita `{id}` para usar o texto de outro campo como rótulo da linha. `sufixoLaudo` acrescenta um texto fixo depois dos campos anexados (unidade ao fim de "1,8 x 1,5 x 1,1").
+- Uma seção cujos campos estão todos ocultos some do formulário, o que permite blocos repetidos (Lesão 2, Lesão 3) controlados por `visivelSe`.
+- `expressao` (em variável): fórmula com números, `+ - * / ^`, parênteses, ids e as funções `sqrt`, `min`, `max` e `ou(a, b)`. Campo oculto vale 0; campo visível sem resposta deixa o resultado indefinido. Exemplo: o índice RCB em `mama-pos-qt.json`.
+- Tipo `derivado`: campo somente leitura que mostra e imprime o resultado de uma `expressao`, com `decimais` e `unidade`.
 - `linhaFinal` (na raiz, opcional) acrescenta uma última linha com marcadores `{id}`, por exemplo `"pTNM: {pT} {pN} {pM}"`.
 
 Todo conteúdo médico de um template novo deve ser revisado por um patologista antes do merge.
