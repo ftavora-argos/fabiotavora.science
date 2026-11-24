@@ -130,6 +130,16 @@
         "contem": { "type": "array", "minItems": 1, "items": { "type": "string" } },
         "contagemMin": { "type": "number" },
         "contagemMax": { "type": "number" },
+        "contagemDe": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["valores"],
+          "properties": {
+            "valores": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+            "min": { "type": "number" },
+            "max": { "type": "number" }
+          }
+        },
         "preenchido": { "type": "boolean" },
         "maiorQue": { "type": "number" },
         "maiorOuIgual": { "type": "number" },

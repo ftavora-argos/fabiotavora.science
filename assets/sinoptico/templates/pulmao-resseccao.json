@@ -5,7 +5,7 @@
     "orgao": "Pulmão",
     "procedimento": "Ressecção",
     "fonte": "Modelo Argos Laboratório",
-    "versao": "0.1.0",
+    "versao": "0.2.0",
     "revisao": "2026-11-24",
     "estadiamento": "TNM, 9ª edição"
   },
@@ -755,59 +755,29 @@
         {
           "id": "ln_estacoes_examinadas",
           "rotulo": "Estações examinadas",
-          "tipo": "texto",
+          "tipo": "multipla",
+          "permiteOutro": true,
           "visivelSe": {
             "campo": "linfonodos",
             "em": ["negativos", "positivos"]
           },
-          "ajuda": "Opcional. Exemplo: 4R, 7, 10R, 11R."
-        },
-        {
-          "id": "n1_estacoes",
-          "rotulo": "Estações N1 comprometidas (hilares e intrapulmonares ipsilaterais)",
-          "rotuloLaudo": "Estações N1 comprometidas",
-          "tipo": "multipla",
-          "visivelSe": {
-            "campo": "linfonodos",
-            "igual": "positivos"
-          },
+          "ajuda": "Opcional. Marque as estações como identificadas na requisição.",
           "opcoes": [
             {
-              "valor": "10",
-              "rotulo": "10"
+              "valor": "1R",
+              "rotulo": "1R"
             },
             {
-              "valor": "11",
-              "rotulo": "11"
+              "valor": "1L",
+              "rotulo": "1L"
             },
             {
-              "valor": "12",
-              "rotulo": "12"
+              "valor": "2R",
+              "rotulo": "2R"
             },
             {
-              "valor": "13",
-              "rotulo": "13"
-            },
-            {
-              "valor": "14",
-              "rotulo": "14"
-            }
-          ]
-        },
-        {
-          "id": "n2_estacoes",
-          "rotulo": "Estações N2 comprometidas (mediastinais ipsilaterais e subcarinal)",
-          "rotuloLaudo": "Estações N2 comprometidas",
-          "tipo": "multipla",
-          "visivelSe": {
-            "campo": "linfonodos",
-            "igual": "positivos"
-          },
-          "ajuda": "Uma estação sugere pN2a. Duas ou mais sugerem pN2b.",
-          "opcoes": [
-            {
-              "valor": "2",
-              "rotulo": "2"
+              "valor": "2L",
+              "rotulo": "2L"
             },
             {
               "valor": "3a",
@@ -818,8 +788,12 @@
               "rotulo": "3p"
             },
             {
-              "valor": "4",
-              "rotulo": "4"
+              "valor": "4R",
+              "rotulo": "4R"
+            },
+            {
+              "valor": "4L",
+              "rotulo": "4L"
             },
             {
               "valor": "5",
@@ -834,33 +808,211 @@
               "rotulo": "7"
             },
             {
-              "valor": "8",
-              "rotulo": "8"
+              "valor": "8R",
+              "rotulo": "8R"
             },
             {
-              "valor": "9",
-              "rotulo": "9"
+              "valor": "8L",
+              "rotulo": "8L"
+            },
+            {
+              "valor": "9R",
+              "rotulo": "9R"
+            },
+            {
+              "valor": "9L",
+              "rotulo": "9L"
+            },
+            {
+              "valor": "10R",
+              "rotulo": "10R"
+            },
+            {
+              "valor": "10L",
+              "rotulo": "10L"
+            },
+            {
+              "valor": "11R",
+              "rotulo": "11R"
+            },
+            {
+              "valor": "11L",
+              "rotulo": "11L"
+            },
+            {
+              "valor": "12R",
+              "rotulo": "12R"
+            },
+            {
+              "valor": "12L",
+              "rotulo": "12L"
+            },
+            {
+              "valor": "13R",
+              "rotulo": "13R"
+            },
+            {
+              "valor": "13L",
+              "rotulo": "13L"
+            },
+            {
+              "valor": "14R",
+              "rotulo": "14R"
+            },
+            {
+              "valor": "14L",
+              "rotulo": "14L"
             }
           ]
         },
         {
-          "id": "n3",
-          "rotulo": "Linfonodos contralaterais, escalênicos ou supraclaviculares (N3)",
-          "rotuloLaudo": "Linfonodos contralaterais, escalênicos ou supraclaviculares",
-          "tipo": "unica",
+          "id": "lado",
+          "rotulo": "Lateralidade do tumor",
+          "tipo": "calculado",
+          "nucleo": true,
+          "omitirNoLaudo": true,
           "visivelSe": {
             "campo": "linfonodos",
             "igual": "positivos"
           },
+          "ajuda": "Sugerida a partir do tipo de peça. Define quais estações são ipsilaterais ou contralaterais. Não gera linha no laudo.",
           "opcoes": [
             {
-              "valor": "nao",
-              "rotulo": "não comprometidos ou não amostrados",
-              "texto": "não comprometidos"
+              "valor": "direita",
+              "rotulo": "direita"
             },
             {
-              "valor": "sim",
-              "rotulo": "comprometidos"
+              "valor": "esquerda",
+              "rotulo": "esquerda"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "local",
+                "em": ["lsd", "lm", "lid", "pd"]
+              },
+              "resultado": "direita"
+            },
+            {
+              "se": {
+                "campo": "local",
+                "em": ["lse", "lie", "pe"]
+              },
+              "resultado": "esquerda"
+            }
+          ]
+        },
+        {
+          "id": "estacoes_comprometidas",
+          "rotulo": "Estações comprometidas",
+          "tipo": "multipla",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "linfonodos",
+            "igual": "positivos"
+          },
+          "ajuda": "Marque cada cadeia com a lateralidade recebida. O pN é sugerido a partir das estações e do lado do tumor.",
+          "opcoes": [
+            {
+              "valor": "1R",
+              "rotulo": "1R"
+            },
+            {
+              "valor": "1L",
+              "rotulo": "1L"
+            },
+            {
+              "valor": "2R",
+              "rotulo": "2R"
+            },
+            {
+              "valor": "2L",
+              "rotulo": "2L"
+            },
+            {
+              "valor": "3a",
+              "rotulo": "3a"
+            },
+            {
+              "valor": "3p",
+              "rotulo": "3p"
+            },
+            {
+              "valor": "4R",
+              "rotulo": "4R"
+            },
+            {
+              "valor": "4L",
+              "rotulo": "4L"
+            },
+            {
+              "valor": "5",
+              "rotulo": "5"
+            },
+            {
+              "valor": "6",
+              "rotulo": "6"
+            },
+            {
+              "valor": "7",
+              "rotulo": "7"
+            },
+            {
+              "valor": "8R",
+              "rotulo": "8R"
+            },
+            {
+              "valor": "8L",
+              "rotulo": "8L"
+            },
+            {
+              "valor": "9R",
+              "rotulo": "9R"
+            },
+            {
+              "valor": "9L",
+              "rotulo": "9L"
+            },
+            {
+              "valor": "10R",
+              "rotulo": "10R"
+            },
+            {
+              "valor": "10L",
+              "rotulo": "10L"
+            },
+            {
+              "valor": "11R",
+              "rotulo": "11R"
+            },
+            {
+              "valor": "11L",
+              "rotulo": "11L"
+            },
+            {
+              "valor": "12R",
+              "rotulo": "12R"
+            },
+            {
+              "valor": "12L",
+              "rotulo": "12L"
+            },
+            {
+              "valor": "13R",
+              "rotulo": "13R"
+            },
+            {
+              "valor": "13L",
+              "rotulo": "13L"
+            },
+            {
+              "valor": "14R",
+              "rotulo": "14R"
+            },
+            {
+              "valor": "14L",
+              "rotulo": "14L"
             }
           ]
         },
@@ -1267,29 +1419,133 @@
             },
             {
               "se": {
-                "campo": "n1_estacoes",
-                "contagemMin": 1
+                "todos": [
+                  {
+                    "campo": "lado",
+                    "igual": "direita"
+                  },
+                  {
+                    "campo": "estacoes_comprometidas",
+                    "contem": ["10R", "11R", "12R", "13R", "14R"]
+                  }
+                ]
               },
               "resultado": "N1"
             },
             {
               "se": {
-                "campo": "n2_estacoes",
-                "contagemMin": 1
+                "todos": [
+                  {
+                    "campo": "lado",
+                    "igual": "direita"
+                  },
+                  {
+                    "campo": "estacoes_comprometidas",
+                    "contagemDe": {
+                      "valores": ["2R", "3a", "3p", "4R", "7", "8R", "9R"],
+                      "min": 1
+                    }
+                  }
+                ]
               },
               "resultado": "N2a"
             },
             {
               "se": {
-                "campo": "n2_estacoes",
-                "contagemMin": 2
+                "todos": [
+                  {
+                    "campo": "lado",
+                    "igual": "direita"
+                  },
+                  {
+                    "campo": "estacoes_comprometidas",
+                    "contagemDe": {
+                      "valores": ["2R", "3a", "3p", "4R", "7", "8R", "9R"],
+                      "min": 2
+                    }
+                  }
+                ]
               },
               "resultado": "N2b"
             },
             {
               "se": {
-                "campo": "n3",
-                "igual": "sim"
+                "todos": [
+                  {
+                    "campo": "lado",
+                    "igual": "direita"
+                  },
+                  {
+                    "campo": "estacoes_comprometidas",
+                    "contem": ["1R", "1L", "2L", "4L", "5", "6", "8L", "9L", "10L", "11L", "12L", "13L", "14L"]
+                  }
+                ]
+              },
+              "resultado": "N3"
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "lado",
+                    "igual": "esquerda"
+                  },
+                  {
+                    "campo": "estacoes_comprometidas",
+                    "contem": ["10L", "11L", "12L", "13L", "14L"]
+                  }
+                ]
+              },
+              "resultado": "N1"
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "lado",
+                    "igual": "esquerda"
+                  },
+                  {
+                    "campo": "estacoes_comprometidas",
+                    "contagemDe": {
+                      "valores": ["2L", "3a", "3p", "4L", "5", "6", "7", "8L", "9L"],
+                      "min": 1
+                    }
+                  }
+                ]
+              },
+              "resultado": "N2a"
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "lado",
+                    "igual": "esquerda"
+                  },
+                  {
+                    "campo": "estacoes_comprometidas",
+                    "contagemDe": {
+                      "valores": ["2L", "3a", "3p", "4L", "5", "6", "7", "8L", "9L"],
+                      "min": 2
+                    }
+                  }
+                ]
+              },
+              "resultado": "N2b"
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "lado",
+                    "igual": "esquerda"
+                  },
+                  {
+                    "campo": "estacoes_comprometidas",
+                    "contem": ["1R", "1L", "2R", "4R", "8R", "9R", "10R", "11R", "12R", "13R", "14R"]
+                  }
+                ]
               },
               "resultado": "N3"
             }

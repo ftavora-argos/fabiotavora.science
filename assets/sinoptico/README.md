@@ -70,12 +70,13 @@ Usadas em `visivelSe`, nas `regras` e no `prefixo`. Todas as chaves de uma condi
 { "campo": "tipo_histologico", "igual": "cec" }
 { "campo": "pleura", "em": ["pl1", "pl2"] }
 { "campo": "extensao", "contem": ["diafragma", "mediastino"] }
-{ "campo": "n2_estacoes", "contagemMin": 2 }
+{ "campo": "estacoes", "contagemMin": 2 }
+{ "campo": "estacoes", "contagemDe": { "valores": ["2R", "4R", "7"], "min": 2 } }
 { "campo": "tamanho_t", "maiorQue": 3, "menorOuIgual": 4 }
 { "todos": [{ "campo": "a", "igual": "x" }, { "nao": { "campo": "b", "preenchido": true } }] }
 ```
 
-Operadores: `igual`, `em`, `naoEm`, `contem`, `contagemMin`, `contagemMax`, `preenchido`, `maiorQue`, `maiorOuIgual`, `menorQue`, `menorOuIgual`, e os combinadores `todos`, `algum`, `nao`. Campo oculto conta como não respondido.
+Operadores: `igual`, `em`, `naoEm`, `contem`, `contagemMin`, `contagemMax`, `contagemDe` (conta só os valores listados), `preenchido`, `maiorQue`, `maiorOuIgual`, `menorQue`, `menorOuIgual`, e os combinadores `todos`, `algum`, `nao`. Campo oculto conta como não respondido.
 
 ### Campos calculados
 

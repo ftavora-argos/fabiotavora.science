@@ -72,7 +72,13 @@ function conferirReferencias(tpl, erros) {
     if (!temOperador) erros.push(`${onde}: condição sobre "${c.campo}" sem operador`);
     if (!existe(c.campo)) return erros.push(`${onde}: condição aponta para campo inexistente "${c.campo}"`);
     const alvo = campos.get(c.campo);
-    const valores = [...(c.igual !== undefined ? [c.igual] : []), ...(c.em || []), ...(c.naoEm || []), ...(c.contem || [])];
+    const valores = [
+      ...(c.igual !== undefined ? [c.igual] : []),
+      ...(c.em || []),
+      ...(c.naoEm || []),
+      ...(c.contem || []),
+      ...((c.contagemDe && c.contagemDe.valores) || []),
+    ];
     if (valores.length) {
       if (!alvo || !alvo.opcoes) return erros.push(`${onde}: "${c.campo}" não tem opções para comparar`);
       const validos = new Set(alvo.opcoes.map((o) => o.valor).concat(["__outro__", "__na__"]));
@@ -80,7 +86,7 @@ function conferirReferencias(tpl, erros) {
     }
     if (OPERADORES_NUMERICOS.some((op) => op in c) && alvo && alvo.tipo !== "numero")
       erros.push(`${onde}: comparação numérica sobre campo não numérico "${c.campo}"`);
-    if (("contagemMin" in c || "contagemMax" in c) && (!alvo || alvo.tipo !== "multipla"))
+    if (("contagemMin" in c || "contagemMax" in c || "contagemDe" in c) && (!alvo || alvo.tipo !== "multipla"))
       erros.push(`${onde}: contagem sobre campo que não é de múltipla escolha "${c.campo}"`);
   }
 

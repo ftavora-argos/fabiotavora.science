@@ -137,6 +137,13 @@
     if (c.contem && !algumEm(c.contem)) return false;
     if (c.contagemMin !== undefined && lista.length < c.contagemMin) return false;
     if (c.contagemMax !== undefined && lista.length > c.contagemMax) return false;
+    if (c.contagemDe) {
+      var qtd = lista.filter(function (x) {
+        return c.contagemDe.valores.indexOf(x) >= 0;
+      }).length;
+      if (c.contagemDe.min !== undefined && qtd < c.contagemDe.min) return false;
+      if (c.contagemDe.max !== undefined && qtd > c.contagemDe.max) return false;
+    }
     if (c.preenchido !== undefined && lista.length > 0 !== c.preenchido) return false;
 
     var numerica = c.maiorQue !== undefined || c.maiorOuIgual !== undefined || c.menorQue !== undefined || c.menorOuIgual !== undefined;
