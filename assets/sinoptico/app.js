@@ -212,7 +212,7 @@
       var partes = (bruto || []).map(function (v) {
         return textoOpcao(campo, v);
       });
-      t = partes.length && partes.indexOf(null) < 0 ? partes.join(", ") : null;
+      t = partes.length && partes.indexOf(null) < 0 ? partes.join(campo.separador || ", ") : null;
     } else if (campo.tipo === "numero") {
       if (!isNaN(numero(bruto))) {
         t = String(bruto).trim().replace(".", ",");
@@ -228,7 +228,8 @@
   }
 
   function comFormato(campo, t) {
-    return campo.formato ? campo.formato.replace("{valor}", t) : t;
+    var formato = campo.formatoUm && numero(estado.resp[campo.id]) === 1 ? campo.formatoUm : campo.formato;
+    return formato ? formato.replace("{valor}", t) : t;
   }
 
   function pendentes() {
@@ -269,10 +270,8 @@
         }
       });
       if (!linhas.length) return;
-      if (secao.cabecalhoLaudo) {
-        if (saida.length) saida.push({ texto: "", falta: false });
-        saida.push({ texto: secao.cabecalhoLaudo, falta: false });
-      }
+      if ((secao.cabecalhoLaudo || secao.espacoAntes) && saida.length) saida.push({ texto: "", falta: false });
+      if (secao.cabecalhoLaudo) saida.push({ texto: secao.cabecalhoLaudo, falta: false });
       saida = saida.concat(linhas);
     });
     if (estado.tpl.linhaFinal) {

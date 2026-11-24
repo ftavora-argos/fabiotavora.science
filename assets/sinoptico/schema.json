@@ -51,6 +51,7 @@
       "properties": {
         "titulo": { "type": "string", "minLength": 1 },
         "cabecalhoLaudo": { "type": "string" },
+        "espacoAntes": { "type": "boolean" },
         "campos": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/campo" } }
       }
     },
@@ -73,6 +74,8 @@
         "permiteOutro": { "type": "boolean" },
         "permiteNaoAvaliavel": { "type": "boolean" },
         "formato": { "type": "string", "pattern": "\\{valor\\}" },
+        "formatoUm": { "type": "string", "pattern": "\\{valor\\}" },
+        "separador": { "type": "string" },
         "anexaEm": { "$ref": "#/$defs/id" },
         "visivelSe": { "$ref": "#/$defs/condicao" },
         "opcoes": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/opcao" } },
