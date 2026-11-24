@@ -99,18 +99,117 @@
     return cache[chave];
   }
 
+  // ---------- Expressões aritméticas (variáveis e campos derivados) ----------
+  // Aceita números, + - * / ^, parênteses, ids de campos ou variáveis e as
+  // funções sqrt, min, max e ou(a, b). Campo oculto vale 0; campo visível sem
+  // resposta torna o resultado indefinido.
+  var arvores = {};
+
+  function analisar(texto) {
+    if (arvores[texto]) return arvores[texto];
+    var fichas = texto.match(/\d+(?:\.\d+)?|[A-Za-z_][A-Za-z0-9_]*|[-+*/^(),]/g) || [];
+    var i = 0;
+    function primario() {
+      var f = fichas[i++];
+      if (f === "(") {
+        var dentro = soma();
+        i++;
+        return dentro;
+      }
+      if (f === "-") return { op: "neg", a: potencia() };
+      if (/^\d/.test(f)) return { num: Number(f) };
+      if (fichas[i] === "(") {
+        i++;
+        var args = [];
+        while (fichas[i] !== ")" && i < fichas.length) {
+          args.push(soma());
+          if (fichas[i] === ",") i++;
+        }
+        i++;
+        return { fn: f, args: args };
+      }
+      return { id: f };
+    }
+    function potencia() {
+      var base = primario();
+      if (fichas[i] === "^") {
+        i++;
+        return { op: "^", a: base, b: potencia() };
+      }
+      return base;
+    }
+    function produto() {
+      var no = potencia();
+      while (fichas[i] === "*" || fichas[i] === "/") no = { op: fichas[i++], a: no, b: potencia() };
+      return no;
+    }
+    function soma() {
+      var no = produto();
+      while (fichas[i] === "+" || fichas[i] === "-") no = { op: fichas[i++], a: no, b: produto() };
+      return no;
+    }
+    arvores[texto] = soma();
+    return arvores[texto];
+  }
+
+  function numeroDe(id) {
+    var campo = estado.campos[id];
+    if (campo) return visivel(campo) ? numero(valor(id)) : 0;
+    var v = variavel(id);
+    return v === undefined ? NaN : v;
+  }
+
+  function calcular(no) {
+    if ("num" in no) return no.num;
+    if ("id" in no) return numeroDe(no.id);
+    if (no.fn) {
+      var args = no.args.map(calcular);
+      if (no.fn === "ou") return isNaN(args[0]) ? args[1] : args[0];
+      if (no.fn === "sqrt") return Math.sqrt(args[0]);
+      if (no.fn === "min") return Math.min.apply(null, args);
+      if (no.fn === "max") return Math.max.apply(null, args);
+      return NaN;
+    }
+    var a = calcular(no.a);
+    if (no.op === "neg") return -a;
+    var b = calcular(no.b);
+    if (no.op === "+") return a + b;
+    if (no.op === "-") return a - b;
+    if (no.op === "*") return a * b;
+    if (no.op === "/") return a / b;
+    return Math.pow(a, b);
+  }
+
+  function avaliar(texto) {
+    var chave = "e:" + texto;
+    if (!(chave in cache)) {
+      cache[chave] = NaN; // evita laço em referência circular
+      var r = calcular(analisar(texto));
+      cache[chave] = isFinite(r) ? r : NaN;
+    }
+    return cache[chave];
+  }
+
   // Valor de um campo ou variável para uso em condições.
   function valor(id) {
     var campo = estado.campos[id];
     if (!campo) return variavel(id);
     if (!visivel(campo)) return undefined;
     if (campo.tipo === "calculado") return efetivo(campo);
+    if (campo.tipo === "derivado") {
+      var d = avaliar(campo.expressao);
+      return isNaN(d) ? undefined : d;
+    }
     return estado.resp[id];
   }
 
   function variavel(id) {
     var def = estado.variaveis[id];
     if (!def) return undefined;
+    if (def.expressao) {
+      var e = avaliar(def.expressao);
+      return isNaN(e) ? undefined : e;
+    }
     if (def.soma || def.maiorDe) {
       var nums = (def.soma || def.maiorDe).map(function (c) {
         return numero(valor(c));
@@ -258,6 +357,12 @@
       }
     } else if (campo.tipo === "texto") {
       t = (bruto || "").trim() || null;
+    } else if (campo.tipo === "derivado") {
+      var d = avaliar(campo.expressao);
+      if (!isNaN(d)) {
+        t = d.toFixed(campo.decimais || 0).replace(".", ",");
+        if (campo.unidade) t += (campo.unidade === "%" ? "" : " ") + campo.unidade;
+      }
     } else if (campo.tipo === "calculado") {
       var v = efetivo(campo);
       t = v ? prefixo(campo) + textoOpcao(campo, v) + sufixo(campo) : null;
@@ -309,7 +414,7 @@
         }
       });
       if (!linhas.length) return;
-      if ((secao.cabecalhoLaudo || secao.espacoAntes) && saida.length) saida.push({ texto: "", falta: false });
+      if ((secao.espacoAntes === undefined ? !!secao.cabecalhoLaudo : secao.espacoAntes) && saida.length) saida.push({ texto: "", falta: false });
       if (secao.cabecalhoLaudo) saida.push({ texto: secao.cabecalhoLaudo, falta: false, destaque: !!secao.cabecalhoDestaque });
       saida = saida.concat(linhas);
     });
@@ -445,6 +550,9 @@
         refs.sugestao = el("p", { class: "sugestao" });
         caixa.appendChild(refs.sugestao);
       }
+    } else if (campo.tipo === "derivado") {
+      refs.resultado = el("p", { class: "resultado", "aria-live": "polite" });
+      caixa.appendChild(refs.resultado);
     } else {
       var attrs = { "aria-labelledby": idRotulo, autocomplete: "off" };
       if (campo.tipo === "numero") {
@@ -537,6 +645,15 @@
             (refs.grupo.querySelector('.chip[tabindex="0"]') || refs.chips[0]).focus();
           });
         }
+      }
+    } else if (campo.tipo === "derivado") {
+      var td = textoCampo(campo);
+      refs.resultado.textContent = "";
+      if (td === null) {
+        refs.resultado.textContent = campo.semSugestao || "Aguardando os dados para o cálculo.";
+      } else {
+        refs.resultado.appendChild(document.createTextNode("Calculado automaticamente:"));
+        refs.resultado.appendChild(el("strong", { text: td }));
       }
     } else if (campo.tipo === "numero") {
       var bruto = (estado.resp[campo.id] || "").trim();

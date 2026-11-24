@@ -1,0 +1,1591 @@
+{
+  "meta": {
+    "id": "mama-pos-qt",
+    "titulo": "Carcinoma de mama, pós-quimioterapia neoadjuvante",
+    "orgao": "Mama",
+    "procedimento": "Ressecção",
+    "fonte": "Modelo Argos Laboratório",
+    "versao": "0.1.0",
+    "revisao": "2026-11-24",
+    "estadiamento": "pTNM 8ª edição e RCB"
+  },
+  "variaveis": [
+    {
+      "id": "nott",
+      "soma": ["nuc", "tub", "mit"]
+    },
+    {
+      "id": "rcb",
+      "expressao": "1.4 * ((1 - cis / 100) * (ca / 100) * sqrt(rcb_d1 * rcb_d2)) ^ 0.17 + (4 * (1 - 0.75 ^ ln_pos) * ln_foco) ^ 0.17"
+    }
+  ],
+  "secoes": [
+    {
+      "titulo": "Diagnóstico",
+      "campos": [
+        {
+          "id": "residual",
+          "rotulo": "Carcinoma invasivo residual na mama",
+          "tipo": "unica",
+          "nucleo": true,
+          "omitirNoLaudo": true,
+          "ajuda": "Controla os campos do tumor, o ypT e o RCB. Não gera linha própria.",
+          "opcoes": [
+            {
+              "valor": "presente",
+              "rotulo": "presente"
+            },
+            {
+              "valor": "ausente",
+              "rotulo": "ausente"
+            }
+          ]
+        },
+        {
+          "id": "diagnostico",
+          "rotulo": "Linha de diagnóstico",
+          "tipo": "calculado",
+          "semRotulo": true,
+          "semSugestao": "Gerada a partir do tipo histológico.",
+          "opcoes": [
+            {
+              "valor": "nst",
+              "rotulo": "carcinoma mamário invasivo do tipo não especial",
+              "texto": "CARCINOMA MAMÁRIO INVASIVO DO SUBTIPO NÃO ESPECIAL RESIDUAL"
+            },
+            {
+              "valor": "lobular",
+              "rotulo": "carcinoma lobular invasivo",
+              "texto": "CARCINOMA LOBULAR INVASIVO RESIDUAL"
+            },
+            {
+              "valor": "misto",
+              "rotulo": "carcinoma misto, de tipo não especial e lobular",
+              "texto": "CARCINOMA MAMÁRIO INVASIVO MISTO (NÃO ESPECIAL E LOBULAR) RESIDUAL"
+            },
+            {
+              "valor": "mucinoso",
+              "rotulo": "carcinoma mucinoso",
+              "texto": "CARCINOMA MUCINOSO RESIDUAL"
+            },
+            {
+              "valor": "micropapilar",
+              "rotulo": "carcinoma micropapilar invasivo",
+              "texto": "CARCINOMA MICROPAPILAR INVASIVO RESIDUAL"
+            },
+            {
+              "valor": "apocrino",
+              "rotulo": "carcinoma com diferenciação apócrina",
+              "texto": "CARCINOMA COM DIFERENCIAÇÃO APÓCRINA RESIDUAL"
+            },
+            {
+              "valor": "metaplasico",
+              "rotulo": "carcinoma metaplásico",
+              "texto": "CARCINOMA METAPLÁSICO RESIDUAL"
+            },
+            {
+              "valor": "sem_residual",
+              "rotulo": "ausência de carcinoma invasivo residual",
+              "texto": "AUSÊNCIA DE CARCINOMA INVASIVO RESIDUAL"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "residual",
+                "igual": "ausente"
+              },
+              "resultado": "sem_residual",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "nst"
+              },
+              "resultado": "nst",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "lobular"
+              },
+              "resultado": "lobular",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "misto"
+              },
+              "resultado": "misto",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "mucinoso"
+              },
+              "resultado": "mucinoso",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "micropapilar"
+              },
+              "resultado": "micropapilar",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "apocrino"
+              },
+              "resultado": "apocrino",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "metaplasico"
+              },
+              "resultado": "metaplasico",
+              "exclusivo": true
+            }
+          ]
+        },
+        {
+          "id": "grau_titulo",
+          "rotulo": "Linha de grau",
+          "tipo": "calculado",
+          "semRotulo": true,
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          },
+          "semSugestao": "Gerada a partir da graduação.",
+          "opcoes": [
+            {
+              "valor": "1",
+              "rotulo": "grau I",
+              "texto": "GRAU I HISTOLÓGICO (Nottingham)"
+            },
+            {
+              "valor": "2",
+              "rotulo": "grau II",
+              "texto": "GRAU II HISTOLÓGICO (Nottingham)"
+            },
+            {
+              "valor": "3",
+              "rotulo": "grau III",
+              "texto": "GRAU III HISTOLÓGICO (Nottingham)"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "grau",
+                "igual": "1"
+              },
+              "resultado": "1",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "grau",
+                "igual": "2"
+              },
+              "resultado": "2",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "grau",
+                "igual": "3"
+              },
+              "resultado": "3",
+              "exclusivo": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Peça e tumor residual",
+      "cabecalhoLaudo": "Relatório Sinóptico NCCN/CAP",
+      "cabecalhoDestaque": true,
+      "espacoAntes": false,
+      "campos": [
+        {
+          "id": "procedimento",
+          "rotulo": "Procedimento",
+          "tipo": "unica",
+          "nucleo": true,
+          "permiteOutro": true,
+          "opcoes": [
+            {
+              "valor": "mastectomia_radical",
+              "rotulo": "mastectomia radical"
+            },
+            {
+              "valor": "mastectomia_radical_modificada",
+              "rotulo": "mastectomia radical modificada"
+            },
+            {
+              "valor": "mastectomia_simples",
+              "rotulo": "mastectomia simples"
+            },
+            {
+              "valor": "adenomastectomia",
+              "rotulo": "adenomastectomia"
+            },
+            {
+              "valor": "mastectomia_preservadora_de_pele",
+              "rotulo": "mastectomia preservadora de pele"
+            },
+            {
+              "valor": "resseccao_segmentar_setorectomia",
+              "rotulo": "ressecção segmentar (setorectomia)"
+            },
+            {
+              "valor": "quadrantectomia",
+              "rotulo": "quadrantectomia"
+            }
+          ]
+        },
+        {
+          "id": "lateralidade",
+          "rotulo": "Lateralidade do espécime",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "mama_direita",
+              "rotulo": "mama direita"
+            },
+            {
+              "valor": "mama_esquerda",
+              "rotulo": "mama esquerda"
+            }
+          ]
+        },
+        {
+          "id": "leito1",
+          "rotulo": "Medida estimada do leito tumoral com neoplasia viável residual (RCB)",
+          "tipo": "numero",
+          "nucleo": true,
+          "sufixoLaudo": " cm",
+          "ajuda": "Em cm. As duas dimensões usadas na fórmula do RCB são pedidas em mm no bloco do protocolo de resposta."
+        },
+        {
+          "id": "leito2",
+          "rotulo": "2ª dimensão (cm)",
+          "tipo": "numero",
+          "anexaEm": "leito1",
+          "formato": " x {valor}"
+        },
+        {
+          "id": "leito3",
+          "rotulo": "3ª dimensão (cm)",
+          "tipo": "numero",
+          "anexaEm": "leito1",
+          "formato": " x {valor}"
+        },
+        {
+          "id": "foco1",
+          "rotulo": "Medida do maior foco contíguo de neoplasia residual (AJCC)",
+          "tipo": "numero",
+          "nucleo": true,
+          "sufixoLaudo": " cm",
+          "ajuda": "Em cm. A maior dimensão define o ypT.",
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          }
+        },
+        {
+          "id": "foco2",
+          "rotulo": "2ª dimensão (cm)",
+          "tipo": "numero",
+          "anexaEm": "foco1",
+          "formato": " x {valor}",
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          }
+        },
+        {
+          "id": "foco3",
+          "rotulo": "3ª dimensão (cm)",
+          "tipo": "numero",
+          "anexaEm": "foco1",
+          "formato": " x {valor}",
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          }
+        },
+        {
+          "id": "tipo",
+          "rotulo": "Tipo histológico",
+          "tipo": "unica",
+          "nucleo": true,
+          "permiteOutro": true,
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          },
+          "opcoes": [
+            {
+              "valor": "nst",
+              "rotulo": "carcinoma mamário invasivo do tipo não especial"
+            },
+            {
+              "valor": "lobular",
+              "rotulo": "carcinoma lobular invasivo"
+            },
+            {
+              "valor": "misto",
+              "rotulo": "carcinoma misto, de tipo não especial e lobular"
+            },
+            {
+              "valor": "mucinoso",
+              "rotulo": "carcinoma mucinoso"
+            },
+            {
+              "valor": "micropapilar",
+              "rotulo": "carcinoma micropapilar invasivo"
+            },
+            {
+              "valor": "apocrino",
+              "rotulo": "carcinoma com diferenciação apócrina"
+            },
+            {
+              "valor": "metaplasico",
+              "rotulo": "carcinoma metaplásico"
+            }
+          ]
+        },
+        {
+          "id": "grau",
+          "rotulo": "Graduação",
+          "tipo": "calculado",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          },
+          "semSugestao": "Marque os três escores abaixo para o cálculo, ou selecione.",
+          "opcoes": [
+            {
+              "valor": "1",
+              "rotulo": "grau I",
+              "texto": "grau I de S. B. R. modificado (Nottingham)"
+            },
+            {
+              "valor": "2",
+              "rotulo": "grau II",
+              "texto": "grau II de S. B. R. modificado (Nottingham)"
+            },
+            {
+              "valor": "3",
+              "rotulo": "grau III",
+              "texto": "grau III de S. B. R. modificado (Nottingham)"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "nott",
+                "menorOuIgual": 5
+              },
+              "resultado": "1",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "nott",
+                "menorOuIgual": 7
+              },
+              "resultado": "2",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "nott",
+                "maiorOuIgual": 8
+              },
+              "resultado": "3"
+            }
+          ]
+        },
+        {
+          "id": "nuc",
+          "rotulo": "Grau nuclear",
+          "tipo": "unica",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          },
+          "opcoes": [
+            {
+              "valor": "1",
+              "rotulo": "escore 1"
+            },
+            {
+              "valor": "2",
+              "rotulo": "escore 2"
+            },
+            {
+              "valor": "3",
+              "rotulo": "escore 3"
+            }
+          ]
+        },
+        {
+          "id": "tub",
+          "rotulo": "Formação tubular",
+          "tipo": "unica",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          },
+          "opcoes": [
+            {
+              "valor": "1",
+              "rotulo": "escore 1"
+            },
+            {
+              "valor": "2",
+              "rotulo": "escore 2"
+            },
+            {
+              "valor": "3",
+              "rotulo": "escore 3"
+            }
+          ]
+        },
+        {
+          "id": "mit",
+          "rotulo": "Índice mitótico",
+          "tipo": "unica",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          },
+          "opcoes": [
+            {
+              "valor": "1",
+              "rotulo": "escore 1"
+            },
+            {
+              "valor": "2",
+              "rotulo": "escore 2"
+            },
+            {
+              "valor": "3",
+              "rotulo": "escore 3"
+            }
+          ]
+        },
+        {
+          "id": "focalidade",
+          "rotulo": "Focalidade tumoral",
+          "tipo": "unica",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          },
+          "opcoes": [
+            {
+              "valor": "unifocal",
+              "rotulo": "unifocal"
+            },
+            {
+              "valor": "multifocal",
+              "rotulo": "multifocal"
+            }
+          ]
+        },
+        {
+          "id": "cdis",
+          "rotulo": "Carcinoma Ductal In Situ (CDIS)",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "ausente",
+              "rotulo": "ausente"
+            },
+            {
+              "valor": "presente",
+              "rotulo": "presente"
+            }
+          ]
+        },
+        {
+          "id": "cdis_extensao",
+          "rotulo": "Tamanho (extensão) do CDIS",
+          "rotuloLaudo": "- Tamanho (extensão) do CDIS",
+          "tipo": "texto",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "cdis",
+            "igual": "presente"
+          },
+          "ajuda": "Exemplo: cerca de 10% da área tumoral."
+        },
+        {
+          "id": "cdis_padroes",
+          "rotulo": "Padrões arquiteturais",
+          "rotuloLaudo": "- Padrões arquiteturais",
+          "tipo": "multipla",
+          "nucleo": true,
+          "permiteOutro": true,
+          "visivelSe": {
+            "campo": "cdis",
+            "igual": "presente"
+          },
+          "separador": " e ",
+          "opcoes": [
+            {
+              "valor": "solido",
+              "rotulo": "sólido"
+            },
+            {
+              "valor": "cribriforme",
+              "rotulo": "cribriforme"
+            },
+            {
+              "valor": "micropapilar",
+              "rotulo": "micropapilar"
+            },
+            {
+              "valor": "papilar",
+              "rotulo": "papilar"
+            },
+            {
+              "valor": "comedo",
+              "rotulo": "comedo"
+            },
+            {
+              "valor": "plano",
+              "rotulo": "plano"
+            }
+          ]
+        },
+        {
+          "id": "cdis_grau",
+          "rotulo": "Grau nuclear do CDIS",
+          "rotuloLaudo": "- Grau nuclear",
+          "tipo": "unica",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "cdis",
+            "igual": "presente"
+          },
+          "opcoes": [
+            {
+              "valor": "grau_1",
+              "rotulo": "grau 1"
+            },
+            {
+              "valor": "grau_2",
+              "rotulo": "grau 2"
+            },
+            {
+              "valor": "grau_3",
+              "rotulo": "grau 3"
+            }
+          ]
+        },
+        {
+          "id": "cdis_necrose",
+          "rotulo": "Necrose",
+          "rotuloLaudo": "- Necrose",
+          "tipo": "unica",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "cdis",
+            "igual": "presente"
+          },
+          "opcoes": [
+            {
+              "valor": "ausente",
+              "rotulo": "ausente"
+            },
+            {
+              "valor": "presente_e_focal",
+              "rotulo": "presente e focal"
+            },
+            {
+              "valor": "presente_e_central_tipo_comedo",
+              "rotulo": "presente e central, tipo comedo"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Extensão tumoral",
+      "cabecalhoLaudo": "Extensão tumoral:",
+      "espacoAntes": false,
+      "campos": [
+        {
+          "id": "pele",
+          "rotulo": "Pele",
+          "rotuloLaudo": "- Pele",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "sem",
+              "rotulo": "ausência de invasão da derme ou epiderme"
+            },
+            {
+              "valor": "derme",
+              "rotulo": "invasão da derme ou epiderme, sem ulceração"
+            },
+            {
+              "valor": "ulcera",
+              "rotulo": "invasão da pele com ulceração"
+            },
+            {
+              "valor": "na",
+              "rotulo": "não se aplica"
+            }
+          ]
+        },
+        {
+          "id": "satelite",
+          "rotulo": "Foco satélite em pele",
+          "rotuloLaudo": "- Foco satélite em pele",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "ausente",
+              "rotulo": "ausente"
+            },
+            {
+              "valor": "presente",
+              "rotulo": "presente"
+            },
+            {
+              "valor": "nao_se_aplica",
+              "rotulo": "não se aplica"
+            }
+          ]
+        },
+        {
+          "id": "musculo",
+          "rotulo": "Músculo esquelético",
+          "rotuloLaudo": "- Músculo esquelético",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "na",
+              "rotulo": "não se aplica"
+            },
+            {
+              "valor": "sem",
+              "rotulo": "ausência de invasão"
+            },
+            {
+              "valor": "musculo",
+              "rotulo": "invasão de músculo esquelético, sem invasão da parede torácica"
+            },
+            {
+              "valor": "parede",
+              "rotulo": "invasão da parede torácica"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Outros achados",
+      "espacoAntes": false,
+      "campos": [
+        {
+          "id": "ilv",
+          "rotulo": "Invasão vascular ou linfática",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "nao_identificada",
+              "rotulo": "não identificada"
+            },
+            {
+              "valor": "focal",
+              "rotulo": "focal"
+            },
+            {
+              "valor": "extensa",
+              "rotulo": "extensa"
+            }
+          ]
+        },
+        {
+          "id": "ilv_derme",
+          "rotulo": "Invasão vascular ou linfática dérmica",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "nao_identificada",
+              "rotulo": "não identificada"
+            },
+            {
+              "valor": "presente",
+              "rotulo": "presente"
+            },
+            {
+              "valor": "nao_se_aplica",
+              "rotulo": "não se aplica"
+            }
+          ]
+        },
+        {
+          "id": "microcalc",
+          "rotulo": "Microcalcificações",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "nao_identificadas",
+              "rotulo": "não identificadas"
+            },
+            {
+              "valor": "presentes",
+              "rotulo": "presentes"
+            }
+          ]
+        },
+        {
+          "id": "efeito",
+          "rotulo": "Efeito de Tratamento",
+          "tipo": "unica",
+          "nucleo": true,
+          "permiteOutro": true,
+          "opcoes": [
+            {
+              "valor": "presente",
+              "rotulo": "presente (texto padrão)",
+              "texto": "presença de área de processo inflamatório crônico, fibrose e neoformação vascular, compatível com resposta a tratamento prévio."
+            },
+            {
+              "valor": "ausente",
+              "rotulo": "ausência de alterações atribuíveis a tratamento prévio"
+            }
+          ]
+        },
+        {
+          "id": "margens",
+          "rotulo": "Margens cirúrgicas",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "livres_de_neoplasia",
+              "rotulo": "livres de neoplasia"
+            },
+            {
+              "valor": "comprometidas_por_carcinoma_invasivo",
+              "rotulo": "comprometidas por carcinoma invasivo"
+            },
+            {
+              "valor": "comprometidas_por_carcinoma_ductal_in_si",
+              "rotulo": "comprometidas por carcinoma ductal in situ"
+            },
+            {
+              "valor": "comprometidas_por_carcinoma_invasivo_e_i",
+              "rotulo": "comprometidas por carcinoma invasivo e in situ"
+            }
+          ]
+        },
+        {
+          "id": "margem_qual",
+          "rotulo": "Margem comprometida ou mais próxima",
+          "tipo": "texto",
+          "anexaEm": "margens",
+          "formato": " ({valor})",
+          "ajuda": "Opcional."
+        },
+        {
+          "id": "ln_status",
+          "rotulo": "Linfonodos",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "negativos",
+              "rotulo": "ausência de metástase"
+            },
+            {
+              "valor": "positivos",
+              "rotulo": "metástase de carcinoma"
+            },
+            {
+              "valor": "itc",
+              "rotulo": "apenas células tumorais isoladas"
+            },
+            {
+              "valor": "nx",
+              "rotulo": "não enviados ou não identificados"
+            }
+          ]
+        },
+        {
+          "id": "ln_pos",
+          "rotulo": "Número de linfonodos comprometidos",
+          "tipo": "numero",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "ln_status",
+            "igual": "positivos"
+          },
+          "anexaEm": "ln_status",
+          "formato": " em {valor} linfonodos",
+          "formatoUm": " em {valor} linfonodo",
+          "ajuda": "Entra no ypN e no RCB."
+        },
+        {
+          "id": "ln_total",
+          "rotulo": "Número de linfonodos avaliados",
+          "tipo": "numero",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "ln_status",
+            "em": ["positivos", "itc"]
+          },
+          "anexaEm": "ln_status",
+          "formato": " de {valor} linfonodos avaliados",
+          "formatoUm": " de {valor} linfonodo avaliado"
+        },
+        {
+          "id": "ln_total_neg",
+          "rotulo": "Número de linfonodos avaliados",
+          "tipo": "numero",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "ln_status",
+            "igual": "negativos"
+          },
+          "anexaEm": "ln_status",
+          "formato": " em {valor} linfonodos avaliados",
+          "formatoUm": " em {valor} linfonodo avaliado"
+        },
+        {
+          "id": "ln_foco",
+          "rotulo": "Maior foco de metástase",
+          "tipo": "numero",
+          "unidade": "mm",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "ln_status",
+            "igual": "positivos"
+          },
+          "anexaEm": "ln_status",
+          "formato": ", medindo {valor} o maior foco de metástase",
+          "ajuda": "Entra no ypN e no RCB."
+        }
+      ]
+    },
+    {
+      "titulo": "Estadiamento patológico",
+      "espacoAntes": true,
+      "campos": [
+        {
+          "id": "pT",
+          "rotulo": "Tumor primário (ypT)",
+          "rotuloLaudo": "Estadiamento patológico (pTNM 8ª edição)",
+          "tipo": "calculado",
+          "nucleo": true,
+          "prefixo": {
+            "padrao": "yp"
+          },
+          "sufixo": {
+            "padrao": "",
+            "regras": [
+              {
+                "se": {
+                  "campo": "focalidade",
+                  "igual": "multifocal"
+                },
+                "valor": "(m)"
+              }
+            ]
+          },
+          "semSugestao": "Informe se há carcinoma invasivo residual e a medida do maior foco contíguo.",
+          "opcoes": [
+            {
+              "valor": "T0",
+              "rotulo": "T0"
+            },
+            {
+              "valor": "Tis",
+              "rotulo": "Tis"
+            },
+            {
+              "valor": "T1mi",
+              "rotulo": "T1mi"
+            },
+            {
+              "valor": "T1a",
+              "rotulo": "T1a"
+            },
+            {
+              "valor": "T1b",
+              "rotulo": "T1b"
+            },
+            {
+              "valor": "T1c",
+              "rotulo": "T1c"
+            },
+            {
+              "valor": "T2",
+              "rotulo": "T2"
+            },
+            {
+              "valor": "T3",
+              "rotulo": "T3"
+            },
+            {
+              "valor": "T4a",
+              "rotulo": "T4a"
+            },
+            {
+              "valor": "T4b",
+              "rotulo": "T4b"
+            },
+            {
+              "valor": "T4c",
+              "rotulo": "T4c"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "residual",
+                    "igual": "ausente"
+                  },
+                  {
+                    "campo": "cdis",
+                    "igual": "presente"
+                  }
+                ]
+              },
+              "resultado": "Tis",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "residual",
+                    "igual": "ausente"
+                  },
+                  {
+                    "campo": "cdis",
+                    "igual": "ausente"
+                  }
+                ]
+              },
+              "resultado": "T0",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "residual",
+                    "igual": "presente"
+                  },
+                  {
+                    "campo": "musculo",
+                    "igual": "parede"
+                  },
+                  {
+                    "algum": [
+                      {
+                        "campo": "pele",
+                        "igual": "ulcera"
+                      },
+                      {
+                        "campo": "satelite",
+                        "igual": "presente"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "resultado": "T4c",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "residual",
+                    "igual": "presente"
+                  },
+                  {
+                    "algum": [
+                      {
+                        "campo": "pele",
+                        "igual": "ulcera"
+                      },
+                      {
+                        "campo": "satelite",
+                        "igual": "presente"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "resultado": "T4b",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "residual",
+                    "igual": "presente"
+                  },
+                  {
+                    "campo": "musculo",
+                    "igual": "parede"
+                  }
+                ]
+              },
+              "resultado": "T4a",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "foco1",
+                "menorOuIgual": 0.1
+              },
+              "resultado": "T1mi"
+            },
+            {
+              "se": {
+                "campo": "foco1",
+                "maiorQue": 0.1,
+                "menorOuIgual": 0.5
+              },
+              "resultado": "T1a"
+            },
+            {
+              "se": {
+                "campo": "foco1",
+                "maiorQue": 0.5,
+                "menorOuIgual": 1
+              },
+              "resultado": "T1b"
+            },
+            {
+              "se": {
+                "campo": "foco1",
+                "maiorQue": 1,
+                "menorOuIgual": 2
+              },
+              "resultado": "T1c"
+            },
+            {
+              "se": {
+                "campo": "foco1",
+                "maiorQue": 2,
+                "menorOuIgual": 5
+              },
+              "resultado": "T2"
+            },
+            {
+              "se": {
+                "campo": "foco1",
+                "maiorQue": 5
+              },
+              "resultado": "T3"
+            }
+          ]
+        },
+        {
+          "id": "pN",
+          "rotulo": "Linfonodos regionais (ypN)",
+          "tipo": "calculado",
+          "nucleo": true,
+          "prefixo": {
+            "padrao": "yp"
+          },
+          "anexaEm": "pT",
+          "formato": " {valor}",
+          "semSugestao": "Informe os linfonodos (número e maior foco de metástase) para o cálculo.",
+          "opcoes": [
+            {
+              "valor": "NX",
+              "rotulo": "NX"
+            },
+            {
+              "valor": "N0",
+              "rotulo": "N0"
+            },
+            {
+              "valor": "N0i",
+              "rotulo": "N0(i+)"
+            },
+            {
+              "valor": "N1mi",
+              "rotulo": "N1mi"
+            },
+            {
+              "valor": "N1a",
+              "rotulo": "N1a"
+            },
+            {
+              "valor": "N2a",
+              "rotulo": "N2a"
+            },
+            {
+              "valor": "N3a",
+              "rotulo": "N3a"
+            },
+            {
+              "valor": "N1b",
+              "rotulo": "N1b"
+            },
+            {
+              "valor": "N1c",
+              "rotulo": "N1c"
+            },
+            {
+              "valor": "N2b",
+              "rotulo": "N2b"
+            },
+            {
+              "valor": "N3b",
+              "rotulo": "N3b"
+            },
+            {
+              "valor": "N3c",
+              "rotulo": "N3c"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "ln_status",
+                "igual": "nx"
+              },
+              "resultado": "NX",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "ln_status",
+                "igual": "negativos"
+              },
+              "resultado": "N0",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "ln_status",
+                "igual": "itc"
+              },
+              "resultado": "N0i",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "ln_pos",
+                    "maiorOuIgual": 1
+                  },
+                  {
+                    "campo": "ln_foco",
+                    "menorOuIgual": 2
+                  }
+                ]
+              },
+              "resultado": "N1mi",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "ln_pos",
+                    "maiorOuIgual": 1,
+                    "menorOuIgual": 3
+                  },
+                  {
+                    "campo": "ln_foco",
+                    "maiorQue": 2
+                  }
+                ]
+              },
+              "resultado": "N1a",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "ln_pos",
+                    "maiorOuIgual": 4,
+                    "menorOuIgual": 9
+                  },
+                  {
+                    "campo": "ln_foco",
+                    "maiorQue": 2
+                  }
+                ]
+              },
+              "resultado": "N2a",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "ln_pos",
+                    "maiorOuIgual": 10
+                  },
+                  {
+                    "campo": "ln_foco",
+                    "maiorQue": 2
+                  }
+                ]
+              },
+              "resultado": "N3a",
+              "exclusivo": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Protocolo de resposta patológica (RCB)",
+      "cabecalhoLaudo": "PROTOCOLO DE RESPOSTA PATOLÓGICA PÓS-QUIMIOTERAPIA NEOADJUVANTE",
+      "campos": [
+        {
+          "id": "res_linha",
+          "rotulo": "Neoplasia residual microscópica",
+          "rotuloLaudo": ". Neoplasia residual microscópica",
+          "tipo": "calculado",
+          "nucleo": true,
+          "semSugestao": "Responda \"Carcinoma invasivo residual na mama\" no início do formulário.",
+          "opcoes": [
+            {
+              "valor": "presente",
+              "rotulo": "presente"
+            },
+            {
+              "valor": "ausente",
+              "rotulo": "ausente"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "residual",
+                "igual": "presente"
+              },
+              "resultado": "presente",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "residual",
+                "igual": "ausente"
+              },
+              "resultado": "ausente",
+              "exclusivo": true
+            }
+          ]
+        },
+        {
+          "id": "rcb_d1",
+          "rotulo": "Dimensão microscópica estimada da neoplasia residual: maior dimensão do leito (mm)",
+          "rotuloLaudo": ". Dimensão microscópica estimada da neoplasia residual",
+          "tipo": "numero",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          },
+          "sufixoLaudo": " mm",
+          "ajuda": "d1 da fórmula do RCB, em mm."
+        },
+        {
+          "id": "rcb_d2",
+          "rotulo": "Segunda dimensão do leito (mm)",
+          "tipo": "numero",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          },
+          "anexaEm": "rcb_d1",
+          "formato": " x {valor}",
+          "ajuda": "d2 da fórmula do RCB, em mm."
+        },
+        {
+          "id": "ca",
+          "rotulo": "Porcentagem da celularidade do carcinoma residual (%CA)",
+          "rotuloLaudo": ". Porcentagem da celularidade do carcinoma residual (%CA)",
+          "tipo": "numero",
+          "unidade": "%",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          },
+          "ajuda": "Celularidade total de carcinoma (invasivo e in situ) na área do leito."
+        },
+        {
+          "id": "cis",
+          "rotulo": "Porcentagem da celularidade do carcinoma \"in situ\" residual (%CIS)",
+          "rotuloLaudo": ". Porcentagem da celularidade do carcinoma \"in situ\" residual (%CIS)",
+          "tipo": "numero",
+          "unidade": "%",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "residual",
+            "igual": "presente"
+          },
+          "ajuda": "Parte do carcinoma que é in situ. Informe 0 se não houver."
+        },
+        {
+          "id": "rcb_ln",
+          "rotulo": "Número de linfonodos comprometidos (RCB)",
+          "rotuloLaudo": ". Número de linfonodos comprometidos",
+          "tipo": "derivado",
+          "expressao": "ln_pos",
+          "visivelSe": {
+            "campo": "ln_status",
+            "em": ["negativos", "positivos", "itc"]
+          },
+          "semSugestao": "Vem do campo de linfonodos."
+        },
+        {
+          "id": "rcb_met",
+          "rotulo": "Maior dimensão da metástase microscópica residual (RCB)",
+          "rotuloLaudo": ". Maior dimensão da metástase microscópica residual",
+          "tipo": "derivado",
+          "expressao": "ln_foco",
+          "decimais": 1,
+          "unidade": "mm",
+          "visivelSe": {
+            "campo": "ln_status",
+            "em": ["negativos", "positivos", "itc"]
+          },
+          "semSugestao": "Vem do campo de linfonodos."
+        },
+        {
+          "id": "rcb_valor",
+          "rotulo": "Valor do índice RCB",
+          "rotuloLaudo": ". Valor do índice RCB",
+          "tipo": "derivado",
+          "expressao": "rcb",
+          "decimais": 3,
+          "visivelSe": {
+            "todos": [
+              {
+                "campo": "residual",
+                "preenchido": true
+              },
+              {
+                "campo": "ln_status",
+                "em": ["negativos", "positivos", "itc"]
+              }
+            ]
+          },
+          "semSugestao": "Preencha dimensões do leito, %CA, %CIS e linfonodos."
+        },
+        {
+          "id": "rcb_classe",
+          "rotulo": "Índice de neoplasia residual",
+          "rotuloLaudo": ". Índice de neoplasia residual",
+          "tipo": "calculado",
+          "nucleo": true,
+          "formato": "{valor} (calculado pela fórmula do índice de carga tumoral residual do MD Anderson Cancer Center).",
+          "semSugestao": "Preencha dimensões do leito, %CA, %CIS e linfonodos para o cálculo.",
+          "opcoes": [
+            {
+              "valor": "rcb0",
+              "rotulo": "RCB-0",
+              "texto": "RCB-0 - resposta patológica completa"
+            },
+            {
+              "valor": "rcb1",
+              "rotulo": "RCB-I",
+              "texto": "RCB-I - doença residual mínima"
+            },
+            {
+              "valor": "rcb2",
+              "rotulo": "RCB-II",
+              "texto": "RCB-II - doença residual moderada"
+            },
+            {
+              "valor": "rcb3",
+              "rotulo": "RCB-III",
+              "texto": "RCB-III - doença residual extensa"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "todos": [
+                  {
+                    "todos": [
+                      {
+                        "campo": "residual",
+                        "preenchido": true
+                      },
+                      {
+                        "campo": "ln_status",
+                        "em": ["negativos", "positivos", "itc"]
+                      }
+                    ]
+                  },
+                  {
+                    "campo": "rcb",
+                    "menorOuIgual": 0
+                  }
+                ]
+              },
+              "resultado": "rcb0",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "todos": [
+                      {
+                        "campo": "residual",
+                        "preenchido": true
+                      },
+                      {
+                        "campo": "ln_status",
+                        "em": ["negativos", "positivos", "itc"]
+                      }
+                    ]
+                  },
+                  {
+                    "campo": "rcb",
+                    "menorOuIgual": 1.36
+                  }
+                ]
+              },
+              "resultado": "rcb1",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "todos": [
+                      {
+                        "campo": "residual",
+                        "preenchido": true
+                      },
+                      {
+                        "campo": "ln_status",
+                        "em": ["negativos", "positivos", "itc"]
+                      }
+                    ]
+                  },
+                  {
+                    "campo": "rcb",
+                    "menorOuIgual": 3.28
+                  }
+                ]
+              },
+              "resultado": "rcb2",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "todos": [
+                      {
+                        "campo": "residual",
+                        "preenchido": true
+                      },
+                      {
+                        "campo": "ln_status",
+                        "em": ["negativos", "positivos", "itc"]
+                      }
+                    ]
+                  },
+                  {
+                    "campo": "rcb",
+                    "maiorQue": 3.28
+                  }
+                ]
+              },
+              "resultado": "rcb3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Nota",
+      "espacoAntes": true,
+      "campos": [
+        {
+          "id": "nota",
+          "rotulo": "Nota",
+          "rotuloLaudo": "NOTA",
+          "tipo": "multipla",
+          "permiteOutro": true,
+          "separador": " ",
+          "ajuda": "Opcional.",
+          "opcoes": [
+            {
+              "valor": "ihq",
+              "rotulo": "sugerir imunoistoquímica (RE, RP, HER2, Ki67)",
+              "texto": "sugere-se a realização de estudo imunoistoquímico para a avaliação de fatores preditivos e prognósticos na peça cirúrgica. Painel sugerido: RE, RP, HER2, Ki67."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Referência",
+      "espacoAntes": true,
+      "campos": [
+        {
+          "id": "referencia",
+          "rotulo": "Referência bibliográfica",
+          "tipo": "multipla",
+          "ajuda": "Opcional.",
+          "opcoes": [
+            {
+              "valor": "symmans",
+              "rotulo": "incluir referência do RCB (Symmans et al., 2007)",
+              "texto": "Symmans WF, Peintinger F, Hatzis C, et al. Measurement of Residual Breast Cancer Burden to Predict Survival After Neoadjuvant Chemotherapy. Journal of Clinical Oncology. 2007;25(28):4414-4422."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

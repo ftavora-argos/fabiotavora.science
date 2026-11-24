@@ -103,6 +103,10 @@
           "items": {
             "$ref": "#/$defs/id"
           }
+        },
+        "expressao": {
+          "type": "string",
+          "minLength": 1
         }
       }
     },
@@ -150,7 +154,7 @@
           "minLength": 1
         },
         "tipo": {
-          "enum": ["unica", "multipla", "numero", "texto", "calculado"]
+          "enum": ["unica", "multipla", "numero", "texto", "calculado", "derivado"]
         },
         "nucleo": {
           "type": "boolean"
@@ -263,6 +267,13 @@
         },
         "sufixoLaudo": {
           "type": "string"
+        },
+        "expressao": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decimais": {
+          "type": "number"
         }
       }
     },

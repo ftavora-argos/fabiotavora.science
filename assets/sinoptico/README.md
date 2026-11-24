@@ -108,6 +108,8 @@ Operadores: `igual`, `em`, `naoEm`, `contem`, `contagemMin`, `contagemMax`, `con
 - `sufixo`: igual a `prefixo`, acrescentado depois do valor (por exemplo `(m)` em tumor multifocal).
 - `rotuloLaudo` aceita `{id}` para usar o texto de outro campo como rótulo da linha. `sufixoLaudo` acrescenta um texto fixo depois dos campos anexados (unidade ao fim de "1,8 x 1,5 x 1,1").
 - Uma seção cujos campos estão todos ocultos some do formulário, o que permite blocos repetidos (Lesão 2, Lesão 3) controlados por `visivelSe`.
+- `expressao` (em variável): fórmula com números, `+ - * / ^`, parênteses, ids e as funções `sqrt`, `min`, `max` e `ou(a, b)`. Campo oculto vale 0; campo visível sem resposta deixa o resultado indefinido. Exemplo: o índice RCB em `mama-pos-qt.json`.
+- Tipo `derivado`: campo somente leitura que mostra e imprime o resultado de uma `expressao`, com `decimais` e `unidade`.
 - `linhaFinal` (na raiz, opcional) acrescenta uma última linha com marcadores `{id}`, por exemplo `"pTNM: {pT} {pN} {pM}"`.
 
 Todo conteúdo médico de um template novo deve ser revisado por um patologista antes do merge.

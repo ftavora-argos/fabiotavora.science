@@ -20,6 +20,13 @@
       "orgao": "Mama",
       "procedimento": "Ressecção",
       "arquivo": "mama-sem-qt.json"
+    },
+    {
+      "id": "mama-pos-qt",
+      "titulo": "Carcinoma de mama, pós-quimioterapia neoadjuvante",
+      "orgao": "Mama",
+      "procedimento": "Ressecção",
+      "arquivo": "mama-pos-qt.json"
     }
   ]
 }

@@ -84,15 +84,27 @@ function conferirReferencias(tpl, erros) {
       const validos = new Set(alvo.opcoes.map((o) => o.valor).concat(["__outro__", "__na__"]));
       for (const v of valores) if (!validos.has(v)) erros.push(`${onde}: "${v}" não é opção de "${c.campo}"`);
     }
-    if (OPERADORES_NUMERICOS.some((op) => op in c) && alvo && alvo.tipo !== "numero")
+    if (OPERADORES_NUMERICOS.some((op) => op in c) && alvo && !["numero", "derivado"].includes(alvo.tipo))
       erros.push(`${onde}: comparação numérica sobre campo não numérico "${c.campo}"`);
     if (("contagemMin" in c || "contagemMax" in c || "contagemDe" in c) && (!alvo || alvo.tipo !== "multipla"))
       erros.push(`${onde}: contagem sobre campo que não é de múltipla escolha "${c.campo}"`);
   }
 
+  const FUNCOES = ["sqrt", "min", "max", "ou"];
+  function conferirExpressao(texto, onde) {
+    if (/[^A-Za-z0-9_+\-*/^(),. ]/.test(texto)) erros.push(`${onde}: expressão com caractere não permitido`);
+    for (const [id] of texto.matchAll(/[A-Za-z_][A-Za-z0-9_]*/g)) {
+      if (!FUNCOES.includes(id) && !existe(id)) erros.push(`${onde}: expressão usa id inexistente "${id}"`);
+    }
+    let aberto = 0;
+    for (const ch of texto) aberto += ch === "(" ? 1 : ch === ")" ? -1 : 0;
+    if (aberto !== 0) erros.push(`${onde}: parênteses desbalanceados na expressão`);
+  }
+
   for (const v of tpl.variaveis || []) {
-    const formas = ["primeiroDe", "soma", "maiorDe"].filter((k) => k in v);
-    if (formas.length !== 1) erros.push(`variável ${v.id}: use exatamente uma de primeiroDe, soma ou maiorDe`);
+    const formas = ["primeiroDe", "soma", "maiorDe", "expressao"].filter((k) => k in v);
+    if (v.expressao) conferirExpressao(v.expressao, `variável ${v.id}`);
+    if (formas.length !== 1) erros.push(`variável ${v.id}: use exatamente uma de primeiroDe, soma, maiorDe ou expressao`);
     for (const fonte of v.primeiroDe || []) {
       const alvo = campos.get(fonte.campo);
       if (!alvo) erros.push(`variável ${v.id}: campo inexistente "${fonte.campo}"`);
@@ -113,6 +125,10 @@ function conferirReferencias(tpl, erros) {
     if (!comOpcoes && campo.opcoes) erros.push(`${onde}: tipo "${campo.tipo}" não usa "opcoes"`);
     if (campo.tipo !== "calculado" && (campo.regras || campo.prefixo || campo.sufixo))
       erros.push(`${onde}: "regras" e "prefixo" só valem para tipo "calculado"`);
+    if (campo.tipo === "derivado") {
+      if (!campo.expressao) erros.push(`${onde}: tipo "derivado" exige "expressao"`);
+      else conferirExpressao(campo.expressao, onde);
+    } else if (campo.expressao) erros.push(`${onde}: "expressao" só vale para tipo "derivado"`);
     if (campo.tipo === "calculado" && !campo.regras) erros.push(`${onde}: tipo "calculado" exige "regras"`);
     if (campo.opcoes) {
       const vistos = new Set();
