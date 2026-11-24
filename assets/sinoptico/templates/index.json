@@ -1,0 +1,11 @@
+{
+  "protocolos": [
+    {
+      "id": "pulmao-resseccao",
+      "titulo": "Carcinoma de pulmão, ressecção",
+      "orgao": "Pulmão",
+      "procedimento": "Ressecção",
+      "arquivo": "pulmao-resseccao.json"
+    }
+  ]
+}
