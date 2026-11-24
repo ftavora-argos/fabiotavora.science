@@ -91,10 +91,18 @@ function conferirReferencias(tpl, erros) {
   }
 
   for (const v of tpl.variaveis || []) {
-    for (const fonte of v.primeiroDe) {
+    const formas = ["primeiroDe", "soma", "maiorDe"].filter((k) => k in v);
+    if (formas.length !== 1) erros.push(`variável ${v.id}: use exatamente uma de primeiroDe, soma ou maiorDe`);
+    for (const fonte of v.primeiroDe || []) {
       const alvo = campos.get(fonte.campo);
       if (!alvo) erros.push(`variável ${v.id}: campo inexistente "${fonte.campo}"`);
       else if (alvo.tipo !== "numero") erros.push(`variável ${v.id}: "${fonte.campo}" não é numérico`);
+    }
+    for (const id of [...(v.soma || []), ...(v.maiorDe || [])]) {
+      const alvo = campos.get(id);
+      if (!alvo) erros.push(`variável ${v.id}: campo inexistente "${id}"`);
+      else if (alvo.tipo !== "numero" && !(alvo.opcoes || []).every((o) => /^[0-9]+$/.test(o.valor)))
+        erros.push(`variável ${v.id}: "${id}" precisa ser numérico ou ter opções com valor numérico`);
     }
   }
 
@@ -103,7 +111,8 @@ function conferirReferencias(tpl, erros) {
     const comOpcoes = ["unica", "multipla", "calculado"].includes(campo.tipo);
     if (comOpcoes && !campo.opcoes) erros.push(`${onde}: tipo "${campo.tipo}" exige "opcoes"`);
     if (!comOpcoes && campo.opcoes) erros.push(`${onde}: tipo "${campo.tipo}" não usa "opcoes"`);
-    if (campo.tipo !== "calculado" && (campo.regras || campo.prefixo)) erros.push(`${onde}: "regras" e "prefixo" só valem para tipo "calculado"`);
+    if (campo.tipo !== "calculado" && (campo.regras || campo.prefixo || campo.sufixo))
+      erros.push(`${onde}: "regras" e "prefixo" só valem para tipo "calculado"`);
     if (campo.tipo === "calculado" && !campo.regras) erros.push(`${onde}: tipo "calculado" exige "regras"`);
     if (campo.opcoes) {
       const vistos = new Set();
@@ -117,6 +126,9 @@ function conferirReferencias(tpl, erros) {
       }
     }
     for (const r of (campo.prefixo && campo.prefixo.regras) || []) conferirCondicao(r.se, `${onde}, prefixo`);
+    for (const r of (campo.sufixo && campo.sufixo.regras) || []) conferirCondicao(r.se, `${onde}, sufixo`);
+    for (const [, id] of (campo.rotuloLaudo || "").matchAll(/\{([A-Za-z0-9_]+)\}/g))
+      if (!campos.has(id)) erros.push(`${onde}: rotuloLaudo aponta para campo inexistente "${id}"`);
     if (campo.visivelSe) conferirCondicao(campo.visivelSe, `${onde}, visivelSe`);
     if (campo.anexaEm) {
       if (!campos.has(campo.anexaEm)) erros.push(`${onde}: anexaEm aponta para campo inexistente "${campo.anexaEm}"`);

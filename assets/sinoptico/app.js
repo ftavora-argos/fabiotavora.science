@@ -111,6 +111,22 @@
   function variavel(id) {
     var def = estado.variaveis[id];
     if (!def) return undefined;
+    if (def.soma || def.maiorDe) {
+      var nums = (def.soma || def.maiorDe).map(function (c) {
+        return numero(valor(c));
+      });
+      if (def.soma) {
+        return nums.some(isNaN)
+          ? undefined
+          : nums.reduce(function (a, b) {
+              return a + b;
+            }, 0);
+      }
+      nums = nums.filter(function (n) {
+        return !isNaN(n);
+      });
+      return nums.length ? Math.max.apply(null, nums) : undefined;
+    }
     for (var i = 0; i < def.primeiroDe.length; i++) {
       var n = numero(valor(def.primeiroDe[i].campo));
       if (!isNaN(n)) return n * (def.primeiroDe[i].fator === undefined ? 1 : def.primeiroDe[i].fator);
@@ -188,11 +204,33 @@
     return sugestao(campo);
   }
 
-  function prefixo(campo) {
-    if (!campo.prefixo) return "";
-    var regras = campo.prefixo.regras || [];
+  function afixo(def) {
+    if (!def) return "";
+    var regras = def.regras || [];
     for (var i = 0; i < regras.length; i++) if (condicao(regras[i].se)) return regras[i].valor;
-    return campo.prefixo.padrao;
+    return def.padrao;
+  }
+
+  function prefixo(campo) {
+    return afixo(campo.prefixo);
+  }
+
+  function sufixo(campo) {
+    return afixo(campo.sufixo);
+  }
+
+  // Rótulo da linha no laudo. Aceita {id} para usar o texto de outro campo.
+  function rotuloNoLaudo(campo) {
+    var base = campo.rotuloLaudo || campo.rotulo;
+    if (base.indexOf("{") < 0) return base;
+    var faltou = false;
+    var r = base.replace(/\{([A-Za-z0-9_]+)\}/g, function (_, id) {
+      var outro = estado.campos[id];
+      var t = outro && visivel(outro) ? textoCampo(outro) : null;
+      if (t === null) faltou = true;
+      return t || "";
+    });
+    return faltou ? campo.rotulo : r;
   }
 
   function textoOpcao(campo, v) {
@@ -222,7 +260,7 @@
       t = (bruto || "").trim() || null;
     } else if (campo.tipo === "calculado") {
       var v = efetivo(campo);
-      t = v ? prefixo(campo) + textoOpcao(campo, v) : null;
+      t = v ? prefixo(campo) + textoOpcao(campo, v) + sufixo(campo) : null;
     }
     return t;
   }
@@ -249,7 +287,7 @@
         var falta = false;
         if (t === null) {
           if (!campo.nucleo) return;
-          t = PENDENTE;
+          t = comFormato(campo, PENDENTE);
           falta = true;
         } else {
           t = comFormato(campo, t);
@@ -261,12 +299,13 @@
           if (ta === null) falta = true;
           t += comFormato(anexo, ta === null ? PENDENTE : ta);
         });
+        if (campo.sufixoLaudo) t += campo.sufixoLaudo;
         if (campo.semRotulo) {
           t.split("\n").forEach(function (linha) {
             if (linha.trim()) linhas.push({ texto: linha.trim(), falta: falta });
           });
         } else {
-          linhas.push({ texto: (campo.rotuloLaudo || campo.rotulo) + ": " + t, falta: falta });
+          linhas.push({ texto: rotuloNoLaudo(campo) + ": " + t, falta: falta });
         }
       });
       if (!linhas.length) return;
@@ -469,7 +508,7 @@
         refs.resultado.textContent = "";
         if (sug) {
           refs.resultado.appendChild(document.createTextNode("Calculado automaticamente:"));
-          refs.resultado.appendChild(el("strong", { text: prefixo(campo) + textoOpcao(campo, sug) }));
+          refs.resultado.appendChild(el("strong", { text: prefixo(campo) + textoOpcao(campo, sug) + sufixo(campo) }));
         } else {
           refs.resultado.textContent = campo.semSugestao || "Sem cálculo automático com os dados atuais.";
         }
@@ -483,7 +522,7 @@
           var atual = efetivo(campo);
           refs.sugestao.appendChild(
             document.createTextNode(
-              atual ? "Valor definido manualmente: " + prefixo(campo) + textoOpcao(campo, atual) + "." : "Valor removido manualmente."
+              atual ? "Valor definido manualmente: " + prefixo(campo) + textoOpcao(campo, atual) + sufixo(campo) + "." : "Valor removido manualmente."
             )
           );
           acao("voltar ao cálculo", function () {
@@ -508,6 +547,10 @@
   function atualizar() {
     cache = {};
     estado.ordem.forEach(atualizarCampo);
+    // seção sem nenhum campo visível some do formulário
+    (estado.blocos || []).forEach(function (b) {
+      b.no.hidden = !b.campos.some(visivel);
+    });
 
     var faltam = pendentes();
     var contador = estado.ui.contador;
@@ -641,6 +684,7 @@
     });
     tpl.secoes.forEach(function (secao) {
       var bloco = el("section", { class: "secao" }, [el("h2", { text: secao.titulo })]);
+      (estado.blocos = estado.blocos || []).push({ no: bloco, campos: secao.campos });
       secao.campos.forEach(function (campo) {
         bloco.appendChild(criarCampo(campo));
       });
