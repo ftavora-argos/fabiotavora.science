@@ -99,7 +99,7 @@ Operadores: `igual`, `em`, `naoEm`, `contem`, `contagemMin`, `contagemMax`, `con
 
 - Entre as regras satisfeitas, vence a opção que estiver mais adiante em `opcoes`. Por isso as opções de estadiamento devem estar em ordem crescente.
 - Uma regra com `"exclusivo": true` encerra a avaliação na hora (usada para Tis, T1mi e T0).
-- A sugestão aparece com borda tracejada. O usuário pode marcar outro valor, e o campo passa a indicar "definido manualmente".
+- O campo mostra "Calculado automaticamente: valor". Os botões ficam recolhidos atrás de "alterar manualmente" e abrem sozinhos quando o campo é obrigatório e não há cálculo possível. `semSugestao` define o texto exibido nesse caso.
 - `variaveis` (na raiz do template) criam valores numéricos auxiliares: `primeiroDe` devolve o primeiro campo numérico preenchido, multiplicado por `fator`. No pulmão, `tamanho_t` usa a medida invasiva (mm × 0,1) e, na falta dela, o tamanho total (cm).
 - `linhaFinal` (na raiz, opcional) acrescenta uma última linha com marcadores `{id}`, por exemplo `"pTNM: {pT} {pN} {pM}"`.
 

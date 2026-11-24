@@ -5,7 +5,7 @@
     "orgao": "Pulmão",
     "procedimento": "Ressecção",
     "fonte": "Modelo Argos Laboratório",
-    "versao": "0.2.0",
+    "versao": "0.3.0",
     "revisao": "2026-11-24",
     "estadiamento": "TNM, 9ª edição"
   },
@@ -443,7 +443,8 @@
               },
               "resultado": "G3"
             }
-          ]
+          ],
+          "semSugestao": "Cálculo disponível para adenocarcinoma invasivo não mucinoso (padrão predominante e alto grau). Nos demais tipos, selecione."
         },
         {
           "id": "stas",
@@ -715,54 +716,24 @@
       "titulo": "Linfonodos",
       "campos": [
         {
-          "id": "linfonodos",
-          "rotulo": "Linfonodos",
-          "tipo": "unica",
+          "id": "estacoes_comprometidas",
+          "rotulo": "Estações linfonodais comprometidas",
+          "tipo": "multipla",
           "nucleo": true,
+          "ajuda": "Marque cada cadeia com a lateralidade recebida, ou \"não comprometidas\". O pN é calculado a partir das estações e do lado do tumor.",
           "opcoes": [
+            {
+              "valor": "nenhuma",
+              "rotulo": "não comprometidas",
+              "texto": "nenhuma",
+              "exclusiva": true
+            },
             {
               "valor": "nao_enviados",
-              "rotulo": "não enviados ou não identificados"
+              "rotulo": "linfonodos não enviados",
+              "texto": "linfonodos não enviados ou não identificados",
+              "exclusiva": true
             },
-            {
-              "valor": "negativos",
-              "rotulo": "ausência de metástase"
-            },
-            {
-              "valor": "positivos",
-              "rotulo": "metástase presente"
-            }
-          ]
-        },
-        {
-          "id": "ln_examinados",
-          "rotulo": "Número de linfonodos examinados",
-          "tipo": "numero",
-          "visivelSe": {
-            "campo": "linfonodos",
-            "em": ["negativos", "positivos"]
-          }
-        },
-        {
-          "id": "ln_comprometidos",
-          "rotulo": "Número de linfonodos comprometidos",
-          "tipo": "numero",
-          "visivelSe": {
-            "campo": "linfonodos",
-            "igual": "positivos"
-          }
-        },
-        {
-          "id": "ln_estacoes_examinadas",
-          "rotulo": "Estações examinadas",
-          "tipo": "multipla",
-          "permiteOutro": true,
-          "visivelSe": {
-            "campo": "linfonodos",
-            "em": ["negativos", "positivos"]
-          },
-          "ajuda": "Opcional. Marque as estações como identificadas na requisição.",
-          "opcoes": [
             {
               "valor": "1R",
               "rotulo": "1R"
@@ -872,8 +843,9 @@
           "nucleo": true,
           "omitirNoLaudo": true,
           "visivelSe": {
-            "campo": "linfonodos",
-            "igual": "positivos"
+            "campo": "estacoes_comprometidas",
+            "preenchido": true,
+            "naoEm": ["nenhuma", "nao_enviados"]
           },
           "ajuda": "Sugerida a partir do tipo de peça. Define quais estações são ipsilaterais ou contralaterais. Não gera linha no laudo.",
           "opcoes": [
@@ -901,18 +873,40 @@
               },
               "resultado": "esquerda"
             }
-          ]
+          ],
+          "semSugestao": "Não foi possível deduzir do tipo de peça. Selecione a lateralidade."
         },
         {
-          "id": "estacoes_comprometidas",
-          "rotulo": "Estações comprometidas",
-          "tipo": "multipla",
-          "nucleo": true,
+          "id": "ln_examinados",
+          "rotulo": "Número de linfonodos examinados",
+          "tipo": "numero",
           "visivelSe": {
-            "campo": "linfonodos",
-            "igual": "positivos"
+            "campo": "estacoes_comprometidas",
+            "preenchido": true,
+            "naoEm": ["nao_enviados"]
+          }
+        },
+        {
+          "id": "ln_comprometidos",
+          "rotulo": "Número de linfonodos comprometidos",
+          "tipo": "numero",
+          "visivelSe": {
+            "campo": "estacoes_comprometidas",
+            "preenchido": true,
+            "naoEm": ["nenhuma", "nao_enviados"]
+          }
+        },
+        {
+          "id": "ln_estacoes_examinadas",
+          "rotulo": "Estações examinadas",
+          "tipo": "multipla",
+          "permiteOutro": true,
+          "visivelSe": {
+            "campo": "estacoes_comprometidas",
+            "preenchido": true,
+            "naoEm": ["nao_enviados"]
           },
-          "ajuda": "Marque cada cadeia com a lateralidade recebida. O pN é sugerido a partir das estações e do lado do tumor.",
+          "ajuda": "Opcional. Marque as estações como identificadas na requisição.",
           "opcoes": [
             {
               "valor": "1R",
@@ -1021,8 +1015,9 @@
           "rotulo": "Extensão extranodal",
           "tipo": "unica",
           "visivelSe": {
-            "campo": "linfonodos",
-            "igual": "positivos"
+            "campo": "estacoes_comprometidas",
+            "preenchido": true,
+            "naoEm": ["nenhuma", "nao_enviados"]
           },
           "opcoes": [
             {
@@ -1357,7 +1352,8 @@
               },
               "resultado": "T4"
             }
-          ]
+          ],
+          "semSugestao": "Informe o tamanho do tumor para o cálculo."
         },
         {
           "id": "pN",
@@ -1405,15 +1401,15 @@
           "regras": [
             {
               "se": {
-                "campo": "linfonodos",
+                "campo": "estacoes_comprometidas",
                 "igual": "nao_enviados"
               },
               "resultado": "NX"
             },
             {
               "se": {
-                "campo": "linfonodos",
-                "igual": "negativos"
+                "campo": "estacoes_comprometidas",
+                "igual": "nenhuma"
               },
               "resultado": "N0"
             },
@@ -1549,13 +1545,14 @@
               },
               "resultado": "N3"
             }
-          ]
+          ],
+          "semSugestao": "Marque as estações linfonodais comprometidas (ou \"não comprometidas\") e confira a lateralidade do tumor."
         },
         {
           "id": "pM",
           "rotulo": "Metástase à distância",
           "tipo": "calculado",
-          "ajuda": "Opcional. Só aparece no laudo se marcado ou sugerido.",
+          "ajuda": "Calculado a partir da focalidade (nódulo no pulmão contralateral).",
           "prefixo": {
             "padrao": "p"
           },
@@ -1585,7 +1582,8 @@
               },
               "resultado": "M1a"
             }
-          ]
+          ],
+          "semSugestao": "Sem critério de metástase nos dados da peça. O pM não entra no laudo."
         }
       ]
     }

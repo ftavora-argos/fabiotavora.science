@@ -1,10 +1,11 @@
 :root {
   --fundo: #ffffff;
-  --texto: #1b1b1b;
   --suave: #666360;
   --linha: #d8d5ce;
-  --destaque: #9b1c31;
+  --texto: #09133c;
+  --destaque: #09133c;
   --sobre-destaque: #ffffff;
+  --realce: #207b8e;
   --serifa: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
   --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
@@ -15,8 +16,9 @@
   --texto: #e9e6e0;
   --suave: #a39f97;
   --linha: #3b3b3d;
-  --destaque: #ec8394;
-  --sobre-destaque: #1c1c1d;
+  --destaque: #41c0f0;
+  --sobre-destaque: #09133c;
+  --realce: #41c0f0;
 }
 
 * {
@@ -45,11 +47,11 @@ body {
 }
 
 a {
-  color: var(--destaque);
+  color: var(--realce);
 }
 
 :focus-visible {
-  outline: 2px solid var(--destaque);
+  outline: 2px solid var(--realce);
   outline-offset: 2px;
 }
 
@@ -130,7 +132,7 @@ main {
 
 .lista a:hover .lista-titulo,
 .lista a:focus-visible .lista-titulo {
-  color: var(--destaque);
+  color: var(--realce);
 }
 
 .lista-titulo {
@@ -189,7 +191,7 @@ main {
 }
 
 .campo.pendente {
-  border-left-color: var(--destaque);
+  border-left-color: var(--realce);
 }
 
 .rotulo {
@@ -205,7 +207,7 @@ main {
 }
 
 .campo.pendente .marca-campo {
-  color: var(--destaque);
+  color: var(--realce);
 }
 
 .ajuda {
@@ -246,7 +248,7 @@ main {
 }
 
 .chip.sugerido[aria-pressed="false"] {
-  border-color: var(--destaque);
+  border-color: var(--realce);
   border-style: dashed;
 }
 
@@ -291,7 +293,7 @@ main {
 }
 
 input[aria-invalid="true"] {
-  border-color: var(--destaque);
+  border-color: var(--realce);
 }
 
 .unidade,
@@ -304,9 +306,20 @@ input[aria-invalid="true"] {
   margin: 0.4rem 0 0;
 }
 
+.resultado {
+  margin: 0.45rem 0 0;
+  font-size: 0.92rem;
+}
+
+.resultado strong {
+  font-family: var(--serifa);
+  font-size: 1.15rem;
+  margin-left: 0.35rem;
+}
+
 .sugestao .link {
   font: inherit;
-  color: var(--destaque);
+  color: var(--realce);
   background: none;
   border: 0;
   padding: 0;
@@ -348,7 +361,7 @@ input[aria-invalid="true"] {
 .contador {
   font: inherit;
   font-size: 0.82rem;
-  color: var(--destaque);
+  color: var(--realce);
   background: none;
   border: 0;
   padding: 0.3rem 0;
@@ -374,7 +387,7 @@ input[aria-invalid="true"] {
 }
 
 .previa .falta {
-  color: var(--destaque);
+  color: var(--realce);
 }
 
 .status {

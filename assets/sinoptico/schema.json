@@ -65,6 +65,7 @@
         "tipo": { "enum": ["unica", "multipla", "numero", "texto", "calculado"] },
         "nucleo": { "type": "boolean" },
         "ajuda": { "type": "string" },
+        "semSugestao": { "type": "string" },
         "unidade": { "type": "string" },
         "multilinha": { "type": "boolean" },
         "semRotulo": { "type": "boolean" },
