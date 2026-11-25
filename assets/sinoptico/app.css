@@ -123,7 +123,9 @@ main {
 }
 
 .lista a {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   padding: 0.85rem 0.25rem;
   border-bottom: 1px solid var(--linha);
   color: var(--texto);
@@ -132,6 +134,12 @@ main {
 
 .lista a:hover .lista-titulo,
 .lista a:focus-visible .lista-titulo {
+  color: var(--realce);
+}
+
+.lista-icone {
+  flex: none;
+  display: flex;
   color: var(--realce);
 }
 

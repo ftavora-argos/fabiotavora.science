@@ -34,7 +34,7 @@ Antes do commit: `npx prettier assets/sinoptico bin/validar-sinoptico.mjs _pages
 1. Copie `templates/pulmao-resseccao.json` para `templates/<orgao>-<procedimento>.json`.
 2. Ajuste `meta` (`id` igual ao nome do arquivo sem `.json`, `versao`, `revisao`).
 3. Escreva as `secoes` e os `campos` na ordem em que as linhas devem sair no laudo.
-4. Acrescente uma entrada em `templates/index.json`.
+4. Acrescente uma entrada em `templates/index.json`. O campo `icone` escolhe o desenho da lista inicial: `pulmao`, `colon`, `mama`, `estomago` ou `generico`. Um órgão novo exige acrescentar o desenho em `ICONES`, no `app.js`.
 5. Rode `node bin/validar-sinoptico.mjs` e confira o resultado no navegador.
 
 ### Campos
@@ -59,6 +59,7 @@ Propriedades opcionais:
 - `anexaEm` + `formato`: em vez de gerar linha própria, o texto é acrescentado à linha de outro campo (padrão predominante dentro do tipo histológico).
 - `omitirNoLaudo: true`: o campo só alimenta regras de cálculo.
 - `semRotulo: true`: o texto sai sem "rótulo:" (descrição livre).
+- `maiusculas: true` (texto livre): converte o que foi digitado para maiúsculas no laudo.
 - Em cada opção: `rotulo` é o que aparece no botão, `texto` é o que vai para o laudo (padrão: o próprio rótulo), `exclusiva: true` desmarca as demais numa múltipla escolha.
 - Na seção: `cabecalhoLaudo` abre um bloco no laudo, com uma linha em branco antes.
 - Na seção: `cabecalhoDestaque: true` põe o cabeçalho em negrito e sublinhado na prévia e na cópia formatada (a cópia leva texto puro e HTML; o editor de destino escolhe).
