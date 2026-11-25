@@ -323,11 +323,15 @@
     var base = campo.rotuloLaudo || campo.rotulo;
     if (base.indexOf("{") < 0) return base;
     var faltou = false;
-    var r = base.replace(/\{([A-Za-z0-9_]+)\}/g, function (_, id) {
+    // {id} é obrigatório; {?id} some quando o campo referido está vazio
+    var r = base.replace(/\{(\??)([A-Za-z0-9_]+)\}/g, function (_, opcional, id) {
       var outro = estado.campos[id];
       var t = outro && visivel(outro) ? textoCampo(outro) : null;
-      if (t === null) faltou = true;
-      return t || "";
+      if (t === null) {
+        if (!opcional) faltou = true;
+        return "";
+      }
+      return comFormato(outro, t);
     });
     return faltou ? campo.rotulo : r;
   }
@@ -377,7 +381,7 @@
 
   function pendentes() {
     return estado.ordem.filter(function (campo) {
-      return campo.nucleo && visivel(campo) && textoCampo(campo) === null;
+      return campo.nucleo && !campo.oculto && visivel(campo) && textoCampo(campo) === null;
     });
   }
 
@@ -581,7 +585,7 @@
 
   function atualizarCampo(campo) {
     var refs = estado.els[campo.id];
-    var mostra = visivel(campo);
+    var mostra = visivel(campo) && !campo.oculto;
     refs.caixa.hidden = !mostra;
     if (!mostra) return;
 
@@ -666,7 +670,9 @@
     estado.ordem.forEach(atualizarCampo);
     // seção sem nenhum campo visível some do formulário
     (estado.blocos || []).forEach(function (b) {
-      b.no.hidden = !b.campos.some(visivel);
+      b.no.hidden = !b.campos.some(function (c) {
+        return visivel(c) && !c.oculto;
+      });
     });
 
     var faltam = pendentes();
