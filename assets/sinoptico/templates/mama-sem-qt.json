@@ -5,7 +5,7 @@
     "orgao": "Mama",
     "procedimento": "Ressecção",
     "fonte": "Modelo Argos Laboratório",
-    "versao": "0.1.0",
+    "versao": "0.2.0",
     "revisao": "2026-11-24",
     "estadiamento": "pTNM, 9ª edição da AJCC"
   },
@@ -117,17 +117,93 @@
     },
     {
       "titulo": "Lesão 1",
-      "cabecalhoLaudo": "Tamanho tumoral:",
       "campos": [
+        {
+          "id": "cab_tamanho",
+          "rotulo": "Cabeçalho do tamanho tumoral",
+          "tipo": "calculado",
+          "oculto": true,
+          "semRotulo": true,
+          "opcoes": [
+            {
+              "valor": "cab",
+              "rotulo": "Tamanho tumoral:"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "focalidade",
+                "em": ["multi2", "multi3"]
+              },
+              "resultado": "cab"
+            }
+          ]
+        },
+        {
+          "id": "rot_1",
+          "rotulo": "Rótulo da linha de tamanho, lesão 1",
+          "tipo": "calculado",
+          "oculto": true,
+          "omitirNoLaudo": true,
+          "opcoes": [
+            {
+              "valor": "uni",
+              "rotulo": "Tamanho tumoral"
+            },
+            {
+              "valor": "multi",
+              "rotulo": "- Lesão 1"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "focalidade",
+                "em": ["multi2", "multi3"]
+              },
+              "resultado": "multi",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "focalidade",
+                "igual": "unifocal"
+              },
+              "resultado": "uni",
+              "exclusivo": true
+            }
+          ]
+        },
+        {
+          "id": "d1_1",
+          "rotulo": "Tamanho tumoral: maior dimensão do carcinoma invasivo (cm)",
+          "tipo": "numero",
+          "nucleo": true,
+          "ajuda": "Usada no cálculo do pT. Carcinoma microinvasivo: informe até 0,1 cm.",
+          "sufixoLaudo": " cm",
+          "rotuloLaudo": "{rot_1}{?local_1}"
+        },
+        {
+          "id": "d2_1",
+          "rotulo": "Segunda dimensão",
+          "tipo": "numero",
+          "anexaEm": "d1_1",
+          "formato": " x {valor}"
+        },
+        {
+          "id": "d3_1",
+          "rotulo": "Terceira dimensão",
+          "tipo": "numero",
+          "anexaEm": "d1_1",
+          "formato": " x {valor}"
+        },
         {
           "id": "local_1",
           "rotulo": "Localização",
           "tipo": "unica",
-          "nucleo": true,
           "permiteOutro": true,
-          "semRotulo": true,
-          "formato": "- Lesão 1 ({valor}): ",
-          "sufixoLaudo": " cm",
+          "formato": " ({valor})",
           "opcoes": [
             {
               "valor": "qsl",
@@ -174,30 +250,9 @@
               "valor": "axilar",
               "rotulo": "prolongamento axilar"
             }
-          ]
-        },
-        {
-          "id": "d1_1",
-          "rotulo": "Maior dimensão do carcinoma invasivo",
-          "tipo": "numero",
-          "nucleo": true,
-          "anexaEm": "local_1",
-          "formato": "{valor}",
-          "ajuda": "Usada no cálculo do pT. Carcinoma microinvasivo: informe até 0,1 cm."
-        },
-        {
-          "id": "d2_1",
-          "rotulo": "Segunda dimensão",
-          "tipo": "numero",
-          "anexaEm": "local_1",
-          "formato": " x {valor}"
-        },
-        {
-          "id": "d3_1",
-          "rotulo": "Terceira dimensão",
-          "tipo": "numero",
-          "anexaEm": "local_1",
-          "formato": " x {valor}"
+          ],
+          "omitirNoLaudo": true,
+          "ajuda": "Opcional. Aparece entre parênteses na linha do tamanho."
         },
         {
           "id": "tipo_1",
@@ -365,20 +420,84 @@
             }
           ]
         }
-      ]
+      ],
+      "espacoAntes": true
     },
     {
       "titulo": "Lesão 2",
       "campos": [
         {
+          "id": "rot_2",
+          "rotulo": "Rótulo da linha de tamanho, lesão 2",
+          "tipo": "calculado",
+          "oculto": true,
+          "omitirNoLaudo": true,
+          "opcoes": [
+            {
+              "valor": "uni",
+              "rotulo": "Tamanho tumoral"
+            },
+            {
+              "valor": "multi",
+              "rotulo": "- Lesão 2"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "focalidade",
+                "em": ["multi2", "multi3"]
+              },
+              "resultado": "multi",
+              "exclusivo": true
+            }
+          ],
+          "visivelSe": {
+            "campo": "focalidade",
+            "em": ["multi2", "multi3"]
+          }
+        },
+        {
+          "id": "d1_2",
+          "rotulo": "Tamanho tumoral: maior dimensão do carcinoma invasivo (cm)",
+          "tipo": "numero",
+          "nucleo": true,
+          "ajuda": "Usada no cálculo do pT. Carcinoma microinvasivo: informe até 0,1 cm.",
+          "visivelSe": {
+            "campo": "focalidade",
+            "em": ["multi2", "multi3"]
+          },
+          "sufixoLaudo": " cm",
+          "rotuloLaudo": "{rot_2}{?local_2}"
+        },
+        {
+          "id": "d2_2",
+          "rotulo": "Segunda dimensão",
+          "tipo": "numero",
+          "anexaEm": "d1_2",
+          "formato": " x {valor}",
+          "visivelSe": {
+            "campo": "focalidade",
+            "em": ["multi2", "multi3"]
+          }
+        },
+        {
+          "id": "d3_2",
+          "rotulo": "Terceira dimensão",
+          "tipo": "numero",
+          "anexaEm": "d1_2",
+          "formato": " x {valor}",
+          "visivelSe": {
+            "campo": "focalidade",
+            "em": ["multi2", "multi3"]
+          }
+        },
+        {
           "id": "local_2",
           "rotulo": "Localização",
           "tipo": "unica",
-          "nucleo": true,
           "permiteOutro": true,
-          "semRotulo": true,
-          "formato": "- Lesão 2 ({valor}): ",
-          "sufixoLaudo": " cm",
+          "formato": " ({valor})",
           "opcoes": [
             {
               "valor": "qsl",
@@ -429,42 +548,9 @@
           "visivelSe": {
             "campo": "focalidade",
             "em": ["multi2", "multi3"]
-          }
-        },
-        {
-          "id": "d1_2",
-          "rotulo": "Maior dimensão do carcinoma invasivo",
-          "tipo": "numero",
-          "nucleo": true,
-          "anexaEm": "local_2",
-          "formato": "{valor}",
-          "ajuda": "Usada no cálculo do pT. Carcinoma microinvasivo: informe até 0,1 cm.",
-          "visivelSe": {
-            "campo": "focalidade",
-            "em": ["multi2", "multi3"]
-          }
-        },
-        {
-          "id": "d2_2",
-          "rotulo": "Segunda dimensão",
-          "tipo": "numero",
-          "anexaEm": "local_2",
-          "formato": " x {valor}",
-          "visivelSe": {
-            "campo": "focalidade",
-            "em": ["multi2", "multi3"]
-          }
-        },
-        {
-          "id": "d3_2",
-          "rotulo": "Terceira dimensão",
-          "tipo": "numero",
-          "anexaEm": "local_2",
-          "formato": " x {valor}",
-          "visivelSe": {
-            "campo": "focalidade",
-            "em": ["multi2", "multi3"]
-          }
+          },
+          "omitirNoLaudo": true,
+          "ajuda": "Opcional. Aparece entre parênteses na linha do tamanho."
         },
         {
           "id": "tipo_2",
@@ -662,14 +748,77 @@
       "titulo": "Lesão 3",
       "campos": [
         {
+          "id": "rot_3",
+          "rotulo": "Rótulo da linha de tamanho, lesão 3",
+          "tipo": "calculado",
+          "oculto": true,
+          "omitirNoLaudo": true,
+          "opcoes": [
+            {
+              "valor": "uni",
+              "rotulo": "Tamanho tumoral"
+            },
+            {
+              "valor": "multi",
+              "rotulo": "- Lesão 3"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "focalidade",
+                "em": ["multi2", "multi3"]
+              },
+              "resultado": "multi",
+              "exclusivo": true
+            }
+          ],
+          "visivelSe": {
+            "campo": "focalidade",
+            "igual": "multi3"
+          }
+        },
+        {
+          "id": "d1_3",
+          "rotulo": "Tamanho tumoral: maior dimensão do carcinoma invasivo (cm)",
+          "tipo": "numero",
+          "nucleo": true,
+          "ajuda": "Usada no cálculo do pT. Carcinoma microinvasivo: informe até 0,1 cm.",
+          "visivelSe": {
+            "campo": "focalidade",
+            "igual": "multi3"
+          },
+          "sufixoLaudo": " cm",
+          "rotuloLaudo": "{rot_3}{?local_3}"
+        },
+        {
+          "id": "d2_3",
+          "rotulo": "Segunda dimensão",
+          "tipo": "numero",
+          "anexaEm": "d1_3",
+          "formato": " x {valor}",
+          "visivelSe": {
+            "campo": "focalidade",
+            "igual": "multi3"
+          }
+        },
+        {
+          "id": "d3_3",
+          "rotulo": "Terceira dimensão",
+          "tipo": "numero",
+          "anexaEm": "d1_3",
+          "formato": " x {valor}",
+          "visivelSe": {
+            "campo": "focalidade",
+            "igual": "multi3"
+          }
+        },
+        {
           "id": "local_3",
           "rotulo": "Localização",
           "tipo": "unica",
-          "nucleo": true,
           "permiteOutro": true,
-          "semRotulo": true,
-          "formato": "- Lesão 3 ({valor}): ",
-          "sufixoLaudo": " cm",
+          "formato": " ({valor})",
           "opcoes": [
             {
               "valor": "qsl",
@@ -720,42 +869,9 @@
           "visivelSe": {
             "campo": "focalidade",
             "igual": "multi3"
-          }
-        },
-        {
-          "id": "d1_3",
-          "rotulo": "Maior dimensão do carcinoma invasivo",
-          "tipo": "numero",
-          "nucleo": true,
-          "anexaEm": "local_3",
-          "formato": "{valor}",
-          "ajuda": "Usada no cálculo do pT. Carcinoma microinvasivo: informe até 0,1 cm.",
-          "visivelSe": {
-            "campo": "focalidade",
-            "igual": "multi3"
-          }
-        },
-        {
-          "id": "d2_3",
-          "rotulo": "Segunda dimensão",
-          "tipo": "numero",
-          "anexaEm": "local_3",
-          "formato": " x {valor}",
-          "visivelSe": {
-            "campo": "focalidade",
-            "igual": "multi3"
-          }
-        },
-        {
-          "id": "d3_3",
-          "rotulo": "Terceira dimensão",
-          "tipo": "numero",
-          "anexaEm": "local_3",
-          "formato": " x {valor}",
-          "visivelSe": {
-            "campo": "focalidade",
-            "igual": "multi3"
-          }
+          },
+          "omitirNoLaudo": true,
+          "ajuda": "Opcional. Aparece entre parênteses na linha do tamanho."
         },
         {
           "id": "tipo_3",

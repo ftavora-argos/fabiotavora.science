@@ -143,7 +143,7 @@ function conferirReferencias(tpl, erros) {
     }
     for (const r of (campo.prefixo && campo.prefixo.regras) || []) conferirCondicao(r.se, `${onde}, prefixo`);
     for (const r of (campo.sufixo && campo.sufixo.regras) || []) conferirCondicao(r.se, `${onde}, sufixo`);
-    for (const [, id] of (campo.rotuloLaudo || "").matchAll(/\{([A-Za-z0-9_]+)\}/g))
+    for (const [, id] of (campo.rotuloLaudo || "").matchAll(/\{\??([A-Za-z0-9_]+)\}/g))
       if (!campos.has(id)) erros.push(`${onde}: rotuloLaudo aponta para campo inexistente "${id}"`);
     if (campo.visivelSe) conferirCondicao(campo.visivelSe, `${onde}, visivelSe`);
     if (campo.anexaEm) {
