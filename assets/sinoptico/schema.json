@@ -283,6 +283,9 @@
         },
         "oculto": {
           "type": "boolean"
+        },
+        "maiusculas": {
+          "type": "boolean"
         }
       }
     },

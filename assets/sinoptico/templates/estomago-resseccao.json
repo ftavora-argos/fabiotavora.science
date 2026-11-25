@@ -1,0 +1,1272 @@
+{
+  "meta": {
+    "id": "estomago-resseccao",
+    "titulo": "Carcinoma gástrico, ressecção",
+    "orgao": "Estômago",
+    "procedimento": "Ressecção",
+    "fonte": "Modelo Argos Laboratório",
+    "versao": "0.1.0",
+    "revisao": "2026-11-25",
+    "estadiamento": "TNM, 8ª edição"
+  },
+  "secoes": [
+    {
+      "titulo": "Linha de diagnóstico",
+      "campos": [
+        {
+          "id": "diag",
+          "rotulo": "Linha de diagnóstico",
+          "tipo": "calculado",
+          "oculto": true,
+          "semRotulo": true,
+          "opcoes": [
+            {
+              "valor": "adenocarcinoma",
+              "rotulo": "ADENOCARCINOMA"
+            },
+            {
+              "valor": "carcinoma_pouco_coeso",
+              "rotulo": "CARCINOMA POUCO COESO"
+            },
+            {
+              "valor": "carcinoma_adenoescamoso",
+              "rotulo": "CARCINOMA ADENOESCAMOSO"
+            },
+            {
+              "valor": "carcinoma_com_estroma_linfoide",
+              "rotulo": "CARCINOMA COM ESTROMA LINFOIDE"
+            },
+            {
+              "valor": "adenocarcinoma_hepatoide",
+              "rotulo": "ADENOCARCINOMA HEPATOIDE"
+            },
+            {
+              "valor": "carcinoma_neuroendocrino",
+              "rotulo": "CARCINOMA NEUROENDÓCRINO"
+            },
+            {
+              "valor": "neoplasia_mista_neuroendocrina_e_nao_neu",
+              "rotulo": "NEOPLASIA MISTA NEUROENDÓCRINA E NÃO NEUROENDÓCRINA (MiNEN)"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "tubular"
+              },
+              "resultado": "adenocarcinoma",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "papilar"
+              },
+              "resultado": "adenocarcinoma",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "mucinoso"
+              },
+              "resultado": "adenocarcinoma",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "misto"
+              },
+              "resultado": "adenocarcinoma",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "anel"
+              },
+              "resultado": "carcinoma_pouco_coeso",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "pouco_coeso"
+              },
+              "resultado": "carcinoma_pouco_coeso",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "adenoescamoso"
+              },
+              "resultado": "carcinoma_adenoescamoso",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "linfoide"
+              },
+              "resultado": "carcinoma_com_estroma_linfoide",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "hepatoide"
+              },
+              "resultado": "adenocarcinoma_hepatoide",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "neuroendocrino"
+              },
+              "resultado": "carcinoma_neuroendocrino",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "minen"
+              },
+              "resultado": "neoplasia_mista_neuroendocrina_e_nao_neu",
+              "exclusivo": true
+            }
+          ]
+        },
+        {
+          "id": "diag_grau",
+          "rotulo": "Grau na linha de diagnóstico",
+          "tipo": "calculado",
+          "oculto": true,
+          "anexaEm": "diag",
+          "formato": " {valor}",
+          "visivelSe": {
+            "campo": "tipo",
+            "em": ["tubular", "papilar", "mucinoso", "misto"]
+          },
+          "opcoes": [
+            {
+              "valor": "g1",
+              "rotulo": "BEM DIFERENCIADO"
+            },
+            {
+              "valor": "g2",
+              "rotulo": "MODERADAMENTE DIFERENCIADO"
+            },
+            {
+              "valor": "g3",
+              "rotulo": "POUCO DIFERENCIADO"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "grau",
+                "igual": "g1"
+              },
+              "resultado": "g1",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "grau",
+                "igual": "g2"
+              },
+              "resultado": "g2",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "grau",
+                "igual": "g3"
+              },
+              "resultado": "g3",
+              "exclusivo": true
+            }
+          ]
+        },
+        {
+          "id": "diag_subtipo",
+          "rotulo": "Subtipo na linha de diagnóstico",
+          "tipo": "calculado",
+          "oculto": true,
+          "anexaEm": "diag",
+          "formato": ", {valor}",
+          "opcoes": [
+            {
+              "valor": "tubular",
+              "rotulo": "TIPO TUBULAR"
+            },
+            {
+              "valor": "papilar",
+              "rotulo": "TIPO PAPILAR"
+            },
+            {
+              "valor": "mucinoso",
+              "rotulo": "TIPO MUCINOSO"
+            },
+            {
+              "valor": "misto",
+              "rotulo": "TIPO MISTO DA OMS"
+            },
+            {
+              "valor": "anel",
+              "rotulo": "TIPO CÉLULAS EM ANEL DE SINETE"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "tubular"
+              },
+              "resultado": "tubular",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "papilar"
+              },
+              "resultado": "papilar",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "mucinoso"
+              },
+              "resultado": "mucinoso",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "misto"
+              },
+              "resultado": "misto",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "tipo",
+                "igual": "anel"
+              },
+              "resultado": "anel",
+              "exclusivo": true
+            }
+          ]
+        },
+        {
+          "id": "diag_compl",
+          "rotulo": "Complemento da linha de diagnóstico",
+          "tipo": "texto",
+          "maiusculas": true,
+          "anexaEm": "diag",
+          "formato": ", {valor}",
+          "ajuda": "Opcional. Sai em maiúsculas. Exemplo: composto por túbulos, formações cribriformes e células em anel de sinete (pouco coesas). A linha de diagnóstico é montada a partir do tipo histológico e do grau."
+        }
+      ]
+    },
+    {
+      "titulo": "Peça e tumor",
+      "cabecalhoLaudo": "Relatório sinóptico CAP/NCCN",
+      "cabecalhoDestaque": true,
+      "campos": [
+        {
+          "id": "biopsia",
+          "rotulo": "Informações relevantes da biópsia",
+          "tipo": "texto",
+          "ajuda": "Opcional. Exemplo: adenocarcinoma tipo difuso, sem instabilidade de microssatélites por imunoistoquímica, HER2 negativo."
+        },
+        {
+          "id": "procedimento",
+          "rotulo": "Procedimento",
+          "tipo": "unica",
+          "nucleo": true,
+          "permiteOutro": true,
+          "opcoes": [
+            {
+              "valor": "gastrectomia_total",
+              "rotulo": "gastrectomia total"
+            },
+            {
+              "valor": "gastrectomia_subtotal_distal",
+              "rotulo": "gastrectomia subtotal (distal)"
+            },
+            {
+              "valor": "gastrectomia_proximal",
+              "rotulo": "gastrectomia proximal"
+            },
+            {
+              "valor": "esofagogastrectomia",
+              "rotulo": "esofagogastrectomia"
+            },
+            {
+              "valor": "resseccao_em_cunha",
+              "rotulo": "ressecção em cunha"
+            },
+            {
+              "valor": "resseccao_endoscopica_da_mucosa",
+              "rotulo": "ressecção endoscópica da mucosa"
+            },
+            {
+              "valor": "disseccao_endoscopica_da_submucosa",
+              "rotulo": "dissecção endoscópica da submucosa"
+            }
+          ]
+        },
+        {
+          "id": "sitio",
+          "rotulo": "Sítio do tumor",
+          "tipo": "unica",
+          "nucleo": true,
+          "permiteOutro": true,
+          "opcoes": [
+            {
+              "valor": "cardia",
+              "rotulo": "cárdia"
+            },
+            {
+              "valor": "fundo_gastrico",
+              "rotulo": "fundo gástrico"
+            },
+            {
+              "valor": "corpo_gastrico",
+              "rotulo": "corpo gástrico"
+            },
+            {
+              "valor": "antro_gastrico",
+              "rotulo": "antro gástrico"
+            },
+            {
+              "valor": "piloro",
+              "rotulo": "piloro"
+            },
+            {
+              "valor": "coto_gastrico",
+              "rotulo": "coto gástrico"
+            }
+          ]
+        },
+        {
+          "id": "sitio_parede",
+          "rotulo": "Parede ou curvatura",
+          "tipo": "unica",
+          "anexaEm": "sitio",
+          "formato": ", {valor}",
+          "ajuda": "Opcional.",
+          "opcoes": [
+            {
+              "valor": "pequena_curvatura",
+              "rotulo": "pequena curvatura"
+            },
+            {
+              "valor": "grande_curvatura",
+              "rotulo": "grande curvatura"
+            },
+            {
+              "valor": "parede_anterior",
+              "rotulo": "parede anterior"
+            },
+            {
+              "valor": "parede_posterior",
+              "rotulo": "parede posterior"
+            }
+          ]
+        },
+        {
+          "id": "tamanho",
+          "rotulo": "Tamanho do tumor (medida macroscópica)",
+          "rotuloLaudo": "Tamanho do tumor",
+          "tipo": "numero",
+          "unidade": "cm",
+          "nucleo": true,
+          "formato": "medida macroscópica de {valor}"
+        },
+        {
+          "id": "tamanho_obs",
+          "rotulo": "Observação sobre a medida",
+          "tipo": "texto",
+          "anexaEm": "tamanho",
+          "formato": " ({valor})",
+          "ajuda": "Opcional. Exemplo: leito ulcerado."
+        },
+        {
+          "id": "macro",
+          "rotulo": "Tipo macroscópico",
+          "tipo": "unica",
+          "nucleo": true,
+          "permiteOutro": true,
+          "opcoes": [
+            {
+              "valor": "polipoide",
+              "rotulo": "polipoide"
+            },
+            {
+              "valor": "fungante",
+              "rotulo": "fungante"
+            },
+            {
+              "valor": "ulcerada",
+              "rotulo": "ulcerada"
+            },
+            {
+              "valor": "infiltrativa_ulcerada",
+              "rotulo": "infiltrativa ulcerada"
+            },
+            {
+              "valor": "difusamente_infiltrativa",
+              "rotulo": "difusamente infiltrativa"
+            },
+            {
+              "valor": "superficial",
+              "rotulo": "superficial"
+            }
+          ]
+        },
+        {
+          "id": "focalidade",
+          "rotulo": "Focalidade",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "tumor_unico",
+              "rotulo": "tumor único"
+            },
+            {
+              "valor": "multiplos_tumores",
+              "rotulo": "múltiplos tumores"
+            }
+          ]
+        },
+        {
+          "id": "tipo",
+          "rotulo": "Tipo histológico",
+          "tipo": "unica",
+          "nucleo": true,
+          "permiteOutro": true,
+          "opcoes": [
+            {
+              "valor": "tubular",
+              "rotulo": "adenocarcinoma tubular"
+            },
+            {
+              "valor": "papilar",
+              "rotulo": "adenocarcinoma papilar"
+            },
+            {
+              "valor": "mucinoso",
+              "rotulo": "adenocarcinoma mucinoso"
+            },
+            {
+              "valor": "misto",
+              "rotulo": "adenocarcinoma tipo misto"
+            },
+            {
+              "valor": "anel",
+              "rotulo": "carcinoma pouco coeso, tipo células em anel de sinete"
+            },
+            {
+              "valor": "pouco_coeso",
+              "rotulo": "carcinoma pouco coeso, outros tipos"
+            },
+            {
+              "valor": "adenoescamoso",
+              "rotulo": "carcinoma adenoescamoso"
+            },
+            {
+              "valor": "linfoide",
+              "rotulo": "carcinoma com estroma linfoide"
+            },
+            {
+              "valor": "hepatoide",
+              "rotulo": "adenocarcinoma hepatoide"
+            },
+            {
+              "valor": "neuroendocrino",
+              "rotulo": "carcinoma neuroendócrino"
+            },
+            {
+              "valor": "minen",
+              "rotulo": "neoplasia mista neuroendócrina e não neuroendócrina (MiNEN)"
+            }
+          ]
+        },
+        {
+          "id": "tipo_compl",
+          "rotulo": "Complemento do tipo histológico",
+          "tipo": "texto",
+          "anexaEm": "tipo",
+          "formato": ", {valor}",
+          "ajuda": "Opcional. Exemplo, no tipo misto: tubular e com células em anel de sinete."
+        },
+        {
+          "id": "lauren",
+          "rotulo": "Classificação de Lauren",
+          "tipo": "unica",
+          "ajuda": "Opcional.",
+          "opcoes": [
+            {
+              "valor": "intestinal",
+              "rotulo": "intestinal"
+            },
+            {
+              "valor": "difuso",
+              "rotulo": "difuso"
+            },
+            {
+              "valor": "misto",
+              "rotulo": "misto"
+            },
+            {
+              "valor": "indeterminado",
+              "rotulo": "indeterminado"
+            }
+          ]
+        },
+        {
+          "id": "grau",
+          "rotulo": "Grau histológico",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "g1",
+              "rotulo": "G1",
+              "texto": "G1"
+            },
+            {
+              "valor": "g2",
+              "rotulo": "G2",
+              "texto": "G2"
+            },
+            {
+              "valor": "g3",
+              "rotulo": "G3",
+              "texto": "G3"
+            },
+            {
+              "valor": "gx",
+              "rotulo": "GX, não avaliável",
+              "texto": "GX"
+            },
+            {
+              "valor": "na",
+              "rotulo": "não se aplica"
+            }
+          ]
+        },
+        {
+          "id": "extensao",
+          "rotulo": "Extensão microscópica do tumor",
+          "tipo": "unica",
+          "nucleo": true,
+          "ajuda": "Define o pT.",
+          "opcoes": [
+            {
+              "valor": "hgd",
+              "rotulo": "displasia de alto grau, sem invasão",
+              "texto": "displasia de alto grau, sem invasão estromal"
+            },
+            {
+              "valor": "lp",
+              "rotulo": "lâmina própria",
+              "texto": "a neoplasia infiltra até lâmina própria"
+            },
+            {
+              "valor": "mm",
+              "rotulo": "muscular da mucosa",
+              "texto": "a neoplasia infiltra até muscular da mucosa"
+            },
+            {
+              "valor": "sm",
+              "rotulo": "submucosa",
+              "texto": "a neoplasia infiltra até submucosa"
+            },
+            {
+              "valor": "mp",
+              "rotulo": "muscular própria",
+              "texto": "a neoplasia infiltra até muscular própria"
+            },
+            {
+              "valor": "ss",
+              "rotulo": "tecido conjuntivo subseroso",
+              "texto": "a neoplasia infiltra até o tecido conjuntivo subseroso, sem penetração do peritônio visceral"
+            },
+            {
+              "valor": "serosa",
+              "rotulo": "serosa (peritônio visceral)",
+              "texto": "a neoplasia penetra a serosa (peritônio visceral)"
+            },
+            {
+              "valor": "adjacentes",
+              "rotulo": "estruturas adjacentes",
+              "texto": "a neoplasia invade estruturas adjacentes"
+            },
+            {
+              "valor": "sem_tumor",
+              "rotulo": "sem tumor residual",
+              "texto": "ausência de neoplasia residual"
+            }
+          ]
+        },
+        {
+          "id": "orgaos",
+          "rotulo": "Estruturas adjacentes invadidas",
+          "tipo": "texto",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "extensao",
+            "igual": "adjacentes"
+          },
+          "anexaEm": "extensao",
+          "formato": " ({valor})"
+        },
+        {
+          "id": "extensao_obs",
+          "rotulo": "Complemento da extensão",
+          "tipo": "texto",
+          "anexaEm": "extensao",
+          "formato": " ({valor})",
+          "ajuda": "Opcional. Exemplo: bloco representativo."
+        },
+        {
+          "id": "margens",
+          "rotulo": "Margens cirúrgicas",
+          "tipo": "unica",
+          "nucleo": true,
+          "permiteNaoAvaliavel": true,
+          "opcoes": [
+            {
+              "valor": "livres",
+              "rotulo": "livres de neoplasia"
+            },
+            {
+              "valor": "comprometidas",
+              "rotulo": "comprometidas pela neoplasia"
+            }
+          ]
+        },
+        {
+          "id": "margens_quais",
+          "rotulo": "Margens comprometidas",
+          "tipo": "multipla",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "margens",
+            "igual": "comprometidas"
+          },
+          "anexaEm": "margens",
+          "formato": " ({valor})",
+          "opcoes": [
+            {
+              "valor": "proximal",
+              "rotulo": "proximal"
+            },
+            {
+              "valor": "distal",
+              "rotulo": "distal"
+            },
+            {
+              "valor": "radial_omental",
+              "rotulo": "radial (omental)"
+            }
+          ]
+        },
+        {
+          "id": "tratamento",
+          "rotulo": "Efeito de tratamento neoadjuvante",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "nao_informado",
+              "rotulo": "não informado"
+            },
+            {
+              "valor": "sem",
+              "rotulo": "sem tratamento pré-operatório conhecido"
+            },
+            {
+              "valor": "realizado",
+              "rotulo": "tratamento neoadjuvante realizado"
+            }
+          ]
+        },
+        {
+          "id": "regressao",
+          "rotulo": "Escore de regressão tumoral",
+          "tipo": "unica",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "tratamento",
+            "igual": "realizado"
+          },
+          "anexaEm": "tratamento",
+          "formato": ", escore de regressão tumoral {valor}",
+          "opcoes": [
+            {
+              "valor": "0",
+              "rotulo": "0, resposta completa",
+              "texto": "0 (resposta completa, sem células tumorais viáveis)"
+            },
+            {
+              "valor": "1",
+              "rotulo": "1, resposta quase completa",
+              "texto": "1 (resposta quase completa, células isoladas ou raros pequenos grupos)"
+            },
+            {
+              "valor": "2",
+              "rotulo": "2, resposta parcial",
+              "texto": "2 (resposta parcial, câncer residual com regressão evidente)"
+            },
+            {
+              "valor": "3",
+              "rotulo": "3, resposta pobre ou ausente",
+              "texto": "3 (resposta pobre ou ausente, câncer residual extenso)"
+            }
+          ]
+        },
+        {
+          "id": "ilv",
+          "rotulo": "Invasão linfovascular",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "nao_observada",
+              "rotulo": "não observada"
+            },
+            {
+              "valor": "presente",
+              "rotulo": "presente"
+            }
+          ]
+        },
+        {
+          "id": "perineural",
+          "rotulo": "Invasão perineural",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "nao_observada",
+              "rotulo": "não observada"
+            },
+            {
+              "valor": "presente",
+              "rotulo": "presente"
+            }
+          ]
+        },
+        {
+          "id": "linfonodos",
+          "rotulo": "Linfonodos regionais",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "negativos",
+              "rotulo": "ausência de metástase"
+            },
+            {
+              "valor": "positivos",
+              "rotulo": "carcinoma metastático"
+            },
+            {
+              "valor": "nao_enviados",
+              "rotulo": "não enviados ou não identificados"
+            }
+          ]
+        },
+        {
+          "id": "ln_positivos",
+          "rotulo": "Número de linfonodos comprometidos",
+          "tipo": "numero",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "linfonodos",
+            "igual": "positivos"
+          },
+          "anexaEm": "linfonodos",
+          "formato": " em {valor} linfonodos",
+          "formatoUm": " em {valor} linfonodo"
+        },
+        {
+          "id": "ln_examinados",
+          "rotulo": "Número de linfonodos examinados",
+          "tipo": "numero",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "linfonodos",
+            "igual": "positivos"
+          },
+          "anexaEm": "linfonodos",
+          "formato": " ({valor} examinados)",
+          "formatoUm": " ({valor} examinado)"
+        },
+        {
+          "id": "ln_examinados_neg",
+          "rotulo": "Número de linfonodos examinados",
+          "tipo": "numero",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "linfonodos",
+            "igual": "negativos"
+          },
+          "anexaEm": "linfonodos",
+          "formato": " em {valor} linfonodos examinados",
+          "formatoUm": " em {valor} linfonodo examinado"
+        },
+        {
+          "id": "ln_ver_abaixo",
+          "rotulo": "Acrescentar \"ver abaixo\"",
+          "tipo": "unica",
+          "anexaEm": "linfonodos",
+          "formato": " ({valor})",
+          "ajuda": "Opcional. Para quando os linfonodos são descritos por cadeia depois do sinóptico.",
+          "opcoes": [
+            {
+              "valor": "sim",
+              "rotulo": "ver abaixo"
+            }
+          ]
+        },
+        {
+          "id": "hp",
+          "rotulo": "Pesquisa de elementos Helicobacter-símiles",
+          "tipo": "unica",
+          "nucleo": true,
+          "opcoes": [
+            {
+              "valor": "negativa",
+              "rotulo": "negativa"
+            },
+            {
+              "valor": "positiva",
+              "rotulo": "positiva"
+            },
+            {
+              "valor": "nao_avaliada",
+              "rotulo": "não avaliada"
+            }
+          ]
+        },
+        {
+          "id": "gastrite",
+          "rotulo": "Outros achados patológicos",
+          "tipo": "unica",
+          "permiteOutro": true,
+          "ajuda": "Opcional.",
+          "opcoes": [
+            {
+              "valor": "gastrite_cronica_leve",
+              "rotulo": "gastrite crônica leve"
+            },
+            {
+              "valor": "gastrite_cronica_moderada",
+              "rotulo": "gastrite crônica moderada"
+            },
+            {
+              "valor": "gastrite_cronica_acentuada",
+              "rotulo": "gastrite crônica acentuada"
+            },
+            {
+              "valor": "gastrite_cronica_atrofica",
+              "rotulo": "gastrite crônica atrófica"
+            },
+            {
+              "valor": "mucosa_gastrica_sem_alteracoes_significa",
+              "rotulo": "mucosa gástrica sem alterações significativas"
+            }
+          ]
+        },
+        {
+          "id": "metaplasia",
+          "rotulo": "Metaplasia intestinal",
+          "tipo": "unica",
+          "anexaEm": "gastrite",
+          "formato": " {valor}",
+          "ajuda": "Opcional.",
+          "opcoes": [
+            {
+              "valor": "sem_metaplasia_intestinal",
+              "rotulo": "sem metaplasia intestinal"
+            },
+            {
+              "valor": "com_metaplasia_intestinal",
+              "rotulo": "com metaplasia intestinal"
+            }
+          ]
+        },
+        {
+          "id": "outros_compl",
+          "rotulo": "Outros achados (texto livre)",
+          "tipo": "texto",
+          "anexaEm": "gastrite",
+          "formato": "; {valor}",
+          "ajuda": "Opcional."
+        },
+        {
+          "id": "metastases",
+          "rotulo": "Metástases à distância",
+          "tipo": "unica",
+          "ajuda": "Opcional. Só entra no laudo se marcado. Define o pM.",
+          "opcoes": [
+            {
+              "valor": "nao_informadas",
+              "rotulo": "não informadas"
+            },
+            {
+              "valor": "presentes",
+              "rotulo": "presentes, confirmadas histologicamente",
+              "texto": "presentes"
+            },
+            {
+              "valor": "citologia",
+              "rotulo": "citologia peritoneal positiva"
+            }
+          ]
+        },
+        {
+          "id": "met_sitios",
+          "rotulo": "Sítios de metástase",
+          "tipo": "multipla",
+          "nucleo": true,
+          "permiteOutro": true,
+          "visivelSe": {
+            "campo": "metastases",
+            "igual": "presentes"
+          },
+          "anexaEm": "metastases",
+          "formato": " ({valor})",
+          "opcoes": [
+            {
+              "valor": "figado",
+              "rotulo": "fígado"
+            },
+            {
+              "valor": "peritonio",
+              "rotulo": "peritônio"
+            },
+            {
+              "valor": "ovario",
+              "rotulo": "ovário"
+            },
+            {
+              "valor": "pulmao",
+              "rotulo": "pulmão"
+            },
+            {
+              "valor": "linfonodo_nao_regional",
+              "rotulo": "linfonodo não regional"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Estadiamento patológico",
+      "campos": [
+        {
+          "id": "pT",
+          "rotulo": "Tumor primário (pT)",
+          "rotuloLaudo": "Estadiamento patológico",
+          "tipo": "calculado",
+          "nucleo": true,
+          "prefixo": {
+            "padrao": "p",
+            "regras": [
+              {
+                "se": {
+                  "campo": "tratamento",
+                  "igual": "realizado"
+                },
+                "valor": "yp"
+              }
+            ]
+          },
+          "semSugestao": "Informe a extensão microscópica do tumor para o cálculo.",
+          "opcoes": [
+            {
+              "valor": "TX",
+              "rotulo": "TX"
+            },
+            {
+              "valor": "T0",
+              "rotulo": "T0"
+            },
+            {
+              "valor": "Tis",
+              "rotulo": "Tis"
+            },
+            {
+              "valor": "T1a",
+              "rotulo": "T1a"
+            },
+            {
+              "valor": "T1b",
+              "rotulo": "T1b"
+            },
+            {
+              "valor": "T2",
+              "rotulo": "T2"
+            },
+            {
+              "valor": "T3",
+              "rotulo": "T3"
+            },
+            {
+              "valor": "T4a",
+              "rotulo": "T4a"
+            },
+            {
+              "valor": "T4b",
+              "rotulo": "T4b"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "extensao",
+                "igual": "hgd"
+              },
+              "resultado": "Tis",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "extensao",
+                "igual": "lp"
+              },
+              "resultado": "T1a",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "extensao",
+                "igual": "mm"
+              },
+              "resultado": "T1a",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "extensao",
+                "igual": "sm"
+              },
+              "resultado": "T1b",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "extensao",
+                "igual": "mp"
+              },
+              "resultado": "T2",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "extensao",
+                "igual": "ss"
+              },
+              "resultado": "T3",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "extensao",
+                "igual": "serosa"
+              },
+              "resultado": "T4a",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "extensao",
+                "igual": "adjacentes"
+              },
+              "resultado": "T4b",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "extensao",
+                "igual": "sem_tumor"
+              },
+              "resultado": "T0",
+              "exclusivo": true
+            }
+          ]
+        },
+        {
+          "id": "pN",
+          "rotulo": "Linfonodos regionais (pN)",
+          "tipo": "calculado",
+          "nucleo": true,
+          "prefixo": {
+            "padrao": "p",
+            "regras": [
+              {
+                "se": {
+                  "campo": "tratamento",
+                  "igual": "realizado"
+                },
+                "valor": "yp"
+              }
+            ]
+          },
+          "anexaEm": "pT",
+          "formato": ", {valor}",
+          "semSugestao": "Informe os linfonodos regionais para o cálculo.",
+          "opcoes": [
+            {
+              "valor": "NX",
+              "rotulo": "NX"
+            },
+            {
+              "valor": "N0",
+              "rotulo": "N0"
+            },
+            {
+              "valor": "N1",
+              "rotulo": "N1"
+            },
+            {
+              "valor": "N2",
+              "rotulo": "N2"
+            },
+            {
+              "valor": "N3a",
+              "rotulo": "N3a"
+            },
+            {
+              "valor": "N3b",
+              "rotulo": "N3b"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "linfonodos",
+                "igual": "nao_enviados"
+              },
+              "resultado": "NX",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "linfonodos",
+                "igual": "negativos"
+              },
+              "resultado": "N0",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "ln_positivos",
+                "maiorOuIgual": 1,
+                "menorOuIgual": 2
+              },
+              "resultado": "N1",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "ln_positivos",
+                "maiorOuIgual": 3,
+                "menorOuIgual": 6
+              },
+              "resultado": "N2",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "ln_positivos",
+                "maiorOuIgual": 7,
+                "menorOuIgual": 15
+              },
+              "resultado": "N3a",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "campo": "ln_positivos",
+                "maiorOuIgual": 16
+              },
+              "resultado": "N3b",
+              "exclusivo": true
+            }
+          ]
+        },
+        {
+          "id": "pM",
+          "rotulo": "Metástase à distância (pM)",
+          "tipo": "calculado",
+          "prefixo": {
+            "padrao": "p"
+          },
+          "anexaEm": "pT",
+          "formato": ", {valor}",
+          "ajuda": "Calculado a partir do campo de metástases à distância.",
+          "semSugestao": "Sem metástase confirmada. O pM não entra no laudo.",
+          "opcoes": [
+            {
+              "valor": "M1",
+              "rotulo": "M1"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "metastases",
+                "em": ["presentes", "citologia"]
+              },
+              "resultado": "M1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Nota",
+      "campos": [
+        {
+          "id": "nota",
+          "rotulo": "Nota",
+          "tipo": "multipla",
+          "permiteOutro": true,
+          "separador": " ",
+          "ajuda": "Opcional. Cada item marcado entra como uma frase da nota.",
+          "opcoes": [
+            {
+              "valor": "reflexa",
+              "rotulo": "testagem reflexa: HER2 e Claudina 18.2",
+              "texto": "Sugerimos avaliação imunoistoquímica de HER2 e Claudina 18.2 na peça cirúrgica."
+            },
+            {
+              "valor": "mmr",
+              "rotulo": "imunoistoquímica para instabilidade de microssatélites",
+              "texto": "Sugerimos estudo imunoistoquímico para instabilidade de microssatélites com os marcadores MLH1, MSH2, MSH6 e PMS2."
+            },
+            {
+              "valor": "pdl1",
+              "rotulo": "PD-L1 (CPS)",
+              "texto": "Sugerimos avaliação de PD-L1 (CPS) por imunoistoquímica."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
