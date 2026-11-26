@@ -50,11 +50,19 @@
     },
     {
       "id": "pele-cec",
-      "titulo": "Carcinoma espinocelular cutâneo, excisão",
+      "titulo": "Carcinoma de células escamosas cutâneo, excisão",
       "orgao": "Pele",
       "procedimento": "Excisão",
       "arquivo": "pele-cec.json",
       "icone": "pele"
+    },
+    {
+      "id": "prostata-prostatectomia",
+      "titulo": "Adenocarcinoma de próstata, prostatectomia radical",
+      "orgao": "Próstata",
+      "procedimento": "Prostatectomia radical",
+      "arquivo": "prostata-prostatectomia.json",
+      "icone": "prostata"
     }
   ]
 }

@@ -160,7 +160,10 @@
           "minLength": 1
         },
         "tipo": {
-          "enum": ["unica", "multipla", "numero", "texto", "calculado", "derivado"]
+          "enum": ["unica", "multipla", "numero", "texto", "calculado", "derivado", "copia"]
+        },
+        "de": {
+          "$ref": "#/$defs/id"
         },
         "nucleo": {
           "type": "boolean"

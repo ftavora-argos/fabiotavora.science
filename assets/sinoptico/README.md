@@ -34,7 +34,7 @@ Antes do commit: `npx prettier assets/sinoptico bin/validar-sinoptico.mjs _pages
 1. Copie `templates/pulmao-resseccao.json` para `templates/<orgao>-<procedimento>.json`.
 2. Ajuste `meta` (`id` igual ao nome do arquivo sem `.json`, `versao`, `revisao`).
 3. Escreva as `secoes` e os `campos` na ordem em que as linhas devem sair no laudo.
-4. Acrescente uma entrada em `templates/index.json`. O campo `icone` escolhe o desenho da lista inicial: `pulmao`, `colon`, `mama`, `estomago`, `tireoide`, `pele` ou `generico`. Um órgão novo exige acrescentar o desenho em `ICONES`, no `app.js`.
+4. Acrescente uma entrada em `templates/index.json`. O campo `icone` escolhe o desenho da lista inicial: `pulmao`, `colon`, `mama`, `estomago`, `tireoide`, `pele`, `prostata` ou `generico`. Um órgão novo exige acrescentar o desenho em `ICONES`, no `app.js`.
 5. Rode `node bin/validar-sinoptico.mjs` e confira o resultado no navegador.
 
 ### Campos
@@ -111,6 +111,7 @@ Operadores: `igual`, `em`, `naoEm`, `contem`, `contagemMin`, `contagemMax`, `con
 - Uma seção cujos campos estão todos ocultos some do formulário, o que permite blocos repetidos (Lesão 2, Lesão 3) controlados por `visivelSe`.
 - `expressao` (em variável): fórmula com números, `+ - * / ^`, parênteses, ids e as funções `sqrt`, `min`, `max` e `ou(a, b)`. Campo oculto vale 0; campo visível sem resposta deixa o resultado indefinido. Exemplo: o índice RCB em `mama-pos-qt.json`.
 - Tipo `derivado`: campo somente leitura que mostra e imprime o resultado de uma `expressao`, com `decimais` e `unidade`.
+- Tipo `copia`: campo auxiliar (`oculto: true`) que repete o texto de outro campo, indicado em `de`. Com `maiusculas: true`, sai em maiúsculas. Serve para usar a mesma resposta em duas linhas do laudo, como o local da extensão extraprostática, que sai na linha de diagnóstico e no sinóptico.
 - `linhaFinal` (na raiz, opcional) acrescenta uma última linha com marcadores `{id}`, por exemplo `"pTNM: {pT} {pN} {pM}"`.
 - `ferramentas` (na raiz, opcional): `["esquema-fatias"]` acrescenta ao fim do formulário o desenho das fatias da macroscopia, com cópia e download da imagem. Não entra no texto do laudo.
 

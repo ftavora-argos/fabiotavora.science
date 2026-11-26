@@ -1,13 +1,13 @@
 {
   "meta": {
     "id": "pele-cec",
-    "titulo": "Carcinoma espinocelular cutâneo, excisão",
+    "titulo": "Carcinoma de células escamosas cutâneo, excisão",
     "orgao": "Pele",
     "procedimento": "Excisão",
     "fonte": "ICCR e OMS 5ª edição, no estilo dos modelos Argos Laboratório (rascunho para revisão)",
     "versao": "0.1.0",
     "revisao": "2026-11-26",
-    "estadiamento": "AJCC 8ª edição (cabeça e pescoço) e UICC 8ª edição (outros sítios)"
+    "estadiamento": "AJCC 8ª edição (critérios de cabeça e pescoço aplicados a todos os sítios)"
   },
   "secoes": [
     {
@@ -22,7 +22,7 @@
           "opcoes": [
             {
               "valor": "cec",
-              "rotulo": "CARCINOMA ESPINOCELULAR INVASIVO"
+              "rotulo": "CARCINOMA DE CÉLULAS ESCAMOSAS INVASIVO"
             }
           ],
           "regras": [
@@ -350,42 +350,42 @@
             {
               "valor": "usual",
               "rotulo": "usual (convencional)",
-              "texto": "carcinoma espinocelular, tipo usual"
+              "texto": "carcinoma de células escamosas, tipo usual"
             },
             {
               "valor": "queratoacantoma",
               "rotulo": "tipo queratoacantoma",
-              "texto": "carcinoma espinocelular, tipo queratoacantoma"
+              "texto": "carcinoma de células escamosas, tipo queratoacantoma"
             },
             {
               "valor": "acantolitico",
               "rotulo": "acantolítico",
-              "texto": "carcinoma espinocelular, tipo acantolítico"
+              "texto": "carcinoma de células escamosas, tipo acantolítico"
             },
             {
               "valor": "fusocelular",
               "rotulo": "fusocelular (sarcomatoide)",
-              "texto": "carcinoma espinocelular, tipo fusocelular (sarcomatoide)"
+              "texto": "carcinoma de células escamosas, tipo fusocelular (sarcomatoide)"
             },
             {
               "valor": "desmoplasico",
               "rotulo": "desmoplásico",
-              "texto": "carcinoma espinocelular, tipo desmoplásico"
+              "texto": "carcinoma de células escamosas, tipo desmoplásico"
             },
             {
               "valor": "verrucoso",
               "rotulo": "verrucoso",
-              "texto": "carcinoma espinocelular, tipo verrucoso"
+              "texto": "carcinoma de células escamosas, tipo verrucoso"
             },
             {
               "valor": "adenoescamoso",
               "rotulo": "adenoescamoso",
-              "texto": "carcinoma espinocelular, tipo adenoescamoso"
+              "texto": "carcinoma de células escamosas, tipo adenoescamoso"
             },
             {
               "valor": "linfoepitelioma",
               "rotulo": "linfoepitelioma-símile",
-              "texto": "carcinoma espinocelular, tipo linfoepitelioma-símile"
+              "texto": "carcinoma de células escamosas, tipo linfoepitelioma-símile"
             }
           ]
         },
@@ -679,20 +679,12 @@
           "tipo": "unica",
           "nucleo": true,
           "visivelSe": {
-            "todos": [
-              {
-                "campo": "linfonodos",
-                "igual": "positivos"
-              },
-              {
-                "campo": "regiao",
-                "igual": "cabeca_pescoco"
-              }
-            ]
+            "campo": "linfonodos",
+            "igual": "positivos"
           },
           "anexaEm": "linfonodos",
           "formato": "; {valor}",
-          "ajuda": "Em relação ao tumor primário. Usado no pN de cabeça e pescoço.",
+          "ajuda": "Em relação ao tumor primário. Define o pN.",
           "opcoes": [
             {
               "valor": "ipsilateral",
@@ -735,7 +727,7 @@
             },
             {
               "valor": "in_situ",
-              "rotulo": "carcinoma espinocelular in situ adjacente"
+              "rotulo": "carcinoma de células escamosas in situ adjacente"
             },
             {
               "valor": "elastose",
@@ -801,61 +793,9 @@
       "titulo": "Estadiamento patológico",
       "campos": [
         {
-          "id": "regiao",
-          "rotulo": "Região para o estadiamento",
-          "tipo": "calculado",
-          "nucleo": true,
-          "omitirNoLaudo": true,
-          "formato": " ({valor})",
-          "ajuda": "Cabeça e pescoço: AJCC, 8ª edição. Outros sítios: UICC, 8ª edição. Corrija se o sítio foi marcado como outro.",
-          "semSugestao": "Informe o sítio do tumor.",
-          "opcoes": [
-            {
-              "valor": "cabeca_pescoco",
-              "rotulo": "cabeça e pescoço (AJCC, 8ª edição)",
-              "texto": "AJCC, 8ª edição"
-            },
-            {
-              "valor": "outros",
-              "rotulo": "outros sítios (UICC, 8ª edição)",
-              "texto": "UICC, 8ª edição"
-            }
-          ],
-          "regras": [
-            {
-              "se": {
-                "campo": "sitio",
-                "em": [
-                  "couro_cabeludo",
-                  "fronte",
-                  "temporal",
-                  "orelha",
-                  "periauricular",
-                  "periorbitaria",
-                  "nariz",
-                  "malar",
-                  "labio_pele",
-                  "mento",
-                  "pescoco"
-                ]
-              },
-              "resultado": "cabeca_pescoco",
-              "exclusivo": true
-            },
-            {
-              "se": {
-                "campo": "sitio",
-                "preenchido": true
-              },
-              "resultado": "outros",
-              "exclusivo": true
-            }
-          ]
-        },
-        {
           "id": "pT",
           "rotulo": "Tumor primário (pT)",
-          "rotuloLaudo": "Estadiamento patológico{?regiao}",
+          "rotuloLaudo": "Estadiamento patológico (AJCC, 8ª edição)",
           "tipo": "calculado",
           "nucleo": true,
           "prefixo": {
@@ -899,93 +839,23 @@
           "regras": [
             {
               "se": {
-                "todos": [
-                  {
-                    "campo": "regiao",
-                    "igual": "cabeca_pescoco"
-                  },
-                  {
-                    "campo": "tamanho",
-                    "menorQue": 2
-                  }
-                ]
+                "campo": "tamanho",
+                "menorQue": 2
               },
               "resultado": "T1"
             },
             {
               "se": {
-                "todos": [
-                  {
-                    "campo": "regiao",
-                    "igual": "cabeca_pescoco"
-                  },
-                  {
-                    "campo": "tamanho",
-                    "maiorOuIgual": 2,
-                    "menorQue": 4
-                  }
-                ]
+                "campo": "tamanho",
+                "maiorOuIgual": 2,
+                "menorQue": 4
               },
               "resultado": "T2"
             },
             {
               "se": {
-                "todos": [
-                  {
-                    "campo": "regiao",
-                    "igual": "cabeca_pescoco"
-                  },
-                  {
-                    "campo": "tamanho",
-                    "maiorOuIgual": 4
-                  }
-                ]
-              },
-              "resultado": "T3"
-            },
-            {
-              "se": {
-                "todos": [
-                  {
-                    "campo": "regiao",
-                    "igual": "outros"
-                  },
-                  {
-                    "campo": "tamanho",
-                    "menorOuIgual": 2
-                  }
-                ]
-              },
-              "resultado": "T1"
-            },
-            {
-              "se": {
-                "todos": [
-                  {
-                    "campo": "regiao",
-                    "igual": "outros"
-                  },
-                  {
-                    "campo": "tamanho",
-                    "maiorQue": 2,
-                    "menorOuIgual": 4
-                  }
-                ]
-              },
-              "resultado": "T2"
-            },
-            {
-              "se": {
-                "todos": [
-                  {
-                    "campo": "regiao",
-                    "igual": "outros"
-                  },
-                  {
-                    "campo": "tamanho",
-                    "maiorQue": 4
-                  }
-                ]
+                "campo": "tamanho",
+                "maiorOuIgual": 4
               },
               "resultado": "T3"
             },
@@ -1107,10 +977,6 @@
               "se": {
                 "todos": [
                   {
-                    "campo": "regiao",
-                    "igual": "cabeca_pescoco"
-                  },
-                  {
                     "campo": "ln_positivos",
                     "menorOuIgual": 1
                   },
@@ -1133,10 +999,6 @@
             {
               "se": {
                 "todos": [
-                  {
-                    "campo": "regiao",
-                    "igual": "cabeca_pescoco"
-                  },
                   {
                     "campo": "ln_positivos",
                     "menorOuIgual": 1
@@ -1161,10 +1023,6 @@
               "se": {
                 "todos": [
                   {
-                    "campo": "regiao",
-                    "igual": "cabeca_pescoco"
-                  },
-                  {
                     "campo": "ln_positivos",
                     "menorOuIgual": 1
                   },
@@ -1188,10 +1046,6 @@
             {
               "se": {
                 "todos": [
-                  {
-                    "campo": "regiao",
-                    "igual": "cabeca_pescoco"
-                  },
                   {
                     "campo": "ln_positivos",
                     "maiorOuIgual": 2
@@ -1216,10 +1070,6 @@
               "se": {
                 "todos": [
                   {
-                    "campo": "regiao",
-                    "igual": "cabeca_pescoco"
-                  },
-                  {
                     "campo": "ln_lado",
                     "em": ["contralateral", "bilateral"]
                   },
@@ -1239,10 +1089,6 @@
               "se": {
                 "todos": [
                   {
-                    "campo": "regiao",
-                    "igual": "cabeca_pescoco"
-                  },
-                  {
                     "campo": "ene",
                     "igual": "ausente"
                   },
@@ -1257,10 +1103,6 @@
             {
               "se": {
                 "todos": [
-                  {
-                    "campo": "regiao",
-                    "igual": "cabeca_pescoco"
-                  },
                   {
                     "campo": "ene",
                     "igual": "presente"
@@ -1284,79 +1126,6 @@
                 ]
               },
               "resultado": "N3b"
-            },
-            {
-              "se": {
-                "todos": [
-                  {
-                    "campo": "regiao",
-                    "igual": "outros"
-                  },
-                  {
-                    "campo": "ln_positivos",
-                    "menorOuIgual": 1
-                  },
-                  {
-                    "campo": "ln_maior",
-                    "menorOuIgual": 3
-                  }
-                ]
-              },
-              "resultado": "N1"
-            },
-            {
-              "se": {
-                "todos": [
-                  {
-                    "campo": "regiao",
-                    "igual": "outros"
-                  },
-                  {
-                    "campo": "ln_positivos",
-                    "menorOuIgual": 1
-                  },
-                  {
-                    "campo": "ln_maior",
-                    "maiorQue": 3,
-                    "menorOuIgual": 6
-                  }
-                ]
-              },
-              "resultado": "N2"
-            },
-            {
-              "se": {
-                "todos": [
-                  {
-                    "campo": "regiao",
-                    "igual": "outros"
-                  },
-                  {
-                    "campo": "ln_positivos",
-                    "maiorOuIgual": 2
-                  },
-                  {
-                    "campo": "ln_maior",
-                    "menorOuIgual": 6
-                  }
-                ]
-              },
-              "resultado": "N2"
-            },
-            {
-              "se": {
-                "todos": [
-                  {
-                    "campo": "regiao",
-                    "igual": "outros"
-                  },
-                  {
-                    "campo": "ln_maior",
-                    "maiorQue": 6
-                  }
-                ]
-              },
-              "resultado": "N3"
             }
           ]
         },
@@ -1403,7 +1172,7 @@
             {
               "valor": "sistema",
               "rotulo": "sistema de estadiamento usado",
-              "texto": "O estadiamento da 8ª edição do AJCC se aplica ao carcinoma espinocelular cutâneo de cabeça e pescoço; nos demais sítios foi usada a 8ª edição da UICC."
+              "texto": "O capítulo da 8ª edição do AJCC é definido para o carcinoma de células escamosas cutâneo de cabeça e pescoço; os mesmos critérios foram aplicados a este sítio."
             },
             {
               "valor": "pni_clinica",
