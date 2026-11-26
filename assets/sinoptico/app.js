@@ -1229,9 +1229,7 @@
     tireoide:
       '<path d="M14 18c0-7-2-13-6-13-3 0-4 6-3 12 1 6 3 9 6 9 2 0 3-3 3-8z"/>' +
       '<path d="M18 18c0-7 2-13 6-13 3 0 4 6 3 12-1 6-3 9-6 9-2 0-3-3-3-8z"/><path d="M14 19h4"/>',
-    pele:
-      '<path d="M4 9c3-2 5 2 8 0s5 2 8 0 5 2 8 0"/><path d="M4 16h24M4 27h24"/>' +
-      '<path d="M13 8v11"/><circle cx="13" cy="21.5" r="2"/>',
+    pele: '<path d="M4 9c3-2 5 2 8 0s5 2 8 0 5 2 8 0"/><path d="M4 16h24M4 27h24"/>' + '<path d="M13 8v11"/><circle cx="13" cy="21.5" r="2"/>',
     generico: '<rect x="7" y="5" width="18" height="22"/><path d="M11 11h10M11 16h10M11 21h6"/>',
   };
 
