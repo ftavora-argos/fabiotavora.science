@@ -130,6 +130,11 @@ function conferirReferencias(tpl, erros) {
       else conferirExpressao(campo.expressao, onde);
     } else if (campo.expressao) erros.push(`${onde}: "expressao" só vale para tipo "derivado"`);
     if (campo.tipo === "calculado" && !campo.regras) erros.push(`${onde}: tipo "calculado" exige "regras"`);
+    if (campo.tipo === "copia") {
+      if (!campos.has(campo.de)) erros.push(`${onde}: "de" aponta para campo inexistente "${campo.de}"`);
+      else if (campos.get(campo.de).tipo === "copia") erros.push(`${onde}: "de" não pode apontar para outra cópia`);
+      if (!campo.oculto) erros.push(`${onde}: tipo "copia" exige "oculto": true`);
+    } else if (campo.de) erros.push(`${onde}: "de" só vale para tipo "copia"`);
     if (campo.opcoes) {
       const vistos = new Set();
       for (const o of campo.opcoes) {

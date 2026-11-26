@@ -200,6 +200,7 @@
       var d = avaliar(campo.expressao);
       return isNaN(d) ? undefined : d;
     }
+    if (campo.tipo === "copia") return valor(campo.de);
     return estado.resp[id];
   }
 
@@ -371,6 +372,11 @@
     } else if (campo.tipo === "calculado") {
       var v = efetivo(campo);
       t = v ? prefixo(campo) + textoOpcao(campo, v) + sufixo(campo) : null;
+    } else if (campo.tipo === "copia") {
+      // Repete o texto de outro campo (por exemplo, em maiúsculas na linha de diagnóstico).
+      var fonte = estado.campos[campo.de];
+      t = fonte && visivel(fonte) ? textoCampo(fonte) : null;
+      if (t && campo.maiusculas) t = t.toLocaleUpperCase("pt-BR");
     }
     return t;
   }
@@ -1226,6 +1232,11 @@
     estomago: '<path d="M17 3v5c-3-3-9-2-11 4-2 8 2 15 9 16 6 1 11-2 12-7h3"/>' + '<path d="M21 3v7c0 5-1 9 2 10 2 1 4-1 4-3h3"/>',
     colon: '<path stroke-width="3" d="M9 27V11c0-3 2-5 5-5h5c3 0 5 2 5 5v10c0 3-2 4-5 4-2 0-3 2-2 4"/>' + '<path d="M9 27c0 2-2 2.5-2.5 1"/>',
     mama: '<path d="M9 3v26"/><path d="M9 7c7 1 15 5 15 12 0 6-7 8-15 7"/><path d="M24 17.5c1 0 2 .5 2 1.5s-1 1.5-2 1.5"/>',
+    tireoide:
+      '<path d="M14 18c0-7-2-13-6-13-3 0-4 6-3 12 1 6 3 9 6 9 2 0 3-3 3-8z"/>' +
+      '<path d="M18 18c0-7 2-13 6-13 3 0 4 6 3 12-1 6-3 9-6 9-2 0-3-3-3-8z"/><path d="M14 19h4"/>',
+    pele: '<path d="M4 9c3-2 5 2 8 0s5 2 8 0 5 2 8 0"/><path d="M4 16h24M4 27h24"/>' + '<path d="M13 8v11"/><circle cx="13" cy="21.5" r="2"/>',
+    prostata: '<path d="M16 5c-6 0-10 5-10 11s4 11 10 11 10-5 10-11S22 5 16 5z"/><path d="M16 2v28"/><path d="M11 14c2 1 3 3 3 5"/>',
     generico: '<rect x="7" y="5" width="18" height="22"/><path d="M11 11h10M11 16h10M11 21h6"/>',
   };
 
