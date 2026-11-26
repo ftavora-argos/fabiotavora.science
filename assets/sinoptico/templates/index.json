@@ -39,6 +39,22 @@
       "procedimento": "Ressecção",
       "arquivo": "estomago-resseccao.json",
       "icone": "estomago"
+    },
+    {
+      "id": "tireoide-resseccao",
+      "titulo": "Carcinoma de tireoide, ressecção",
+      "orgao": "Tireoide",
+      "procedimento": "Tireoidectomia",
+      "arquivo": "tireoide-resseccao.json",
+      "icone": "tireoide"
+    },
+    {
+      "id": "pele-cec",
+      "titulo": "Carcinoma espinocelular cutâneo, excisão",
+      "orgao": "Pele",
+      "procedimento": "Excisão",
+      "arquivo": "pele-cec.json",
+      "icone": "pele"
     }
   ]
 }

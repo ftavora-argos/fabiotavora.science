@@ -34,7 +34,7 @@ Antes do commit: `npx prettier assets/sinoptico bin/validar-sinoptico.mjs _pages
 1. Copie `templates/pulmao-resseccao.json` para `templates/<orgao>-<procedimento>.json`.
 2. Ajuste `meta` (`id` igual ao nome do arquivo sem `.json`, `versao`, `revisao`).
 3. Escreva as `secoes` e os `campos` na ordem em que as linhas devem sair no laudo.
-4. Acrescente uma entrada em `templates/index.json`. O campo `icone` escolhe o desenho da lista inicial: `pulmao`, `colon`, `mama`, `estomago` ou `generico`. Um órgão novo exige acrescentar o desenho em `ICONES`, no `app.js`.
+4. Acrescente uma entrada em `templates/index.json`. O campo `icone` escolhe o desenho da lista inicial: `pulmao`, `colon`, `mama`, `estomago`, `tireoide`, `pele` ou `generico`. Um órgão novo exige acrescentar o desenho em `ICONES`, no `app.js`.
 5. Rode `node bin/validar-sinoptico.mjs` e confira o resultado no navegador.
 
 ### Campos
