@@ -354,7 +354,7 @@
       var partes = (bruto || []).map(function (v) {
         return textoOpcao(campo, v);
       });
-      t = partes.length && partes.indexOf(null) < 0 ? partes.join(campo.separador || ", ") : null;
+      t = partes.length && partes.indexOf(null) < 0 ? juntar(partes, campo.separador) : null;
     } else if (campo.tipo === "numero") {
       if (!isNaN(numero(bruto))) {
         t = String(bruto).trim().replace(".", ",");
@@ -379,6 +379,13 @@
       if (t && campo.maiusculas) t = t.toLocaleUpperCase("pt-BR");
     }
     return t;
+  }
+
+  // separador "lista" junta como na escrita: "a, b e c"
+  function juntar(partes, separador) {
+    if (separador !== "lista") return partes.join(separador || ", ");
+    if (partes.length < 2) return partes.join("");
+    return partes.slice(0, -1).join(", ") + " e " + partes[partes.length - 1];
   }
 
   function comFormato(campo, t) {

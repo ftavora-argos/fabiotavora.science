@@ -5,7 +5,7 @@
     "orgao": "Próstata",
     "procedimento": "Prostatectomia radical",
     "fonte": "Modelo Argos Laboratório",
-    "versao": "0.1.0",
+    "versao": "0.2.0",
     "revisao": "2026-11-26",
     "estadiamento": "pTNM, 8ª edição do AJCC"
   },
@@ -229,9 +229,6 @@
           "rotulo": "Linha de extensão",
           "tipo": "calculado",
           "semRotulo": true,
-          "nucleo": true,
-          "ajuda": "Calculada a partir da extensão extraprostática e da invasão de vesícula seminal e de colo vesical.",
-          "semSugestao": "Responda extensão extraprostática, colo vesical e vesícula seminal, ou escolha aqui.",
           "opcoes": [
             {
               "valor": "confinado",
@@ -242,6 +239,16 @@
               "valor": "epe",
               "rotulo": "extensão extraprostática presente",
               "texto": "EXTENSÃO EXTRAPROSTÁTICA PRESENTE EM"
+            },
+            {
+              "valor": "vs",
+              "rotulo": "invasão de vesícula seminal",
+              "texto": "INVASÃO DE VESÍCULA SEMINAL PRESENTE"
+            },
+            {
+              "valor": "colo",
+              "rotulo": "invasão de colo vesical",
+              "texto": "INVASÃO DE COLO VESICAL PRESENTE"
             }
           ],
           "regras": [
@@ -261,19 +268,56 @@
                     "igual": "ausente"
                   },
                   {
+                    "campo": "vs",
+                    "igual": "presente"
+                  }
+                ]
+              },
+              "resultado": "vs",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "epe",
+                    "igual": "ausente"
+                  },
+                  {
+                    "campo": "colo",
+                    "igual": "presente"
+                  }
+                ]
+              },
+              "resultado": "colo",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "epe",
+                    "igual": "ausente"
+                  },
+                  {
                     "campo": "colo",
                     "igual": "ausente"
                   },
                   {
                     "campo": "vs",
                     "igual": "ausente"
+                  },
+                  {
+                    "campo": "margens",
+                    "igual": "livres"
                   }
                 ]
               },
               "resultado": "confinado",
               "exclusivo": true
             }
-          ]
+          ],
+          "oculto": true
         },
         {
           "id": "extensao_local",
@@ -289,6 +333,67 @@
             "campo": "extensao",
             "igual": "epe"
           }
+        },
+        {
+          "id": "extensao_lado",
+          "rotulo": "Cópia de epe_lado",
+          "tipo": "copia",
+          "de": "epe_lado",
+          "oculto": true,
+          "maiusculas": true,
+          "nucleo": true,
+          "anexaEm": "extensao",
+          "formato": " {valor}",
+          "visivelSe": {
+            "campo": "extensao",
+            "igual": "epe"
+          }
+        },
+        {
+          "id": "margem_linha",
+          "rotulo": "Linha de margem positiva",
+          "tipo": "calculado",
+          "oculto": true,
+          "semRotulo": true,
+          "opcoes": [
+            {
+              "valor": "pos",
+              "rotulo": "margem positiva",
+              "texto": "MARGEM POSITIVA EM"
+            }
+          ],
+          "regras": [
+            {
+              "se": {
+                "campo": "margens",
+                "igual": "positivas"
+              },
+              "resultado": "pos",
+              "exclusivo": true
+            }
+          ]
+        },
+        {
+          "id": "margem_linha_local",
+          "rotulo": "Cópia de margem_local",
+          "tipo": "copia",
+          "de": "margem_local",
+          "oculto": true,
+          "maiusculas": true,
+          "nucleo": true,
+          "anexaEm": "margem_linha",
+          "formato": " {valor}"
+        },
+        {
+          "id": "margem_linha_lado",
+          "rotulo": "Cópia de margem_lado",
+          "tipo": "copia",
+          "de": "margem_lado",
+          "oculto": true,
+          "maiusculas": true,
+          "nucleo": true,
+          "anexaEm": "margem_linha",
+          "formato": " {valor}"
         }
       ]
     },
@@ -486,7 +591,7 @@
         {
           "id": "idx_terco",
           "rotulo": "Localização do tumor-índex",
-          "tipo": "unica",
+          "tipo": "multipla",
           "nucleo": true,
           "anexaEm": "idx",
           "formato": ", localiza-se na zona periférica {valor}",
@@ -506,7 +611,9 @@
               "rotulo": "base",
               "texto": "da base"
             }
-          ]
+          ],
+          "separador": "lista",
+          "ajuda": "Marque uma ou mais regiões."
         },
         {
           "id": "idx_lado",
@@ -549,9 +656,49 @@
             {
               "valor": "esquerda",
               "rotulo": "esquerda"
+            },
+            {
+              "valor": "a_direita",
+              "rotulo": "à direita"
+            },
+            {
+              "valor": "a_esquerda",
+              "rotulo": "à esquerda"
             }
           ],
           "regras": [
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "idx_terco",
+                    "contagemMin": 2
+                  },
+                  {
+                    "campo": "idx_lado",
+                    "igual": "direito"
+                  }
+                ]
+              },
+              "resultado": "a_direita",
+              "exclusivo": true
+            },
+            {
+              "se": {
+                "todos": [
+                  {
+                    "campo": "idx_terco",
+                    "contagemMin": 2
+                  },
+                  {
+                    "campo": "idx_lado",
+                    "igual": "esquerdo"
+                  }
+                ]
+              },
+              "resultado": "a_esquerda",
+              "exclusivo": true
+            },
             {
               "se": {
                 "todos": [
@@ -1162,13 +1309,98 @@
         {
           "id": "epe_local",
           "rotulo": "Local da extensão extraprostática",
-          "tipo": "texto",
+          "tipo": "multipla",
           "nucleo": true,
           "visivelSe": {
             "campo": "epe",
             "igual": "presente"
           },
-          "ajuda": "Sai assim no sinóptico e em maiúsculas na linha de diagnóstico. Exemplo: região póstero-lateral direita."
+          "ajuda": "Abre quando a extensão extraprostática é presente. Sai no sinóptico e, em maiúsculas, na linha de extensão do topo.",
+          "separador": "lista",
+          "permiteOutro": true,
+          "opcoes": [
+            {
+              "valor": "apice",
+              "rotulo": "ápice"
+            },
+            {
+              "valor": "medio",
+              "rotulo": "terço médio"
+            },
+            {
+              "valor": "base",
+              "rotulo": "base"
+            },
+            {
+              "valor": "colo",
+              "rotulo": "colo vesical"
+            },
+            {
+              "valor": "anterior",
+              "rotulo": "região anterior"
+            },
+            {
+              "valor": "posterior",
+              "rotulo": "região posterior"
+            },
+            {
+              "valor": "posterolateral",
+              "rotulo": "região póstero-lateral"
+            },
+            {
+              "valor": "lateral",
+              "rotulo": "região lateral"
+            }
+          ]
+        },
+        {
+          "id": "epe_lado",
+          "rotulo": "Lado da extensão extraprostática",
+          "tipo": "unica",
+          "nucleo": true,
+          "visivelSe": {
+            "campo": "epe",
+            "igual": "presente"
+          },
+          "anexaEm": "epe_local",
+          "formato": " {valor}",
+          "opcoes": [
+            {
+              "valor": "dir",
+              "rotulo": "à direita"
+            },
+            {
+              "valor": "esq",
+              "rotulo": "à esquerda"
+            },
+            {
+              "valor": "bilat",
+              "rotulo": "bilateral",
+              "texto": "bilateralmente"
+            }
+          ]
+        },
+        {
+          "id": "epe_focal",
+          "rotulo": "Extensão da extensão extraprostática",
+          "tipo": "unica",
+          "visivelSe": {
+            "campo": "epe",
+            "igual": "presente"
+          },
+          "anexaEm": "epe",
+          "formato": " ({valor})",
+          "ajuda": "Opcional.",
+          "opcoes": [
+            {
+              "valor": "focal",
+              "rotulo": "focal"
+            },
+            {
+              "valor": "nao_focal",
+              "rotulo": "não focal (estabelecida)"
+            }
+          ]
         },
         {
           "id": "epe_local_na",
@@ -1285,6 +1517,80 @@
             {
               "valor": "intra",
               "rotulo": "intraprostática/incisão capsular"
+            }
+          ]
+        },
+        {
+          "id": "margem_local",
+          "rotulo": "Local da margem positiva",
+          "tipo": "multipla",
+          "separador": "lista",
+          "nucleo": true,
+          "permiteOutro": true,
+          "omitirNoLaudo": true,
+          "visivelSe": {
+            "campo": "margens",
+            "igual": "positivas"
+          },
+          "ajuda": "Sai em maiúsculas no topo, no lugar de \"tumor confinado ao órgão\".",
+          "opcoes": [
+            {
+              "valor": "apice",
+              "rotulo": "ápice"
+            },
+            {
+              "valor": "medio",
+              "rotulo": "terço médio"
+            },
+            {
+              "valor": "base",
+              "rotulo": "base"
+            },
+            {
+              "valor": "colo",
+              "rotulo": "colo vesical"
+            },
+            {
+              "valor": "anterior",
+              "rotulo": "região anterior"
+            },
+            {
+              "valor": "posterior",
+              "rotulo": "região posterior"
+            },
+            {
+              "valor": "posterolateral",
+              "rotulo": "região póstero-lateral"
+            },
+            {
+              "valor": "lateral",
+              "rotulo": "região lateral"
+            }
+          ]
+        },
+        {
+          "id": "margem_lado",
+          "rotulo": "Lado da margem positiva",
+          "tipo": "unica",
+          "nucleo": true,
+          "omitirNoLaudo": true,
+          "visivelSe": {
+            "campo": "margens",
+            "igual": "positivas"
+          },
+          "opcoes": [
+            {
+              "valor": "dir",
+              "rotulo": "à direita"
+            },
+            {
+              "valor": "esq",
+              "rotulo": "à esquerda"
+            },
+            {
+              "valor": "bilat",
+              "rotulo": "bilateral",
+              "texto": "bilateralmente"
             }
           ]
         },

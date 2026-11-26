@@ -64,7 +64,7 @@ Propriedades opcionais:
 - Na seção: `cabecalhoLaudo` abre um bloco no laudo, com uma linha em branco antes.
 - Na seção: `cabecalhoDestaque: true` põe o cabeçalho em negrito e sublinhado na prévia e na cópia formatada (a cópia leva texto puro e HTML; o editor de destino escolhe).
 - Na seção: `espacoAntes: true` insere só a linha em branco, sem cabeçalho.
-- `formatoUm`: formato alternativo quando o número é 1 (singular). `separador`: texto entre os itens de uma múltipla escolha (padrão: vírgula).
+- `formatoUm`: formato alternativo quando o número é 1 (singular). `separador`: texto entre os itens de uma múltipla escolha (padrão: vírgula); o valor especial `"lista"` junta como na escrita ("a, b e c").
 
 ### Condições
 
